@@ -5,7 +5,7 @@ var SignUpPage = function() {
   var homepage = new HomePage;
   var url = homepage.getUrl() + 'signup';
   var modalDialog = element(by.css('.modal-dialog'));
-  var startWithAGoogleAccount = element(by.buttonText('Start with a Google Account'));
+  var modalTitle = element(by.css('.modal-title'));
 
   this.get = function() {
     browser.get(url);
@@ -19,8 +19,8 @@ var SignUpPage = function() {
     return modalDialog;
   };
 
-  this.getStartWithAGoogleAccount = function () {
-    return startWithAGoogleAccount;
+  this.getModalTitle = function () {
+    return modalTitle;
   };
 
 };

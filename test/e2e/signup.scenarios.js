@@ -21,7 +21,8 @@ describe("In order to sign up with Rise Vision " +
   it('should show the sign up modal when the user is not signed in',function(){
     signUpPage.get();
     expect(signUpPage.getModalDialog().isDisplayed()).to.eventually.be.true;
-    expect(signUpPage.getStartWithAGoogleAccount().isDisplayed()).to.eventually.be.true;
+    expect(signUpPage.getModalTitle().isDisplayed()).to.eventually.be.true;
+    expect(signUpPage.getModalTitle().getText()).to.eventually.equal('Digital Signage Content Management');
   });
 
 
@@ -30,6 +31,6 @@ describe("In order to sign up with Rise Vision " +
     googleAuthPage.signin();
     signUpPage.get();
     expect(signUpPage.getModalDialog().isPresent()).to.eventually.be.false;
-    expect(signUpPage.getStartWithAGoogleAccount().isPresent()).to.eventually.be.false;
+    expect(signUpPage.getModalTitle().isPresent()).to.eventually.be.false;
   });
 });
