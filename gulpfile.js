@@ -7,7 +7,6 @@ var modRewrite  = require('connect-modrewrite');
 var clean       = require('gulp-clean');
 var prettify    = require('gulp-jsbeautifier');
 var jshint      = require('gulp-jshint');
-var runSequence = require('run-sequence');
 var rimraf      = require("gulp-rimraf");
 var uglify      = require("gulp-uglify");
 var usemin      = require("gulp-usemin");
@@ -15,6 +14,7 @@ var minifyCss   = require('gulp-minify-css');
 var minifyHtml  = require('gulp-minify-html');
 var gutil = require("gulp-util");
 var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
 var factory = require("widget-tester").gulpTaskFactory;
 
 
@@ -174,11 +174,21 @@ gulp.task('build', function (cb) {
   runSequence(["clean"], ['pretty'],["html", "favicon",  "fonts", "locales", "partials", "images", "data", "bower-components"], cb);
 });
 
+gulp.task("config", function() {
+  var env = process.env.NODE_ENV || "dev";
+  gutil.log("Environment is", env);
+
+  return gulp.src(["js/config/" + env + ".js"])
+    .pipe(rename("config.js"))
+    .pipe(gulp.dest("js/config"));
+});
+
 gulp.task("config-e2e", function() {
   var env = process.env.E2E_ENV || "dev";
   gutil.log("Environment is", env);
 
-  return gulp.src(["test/e2e/config/" + env + ".json"])
+  return gulp.src(["test/e2e/con" +
+    "fig/" + env + ".json"])
     .pipe(rename("config.json"))
     .pipe(gulp.dest("test/e2e/config"));
 });
