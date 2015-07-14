@@ -1,11 +1,11 @@
 {
     "name": "rise-vision-app-launcher",
     "version": "1.0.0",
-    "description": "RiseVision Website",
+    "description": "RiseVision Apps",
     "main": "gulpfile.js",
     "scripts": {
         "ci-build": "gulp build",
-        "test": "echo disabled"
+        "test": "gulp test"
     },
     "author": "rodrigopavezi <rodrigopavezi@gmail.com>",
     "license": "GNU",
