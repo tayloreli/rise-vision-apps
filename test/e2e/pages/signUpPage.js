@@ -3,7 +3,7 @@ var HomePage = require('./homepage.js');
 
 var SignUpPage = function() {
   var homepage = new HomePage;
-  var url = homepage.getUrl() + '/signup';
+  var url = homepage.getUrl() + 'signup';
   var modalDialog = element(by.css('.modal-dialog'));
   var startWithAGoogleAccount = element(by.buttonText('Start with a Google Account'));
 
@@ -20,7 +20,7 @@ var SignUpPage = function() {
   };
 
   this.getStartWithAGoogleAccount = function () {
-    return modalDialog;
+    return startWithAGoogleAccount;
   };
 
 };
