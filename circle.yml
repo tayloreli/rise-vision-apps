@@ -1,0 +1,39 @@
+general:
+  artifacts:
+    - dist.tar.gz
+dependencies:
+  post:
+    - bower install --force-latest
+deployment:
+  staging:
+    branch: /(feature|fix|chore).*/
+    commands:
+      - NODE_ENV=stage npm run ci-build
+      - ssh website@webserver-stage.risevision.com 'mkdir -p /rise-front-end/website';
+      # We have 3 stage environments, schedules-stage-0.risevision.com, schedules-stage-1.risevision.com and schedules-stage-2.risevision.com.
+      # To deploy to one of these environments a tag must be added to the commit message. For instance, [stage-0] for schedules-stage-0.risevision.com.
+      # If tag is missing, the [stage-0] is used.
+      - >
+        STAGE_ENV="$(git log -1 --pretty=%B | grep '\[.*\]' |sed -e 's/.*\[\(.*\)\].*/\1/g')";
+        if [ "$STAGE_ENV" != '' ]; then
+          echo "Deploying to $STAGE_ENV";
+        fi;
+        if [ "$STAGE_ENV" == '' ]; then
+          echo "stage deployment environment missing. Deploying to [stage-0].";
+          STAGE_ENV='stage-0';
+        fi;
+        rsync -rptz -e ssh --delete dist website@webserver-stage.risevision.com:/rise-front-end/website/$STAGE_ENV;
+      - tar czvf dist.tar.gz web
+  production:
+    branch: master
+    commands:
+      - NODE_ENV=prod npm run ci-build
+      # It deploys to production server 2.
+      - echo "deploying to production webserver1.risevision.com";
+      - ssh website@webserver1.risevision.com 'mkdir -p /rise-front-end/website';
+      - rsync -rptz -e ssh --delete dist website@webserver1.risevision.com:/rise-front-end/website;
+      # It deploys to production server 1.
+      - echo "deploying to production webserver.risevision.com";
+      - ssh website@webserver.risevision.com 'mkdir -p /rise-front-end/website';
+      - rsync -rptz -e ssh --delete dist website@webserver.risevision.com:/rise-front-end/website;
+      - tar czvf dist.tar.gz web

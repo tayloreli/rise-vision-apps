@@ -1,0 +1,7 @@
+.idea/
+/*.iml
+node_modules
+web/bower_components
+reports
+.log
+dist
