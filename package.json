@@ -30,7 +30,7 @@
       "gulp-util": "~3.0.6",
       "gulp-rename": "^1.2.2",
       "widget-tester": "git://github.com/Rise-Vision/widget-tester.git",
-      "rv-common-e2e": "git://github.com/Rise-Vision/rv-common-e2e.git#chore/move-signin-to-googlePage"
+      "rv-common-e2e": "git://github.com/Rise-Vision/rv-common-e2e.git"
 
     },
     "repository": {
