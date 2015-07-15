@@ -19,7 +19,7 @@
     "angular-mocks": "~1.3.0",
     "common-header": "https://github.com/Rise-Vision/common-header.git#v1.3.13",
     "rv-common-svg": "https://github.com/Rise-Vision/common-svg.git",
-    "rv-common-style": "https://github.com/Rise-Vision/common-style.git#v1.2.7",
+    "rv-common-style": "https://github.com/Rise-Vision/common-style.git",
     "rv-common-app-components": "https://github.com/Rise-Vision/common-app-components.git"
   },
   "homepage": "https://github.com/Rise-Vision/rise-vision-app-launcher",
@@ -31,7 +31,6 @@
   "resolutions": {
     "angular": "^1.4.1",
     "jquery": "^2",
-    "rv-common-style": "feature/rv-website-styles",
     "angular-animate": "^1.4.1",
     "angular-bootstrap": "^0.13.0",
     "angular-touch": "^1.4.1",
