@@ -159,11 +159,6 @@ gulp.task("fonts", function() {
     .pipe(gulp.dest("dist/fonts"));
 });
 
-gulp.task("favicon", function() {
-  return gulp.src("./web/favicon.ico")
-    .pipe(gulp.dest("dist"));
-});
-
 // Added it so the web component google-sheets can work
 gulp.task("bower-components", function() {
   return gulp.src("./web/bower_components/**/*")
@@ -171,7 +166,7 @@ gulp.task("bower-components", function() {
 });
 
 gulp.task('build', function (cb) {
-  runSequence(["clean"], ['pretty'],["html", "favicon",  "fonts", "locales", "partials", "images", "data", "bower-components"], cb);
+  runSequence(["clean"], ['pretty'],["html", "fonts", "locales", "partials", "images", "data", "bower-components"], cb);
 });
 
 gulp.task("config", function() {
