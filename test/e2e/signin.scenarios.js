@@ -2,7 +2,9 @@
 var expect = require('rv-common-e2e').expect;
 var SignInPage = require('./pages/signInPage.js');
 var GoogleAuthPage = require('rv-common-e2e').googleAuthPage;
+var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var HomePage = require('./pages/homepage.js');
+var helper = require('rv-common-e2e').helper;
 
 browser.driver.manage().window().setSize(1024, 768);
 describe("In order to sign in with Rise Vision " +
@@ -12,16 +14,19 @@ describe("In order to sign in with Rise Vision " +
   var homepage;
   var signInPage;
   var googleAuthPage;
+  var commonHeaderPage;
   beforeEach(function (){
     homepage = new HomePage();
     signInPage = new SignInPage();
     googleAuthPage = new GoogleAuthPage();
+    commonHeaderPage = new CommonHeaderPage();
     signInPage.get();
 
   });
 
   it('should sign in the user through google',function(){
     googleAuthPage.signin();
+    helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
     expect(homepage.getAppLauncherContainer().isPresent()).to.eventually.be.true;
   });
 
