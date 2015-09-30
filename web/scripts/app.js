@@ -34,6 +34,11 @@ angular.module('risevision.app-launcher', [
         templateUrl: 'partials/app-launcher.html'
       })
 
+      .state('main.gsmodal', {
+        url: '/gsmodal',
+        templateUrl: 'partials/gs-modal.html'
+      })
+
       .state('main.signup', {
         url: '/signup',
         templateUrl: 'partials/app-launcher.html',
