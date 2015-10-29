@@ -26,6 +26,7 @@ var SignupScenarios = function() {
 
     it('should show the sign up modal when the user is not signed in',function(){
       signUpPage.get();
+      helper.wait(signUpPage.getModalDialog(), "Modal dialog");
       expect(signUpPage.getModalDialog().isDisplayed()).to.eventually.be.true;
       expect(signUpPage.getModalTitle().isDisplayed()).to.eventually.be.true;
     });
