@@ -1,0 +1,255 @@
+<div class="container" ng-controller="AlertsModalCtrl">
+	<div class="app-header">
+	  <div class="title-block">
+	    <!-- App Title -->
+	    <h1 id="title">Alerts</h1>
+	  </div>
+
+	  <div class="global-actions">
+	    <button ng-click="alertsOn = !alertsOn" class="btn btn-lg" ng-class="{'btn-primary' : alertsOn, 'btn-default' : !alertsOn}">Alerts <span ng-if="alertsOn">On</span> <span ng-if="!alertsOn">Off</span></button>
+	  </div>
+	</div>
+	<div class="content-box">
+	<div class="content-box-body bg-warning">
+	<input type="checkbox" class="pull-left add-right">
+	<p>
+	The Alert Service is based upon the Common Alert Protocol version 1.2. This standard does not require authentication or a secure connection, which could result in somebody sending false Alerts by pretending to be your Alerts provider. We highly recommend that, at the very least, you have your Alerts provider connect to our service with HTTPS, not HTTP, and that you require an Authentication Name and Password for that connection. That password should be complex and changed regularly. You should test your Alerts system at least weekly. You have read and understood this disclaimer and you agree that Rise Vision cannot be responsible for the erroneous showing of Alert Messages on your Displays.</p>
+	<p class="remove-bottom">You further acknowledge that there is currently no charge for the Alert Service, but at an as of yet to be determined date this service will cost $2 per display, per month. At that time you will have 30 days to decide if you wish to continue using this Alert Service or not.</p>
+	</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="control-label">Web Service URL</label>
+		
+			<div class="input-group custom-addon">
+		    <input type="text" class="form-control" value="https://rvaserver2.appspot.com/alerts/cap">
+		    <span class="input-group-addon">
+		      <button class="btn btn-default">Reset</button>
+		    </span>
+		  </div>
+
+  </div><!--form-group-->
+
+
+	<div class="form-group">
+		<label class="control-label">Authentication Name</label>
+		<input type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label class="control-label">Authentication Password</label>
+		<input type="password" class="form-control">
+	</div>
+	<hr>
+	<button class="btn btn-default btn-block add-bottom" ng-click="showFilters = !showFilters">Show Filters</button>
+
+	<div ng-show="showFilters">
+		<div class="form-group">
+			<label class="control-label">Sender</label>
+			<input type="text" class="form-control">
+		</div><!--form-group-->
+
+		<div class="form-group">
+			<label class="control-label">Handling</label>
+			<input type="text" class="form-control">
+		</div><!--form-group-->
+
+		<div class="form-group">
+			<label class="control-label">Code</label>
+			<input type="text" class="form-control">
+		</div><!--form-group-->
+
+		<label class="control-label">Status</label>
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Actual
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Exercise
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> System
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Test
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Draft
+			</label>
+		</div><!--checkbox-->
+		<br>
+		<label class="control-label">Category</label>
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Geophysical
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Meteorological
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Safety
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Security
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Rescue
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Fire
+			</label>
+		</div><!--checkbox-->
+		<br>
+		<label class="control-label">Urgency</label>
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Immediate
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Expected
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Future
+			</label>
+		</div><!--checkbox-->
+		<br>
+		<label class="control-label">Severity</label>
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Extreme
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Severe
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Moderate
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Minor
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Unknown
+			</label>
+		</div><!--checkbox-->
+		<br>
+		<label class="control-label">Certainty</label>
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Observed
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Likely
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Possible
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Unlikely
+			</label>
+		</div><!--checkbox-->
+		<div class="checkbox">
+			<label class="control-label">
+				<input type="checkbox"> Unknown
+			</label>
+		</div><!--checkbox-->
+	</div><!--ng-show-->
+
+	<hr>
+
+	<label class="control-label">Text</label>
+
+			<div class="checkbox">
+				<label class="control-label">
+					<input type="checkbox"> Headline
+				</label>
+			</div><!--checkbox-->
+			<div class="checkbox">
+				<label class="control-label">
+					<input type="checkbox"> Description
+				</label>
+			</div><!--checkbox-->
+			<div class="checkbox">
+				<label class="control-label">
+					<input type="checkbox"> Instruction
+				</label>
+			</div><!--checkbox-->
+
+	<br>	
+
+	<div class="form-group">
+		<label class="control-label">Presentation</label>
+		<div class="content-box-editable clickable" ng-click="open()">
+			<div class="label label-tag">Alerts Presentation</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label add-right">Distribution</label>
+		<label class="control-label control-label-secondary"><input type="checkbox"> All Displays</label>
+		
+		<div class="content-box-editable clickable" ng-click="openDistribution()">
+			<div class="label label-tag">1 Display</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="control-label">Default Expiring</label>
+		
+			<div class="input-group custom-addon">
+		    <input type="text" class="form-control" value="60">
+		    <span class="input-group-addon">
+		      <div class="form-control-static nowrap">
+		        Minutes
+		      </div>
+		    </span>
+		  </div>
+
+  </div><!--form-group-->
+
+	<div class="text-right add-top">
+		<button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
+		<button class="btn btn-default">Cancel</button>
+	</div>
+
+</div><!--container-->
+
+
+
+<br>
+<br><br><br><br>

@@ -44,6 +44,11 @@ angular.module('risevision.app-launcher', [
         url: '/signin',
         templateUrl: 'partials/app-launcher.html',
         controller: 'SignInCtrl'
+      })
+
+      .state('main.alerts', {
+        url: '/alerts',
+        templateUrl: 'partials/alerts.html'
       });
     }
   ]);
