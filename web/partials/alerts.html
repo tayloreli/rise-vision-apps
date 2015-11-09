@@ -6,25 +6,34 @@
 	  </div>
 
 	  <div class="global-actions">
-	    <button ng-click="alertsOn = !alertsOn" class="btn btn-lg" ng-class="{'btn-primary' : alertsOn, 'btn-default' : !alertsOn}">Alerts <span ng-if="alertsOn">On</span> <span ng-if="!alertsOn">Off</span></button>
+	  	<span class="add-right text-muted" ng-if="!turnOnAlerts">Please Accept Terms and Conditions to Enable Alerts</span>
+	    <button ng-click="alertsOn = !alertsOn" class="btn btn-lg" ng-class="{'btn-primary' : alertsOn, 'btn-default' : !alertsOn, 'disabled' : !turnOnAlerts, 'animated bounceIn' : turnOnAlerts}">Turn <span ng-if="alertsOn">Off</span> <span ng-if="!alertsOn">On</span> Alerts</button>
+
+	    
 	  </div>
 	</div>
 	<div class="content-box">
 	<div class="content-box-body bg-warning">
-	<input type="checkbox" class="pull-left add-right">
-	<p>
+	
+	
+
+	<div class="form-group remove-bottom">
+		<input type="checkbox" ng-model="turnOnAlerts" ng-checked="turnOnAlerts" class="pull-left add-right"><label class="control-label">I accept the terms and conditions.</label>
+	</div>
+	<a href="#" ng-click="showTerms = !showTerms">View Terms and Conditions</a>
+	<p ng-show="showTerms" class="add-top text-muted">
 	The Alert Service is based upon the Common Alert Protocol version 1.2. This standard does not require authentication or a secure connection, which could result in somebody sending false Alerts by pretending to be your Alerts provider. We highly recommend that, at the very least, you have your Alerts provider connect to our service with HTTPS, not HTTP, and that you require an Authentication Name and Password for that connection. That password should be complex and changed regularly. You should test your Alerts system at least weekly. You have read and understood this disclaimer and you agree that Rise Vision cannot be responsible for the erroneous showing of Alert Messages on your Displays.</p>
-	<p class="remove-bottom">You further acknowledge that there is currently no charge for the Alert Service, but at an as of yet to be determined date this service will cost $2 per display, per month. At that time you will have 30 days to decide if you wish to continue using this Alert Service or not.</p>
+
 	</div>
-	</div>
+	</div><!--warning-->
 	
 	<div class="form-group">
 		<label class="control-label">Web Service URL</label>
 		
 			<div class="input-group custom-addon">
-		    <input type="text" class="form-control" value="https://rvaserver2.appspot.com/alerts/cap">
-		    <span class="input-group-addon">
-		      <button class="btn btn-default">Reset</button>
+		    <input type="text" class="form-control" value="https://rvaserver2.appspot.com/alerts/cap" readonly>
+		    <span class="input-group-addon" style="padding-right:0;">
+		      <button class="btn btn-default" ng-class="{'disabled' : !turnOnAlerts}">Reset</button>
 		    </span>
 		  </div>
 
@@ -192,7 +201,7 @@
 
 	<hr>
 
-	<label class="control-label">Text</label>
+	<label class="control-label">Alert Text To Show</label>
 
 			<div class="checkbox">
 				<label class="control-label">
@@ -229,7 +238,7 @@
 	</div>
 
 	<div class="form-group">
-		<label class="control-label">Default Expiring</label>
+		<label class="control-label">Default Expiry</label>
 		
 			<div class="input-group custom-addon">
 		    <input type="text" class="form-control" value="60">
@@ -242,7 +251,17 @@
 
   </div><!--form-group-->
 
+
+  <div class="content-box">
+		<div class="content-box-body bg-danger">
+			
+			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays.</p>
+	
+		</div>
+	</div><!--warning-->
+
 	<div class="text-right add-top">
+		<span class="text-muted add-right"><small>Saved 29-Oct-2015 5:28 PM by shea.darlison</small></span>
 		<button class="btn btn-primary">Save <i class="fa fa-check icon-right"></i></button>
 		<button class="btn btn-default">Cancel</button>
 	</div>
