@@ -8,10 +8,12 @@
 	  <div class="global-actions">
 	  	<span class="add-right text-muted" ng-if="!turnOnAlerts">Please Accept Terms and Conditions to Enable Alerts</span>
 	    <button ng-click="alertsOn = !alertsOn" class="btn btn-lg" ng-class="{'btn-primary' : alertsOn, 'btn-default' : !alertsOn, 'disabled' : !turnOnAlerts, 'animated bounceIn' : turnOnAlerts}">Turn <span ng-if="alertsOn">Off</span> <span ng-if="!alertsOn">On</span> Alerts</button>
-
 	    
 	  </div>
 	</div>
+
+
+
 	<div class="content-box">
 	<div class="content-box-body bg-warning">
 	
@@ -25,6 +27,14 @@
 	The Alert Service is based upon the Common Alert Protocol version 1.2. This standard does not require authentication or a secure connection, which could result in somebody sending false Alerts by pretending to be your Alerts provider. We highly recommend that, at the very least, you have your Alerts provider connect to our service with HTTPS, not HTTP, and that you require an Authentication Name and Password for that connection. That password should be complex and changed regularly. You should test your Alerts system at least weekly. You have read and understood this disclaimer and you agree that Rise Vision cannot be responsible for the erroneous showing of Alert Messages on your Displays.</p>
 
 	</div>
+	</div><!--warning-->
+
+	<div class="content-box" ng-hide="alertsOn">
+		<div class="content-box-body bg-danger">
+			
+			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays.</p>
+	
+		</div>
 	</div><!--warning-->
 	
 	<div class="form-group">
@@ -252,7 +262,7 @@
   </div><!--form-group-->
 
 
-  <div class="content-box">
+  <div class="content-box" ng-hide="alertsOn">
 		<div class="content-box-body bg-danger">
 			
 			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays.</p>
