@@ -60,9 +60,10 @@
 		<input type="password" class="form-control">
 	</div>
 	<hr>
-	<button class="btn btn-default btn-block add-bottom" ng-click="showFilters = !showFilters">Show Filters</button>
+	<button class="btn btn-default btn-block add-bottom" ng-click="showFilters = !showFilters"><span ng-show="!showFilters">Show</span> <span ng-show="showFilters">Hide</span>  Filters</button>
 
-	<div ng-show="showFilters">
+	<div class="content-box" ng-show="showFilters">
+		<div class="content-box-body">
 		<div class="form-group">
 			<label class="control-label">Sender</label>
 			<input type="text" class="form-control">
@@ -207,6 +208,7 @@
 				<input type="checkbox"> Unknown
 			</label>
 		</div><!--checkbox-->
+		</div>
 	</div><!--ng-show-->
 
 	<hr>
