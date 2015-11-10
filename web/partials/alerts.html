@@ -1,3 +1,10 @@
+<style type="text/css">
+/* FOR PROTOTYPE ONLY REMOVE */
+	.navbar .navbar-header .navbar-left a:before {
+		content: 'Alerts';
+	}
+</style>
+
 <div class="container" ng-controller="AlertsModalCtrl">
 	<div class="app-header">
 	  <div class="title-block">
@@ -32,7 +39,7 @@
 	<div class="content-box" ng-hide="alertsOn">
 		<div class="content-box-body bg-danger">
 			
-			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays.</p>
+			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays. <a href="#" ng-click="alertsOn = !alertsOn">Turn On</a></p>
 	
 		</div>
 	</div><!--warning-->
@@ -267,7 +274,7 @@
   <div class="content-box" ng-hide="alertsOn">
 		<div class="content-box-body bg-danger">
 			
-			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays.</p>
+			<p class="remove-bottom"><i class="fa fa-warning icon-left"></i> Alerts Are Turned Off and Won't Be Sent to Your Target Displays. <a ng-click="alertsOn = !alertsOn" href="#">Turn On</a></p>
 	
 		</div>
 	</div><!--warning-->
