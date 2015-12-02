@@ -1,78 +1,63 @@
-<style type="text/css">
-  .experimental-apps {
-  }
-  .experimental-apps a {
-    display: block;
-    padding: 10px;
-    background: #FFF;
-    border:1px solid #f2f2f2;
-    -webkit-box-shadow: inset 0 -1px 0 #d5d1cb,0 1px 4px rgba(113,108,102,.1),transparent 0 0 0;
-    box-shadow: inset 0 -1px 0 #d5d1cb,0 1px 4px rgba(113,108,102,.1),transparent 0 0 0;
-    border-radius: 4px;
-    text-align: center;
-    margin-bottom: 8px;
-  }
-  .experimental-apps a img {
-    width: 32px;
-  }
-  .experimental-apps-block {
-    background: #f7f7f7;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
-    padding: 56px 0;
-  }
-  .experimental-apps-block h2 {
-    font-size: 38px;
-  }
-</style>
 <div id="appLauncherContainer">
-  <div class="experimental-apps-block">
-    <div class="container">
-      <div class="add-top">
-        <div class="">
-          <div class="row">            
-            <div class="col-sm-12">
-              <h2>Introducing a New Experience</h2>
-              <p class="text-muted add-left add-right">We've simplified the interface to let you focus on what matters: your content. Our new experimental layout fits your screen, making it easier to manage on mobile, small laptop or a large monitor.</p>
-              
-              <div class="experimental-apps add-top add-bottom">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <a href="https://editor.risevision.com/">
-                      <div class="image"><img src="images/editor-image.png"></div>
-                      <span>Editor <small class="text-green">BETA</small></span>
-                    </a>
-                  </div><!--col-->
-                  <div class="col-sm-4">
-                    <a href="https://schedules.risevision.com/">
-                      <div class="image"><img src="images/schedule-image.png"></div>
-                      <span>Schedules <small class="text-green">BETA</small></span>
-                    </a>
-                  </div>
-                  <div class="col-sm-4">
-                    <a href="https://displays.risevision.com/">
-                      <div class="image"><img src="images/displays-image.png"></div>
-                      <span>Displays <small class="text-green">BETA</small></span>
-                    </a>
-                  </div>
-                </div><!--row-->
-              </div><!--experimental-apps-->
 
-              <p class="text-muted">We can't wait to hear what you think. Enjoy!</p>
-              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/signature.png" style="width:180px">
+  <div class="page-content apps-launcher">
+    <div class="apps-launcher-tour">
+
+      <div class="headline add-bottom">
+        <h2 class="remove-bottom half-top">Welcome to Rise Vision!</h2>
+        <span class"text-muted">You’re three steps away from amazing digital signage. Ready to get started?</span>
+      </div><!--headline-->
+      <div class="container">
+      <div class="row">
+        <div class="col-sm-4"> 
+          <div class="content-box">
+            <div class="image">
+              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/create.png" class="img-responsive">
+            </div><!--image-->
+            <div class="padding-large-horizontal padding-small-vertical">  
+              <h4>Create</h4>
+              <p class="text-muted add-left add-right">It’s time for you to start creating content worth sharing. Are you ready?</p>
+              <a href="https://editor.risevision.com/#/editor/workspace//" class="btn btn-hg btn-primary add-bottom btn-block">Create Presentation</a>
             </div>
-          </div>
+          </div><!--content-box-->
+        </div><!--col-->
+        <div class="col-sm-4">
+          <div class="content-box">
+            <div class="image">
+              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/show.png" class="img-responsive">
+            </div><!--image-->
+            <div class="padding-large-horizontal padding-small-vertical">  
+              <h4>Show</h4>
+              <p class="text-muted add-left add-right">Get your amazing content into a screen or display. Or as many as you like!</p>
+              <a href="https://displays.risevision.com/#/display/add" class="btn btn-hg btn-primary add-bottom btn-block">Add Display</a>
+            </div>
+          </div><!--content-box-->
         </div>
+        <div class="col-sm-4">
+          <div class="content-box">
+            <div class="image">
+              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/organize.png" class="img-responsive">
+            </div><!--image-->
+            <div class="padding-large-horizontal padding-small-vertical">  
+              <h4>Organize</h4>
+              <p class="text-muted add-left add-right">You are in control. Decide when and where you want to show your amazing content.</p>
+              <a href="https://schedules.risevision.com/#/schedule/add" class="btn btn-hg btn-primary add-bottom btn-block">Add Schedule</a>
+            </div>
+          </div><!--content-box-->
+        </div>           
+      </div><!--row-->
       </div>
-    </div><!--container-->
+    </div>
   </div>
+
+  <div class="website">
+    
+
 
   <div class="page-content">
     <div class="home-features">
       <div class="container" vertilize-container>
         <div class="row">
-
           <div class="col-sm-4">
             <a href="http://rva.risevision.com/#PRESENTATIONS" class="feature" vertilize>
               <div class="content-box-body">
@@ -102,12 +87,11 @@
               </div>
             </a>
           </div><!--col-->  
-          
-        </div><!--row-->
+          </div><!--row-->
 
-        <div class="row">
+          <div class="row">
 
-          <div class="col-sm-4">
+            <div class="col-sm-4">
             <a href="http://rva.risevision.com/#DISPLAYS" class="feature" vertilize>
               <div class="content-box-body">
                 <div class="image"><img src="images/displays-image.png"></div>
@@ -115,9 +99,9 @@
                 <p>Manage and monitor your digital signage displays.</p>
               </div>
             </a>
-          </div><!--col-->
+            </div><!--col-->
 
-          <div class="col-sm-4">
+            <div class="col-sm-4">
             <a href="http://rva.risevision.com/#SCHEDULES" class="feature" vertilize>
               <div class="content-box-body">
                 <div class="image"><img src="images/schedule-image.png"></div>
@@ -125,9 +109,9 @@
                 <p>Schedule delivery of HTML content to your digital signage displays.</p>
               </div>
             </a>
-          </div>
+            </div>
 
-          <div class="col-sm-4">
+            <div class="col-sm-4">
             <a href="https://community.risevision.com" class="feature" vertilize>
               <div class="content-box-body">
                 <div class="image"><img src="images/community-image.png"></div>
@@ -135,13 +119,16 @@
                 <p>Ask questions, share ideas and connect with other people who are passionate about digital signage.</p>
               </div>
             </a>
-          </div>
+            </div>
+          </div><!--row-->
+        </div>
+      </div><!--home-features-->
+    </div><!--page-content-->
+  </div><!--website-->
 
-        </div><!--row-->
-      </div>
-    </div><!--home-features-->
-  </div><!--page-content-->
-</div>
+  
+
+</div><!--appLauncherContainer-->
 
 
 
