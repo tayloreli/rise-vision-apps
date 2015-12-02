@@ -1,6 +1,6 @@
 'use strict';
-describe('controller: Sign Up', function() {
-  beforeEach(module('risevision.app-launcher.controllers'));
+describe('controller: Sign In', function() {
+  beforeEach(module('risevision.apps.launcher.controllers'));
   beforeEach(module(function ($provide) {
     $provide.service('userState', function() {
       return {
@@ -24,13 +24,6 @@ describe('controller: Sign Up', function() {
         }
       };
     });
-    $provide.service('$modalInstance',function(){
-      return {
-        open : function(){
-          return;
-        }
-      }
-    });
     $provide.service('$state',function(){
       return {
         _state : '',
@@ -44,21 +37,17 @@ describe('controller: Sign Up', function() {
       }
     });
   }));
-  var $scope, isLoggedIn, goToLogin, currentState, $modalInstance, $modalInstanceOpenSpy;
+  var $scope, isLoggedIn, goToLogin, currentState;
   beforeEach(function () {
     currentState = '';
   });
 
   it('should redirect user to home as it is already logged in',function(done){
     isLoggedIn = true;
-
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
-      $modalInstance = $injector.get('$modalInstance');
-      $modalInstanceOpenSpy = sinon.spy($modalInstance, 'open');
 
-      $controller('SignUpCtrl', {
-        $modal: $modalInstance,
+      $controller('SignInCtrl', {
         userState: $injector.get('userState'),
         $state: $injector.get('$state')
       });
@@ -66,22 +55,18 @@ describe('controller: Sign Up', function() {
     });
 
     setTimeout(function(){
-      $modalInstanceOpenSpy.should.not.have.been.called;
       expect(goToLogin).to.be.false;
       expect(currentState).to.equal('main.home');
       done();
     },10);
   });
 
-  it('should show sign up modal when user is not logged in',function(done){
+  it('should redirect to google auth when it is not logged in',function(done){
     isLoggedIn = false;
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
-      $modalInstance = $injector.get('$modalInstance');
-      $modalInstanceOpenSpy = sinon.spy($modalInstance, 'open');
 
-      $controller('SignUpCtrl', {
-        $modal: $modalInstance,
+      $controller('SignInCtrl', {
         userState: $injector.get('userState'),
         $state: $injector.get('$state')
       });
@@ -89,8 +74,7 @@ describe('controller: Sign Up', function() {
     });
 
     setTimeout(function(){
-      $modalInstanceOpenSpy.should.have.been.called;
-      expect(goToLogin).to.be.false;
+      expect(goToLogin).to.be.true;
       expect(currentState).to.not.equal('main.home');
       done();
     },10);

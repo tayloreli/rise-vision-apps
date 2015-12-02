@@ -5,3 +5,4 @@ web/bower_components
 reports
 .log
 dist
+web/tmp

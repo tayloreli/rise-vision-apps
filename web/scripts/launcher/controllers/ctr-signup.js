@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('risevision.app-launcher.controllers')
+angular.module('risevision.apps.launcher.controllers')
   .controller('SignUpCtrl', ['$modal', 'userState', '$state',
     function ($modal, userState, $state) {
 

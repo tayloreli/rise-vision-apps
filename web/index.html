@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="risevision.app-launcher" itemscope itemtype="http://schema.org/WebApplication" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<html ng-app="risevision.apps" itemscope itemtype="http://schema.org/WebApplication" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
 <head lang="en">
   <script src="//cdn.optimizely.com/js/3202500663.js"></script>
   <base href="/">
@@ -68,14 +68,16 @@
   <script src="bower_components/rv-common-app-components/dist/js/stop-event.js"></script>
   <script src="bower_components/rv-loading/loading.js"></script>
 
+  <script src="tmp/partials.js"></script>
+
   <!-- app js -->
   <script src="scripts/app.js"></script>
-  <script src="scripts/controllers/ctr-app.js"></script>
-  <script src="scripts/controllers/ctr-signin.js"></script>
-  <script src="scripts/controllers/ctr-signup.js"></script>
+  <script src="scripts/launcher/controllers/ctr-app.js"></script>
+  <script src="scripts/launcher/controllers/ctr-signin.js"></script>
+  <script src="scripts/launcher/controllers/ctr-signup.js"></script>
 
-  <script src="scripts/directives/dtv-vertilize-container.js"></script>
-  <script src="scripts/directives/dtv-vertilize.js"></script>
+  <script src="scripts/launcher/directives/dtv-vertilize-container.js"></script>
+  <script src="scripts/launcher/directives/dtv-vertilize.js"></script>
   <!-- endbuild -->
 
 </body>

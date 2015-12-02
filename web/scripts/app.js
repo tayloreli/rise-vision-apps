@@ -1,5 +1,5 @@
 'use strict';
-angular.module('risevision.app-launcher', [
+angular.module('risevision.apps', [
     'risevision.common.header',
     'risevision.common.header.templates',
     'risevision.common.components.last-modified',
@@ -10,8 +10,9 @@ angular.module('risevision.app-launcher', [
     'ui.router',
     'ngTouch',
     'ui.bootstrap',
-    'risevision.app-launcher.controllers',
-    'risevision.app-launcher.directives'
+    'risevision.apps.partials',
+    'risevision.apps.launcher.controllers',
+    'risevision.apps.launcher.directives'
   ])
   // Set up our mappings between URLs, templates, and controllers
   .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
@@ -23,26 +24,33 @@ angular.module('risevision.app-launcher', [
       $urlRouterProvider.otherwise('/');
 
       // Use $stateProvider to configure states.
-      $stateProvider
-
-        .state('main', {
+      $stateProvider.state('main', {
         template: '<div ui-view></div>'
       })
 
       .state('main.home', {
         url: '/',
-        templateUrl: 'partials/app-launcher.html'
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/app-launcher.html');
+        }]
       })
 
       .state('main.signup', {
         url: '/signup',
-        templateUrl: 'partials/app-launcher.html',
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/app-launcher.html');
+        }],
         controller: 'SignUpCtrl'
       })
 
       .state('main.signin', {
         url: '/signin',
-        templateUrl: 'partials/app-launcher.html',
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/app-launcher.html');
+        }],
         controller: 'SignInCtrl'
       });
     }
@@ -50,10 +58,10 @@ angular.module('risevision.app-launcher', [
 
 angular.module('risevision.common.i18n.config', [])
   .constant('LOCALES_PREFIX',
-  'bower_components/rv-common-i18n/dist/locales/translation_')
+    'bower_components/rv-common-i18n/dist/locales/translation_')
   .constant('LOCALES_SUFIX', '.json');
 
 
 
-angular.module('risevision.app-launcher.controllers', []);
-angular.module('risevision.app-launcher.directives', []);
+angular.module('risevision.apps.launcher.controllers', []);
+angular.module('risevision.apps.launcher.directives', []);
