@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('risevision.app-launcher.directives')
+angular.module('risevision.apps.launcher.directives')
   .directive('vertilize', [
     function () {
       return {

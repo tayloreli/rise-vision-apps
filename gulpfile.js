@@ -2,9 +2,7 @@
 var gulp        = require('gulp');
 var browserSync = require('browser-sync');
 var bower       = require('gulp-bower');
-var del         = require('delete');
 var modRewrite  = require('connect-modrewrite');
-var clean       = require('gulp-clean');
 var prettify    = require('gulp-jsbeautifier');
 var jshint      = require('gulp-jshint');
 var rimraf      = require("gulp-rimraf");
@@ -12,34 +10,70 @@ var uglify      = require("gulp-uglify");
 var usemin      = require("gulp-usemin");
 var minifyCss   = require('gulp-minify-css');
 var minifyHtml  = require('gulp-minify-html');
-var gutil = require("gulp-util");
-var rename = require('gulp-rename');
+var ngHtml2Js   = require("gulp-ng-html2js");
+var concat      = require("gulp-concat");
+var gutil       = require("gulp-util");
+var rename      = require('gulp-rename');
 var runSequence = require('run-sequence');
-var factory = require("widget-tester").gulpTaskFactory;
+var factory     = require("widget-tester").gulpTaskFactory;
 
+//--------------------- Variables --------------------------------------
 
+var appJSFiles = [
+  "./web/scripts/app.js",
+  "./web/scripts/**/*.js"
+];
+
+var partialsHTMLFiles = [
+  "./web/partials/**/*.html"
+];
+
+var localeFiles = [
+  "./web/bower_components/rv-common-i18n/dist/locales/**/*"
+];
+
+var unitTestFiles = [
+  "web/bower_components/common-header/dist/js/dependencies.js",
+  "web/bower_components/angular-mocks/angular-mocks.js",
+  "web/bower_components/q/q.js",
+  "web/bower_components/common-header/dist/js/common-header.js",
+  "web/bower_components/angular-ui-router/release/angular-ui-router.js",
+  "web/bower_components/angular-translate/angular-translate.js",
+  "web/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
+  "web/bower_components/rv-common-i18n/dist/i18n.js",
+  "web/bower_components/rv-common-app-components/dist/js/focus-me.js",
+  "web/bower_components/rv-common-app-components/dist/js/confirm-instance.js",
+  "web/bower_components/component-storage-selector/dist/storage-selector.js",
+  "web/bower_components/rv-common-app-components/dist/js/stop-event.js",
+  "node_modules/widget-tester/mocks/translate-mock.js",
+  "node_modules/widget-tester/mocks/segment-analytics-mock.js",
+  "web/scripts/app.js",
+  "web/scripts/**/*.js",
+  "test/unit/**/*.tests.js"
+];
 
 //------------------------- Browser Sync --------------------------------
 
 gulp.task('browser-sync', function() {
-    browserSync({
-        startPath: '/index.html',
-        server: {
-            baseDir: './web',
-            middleware: [
-                modRewrite([
-                    '!\\.\\w+$ /index.html [L]'
-                ])
-            ]
-        },
-        logLevel: "debug",
-        port: 8000
-    });
+  browserSync({
+    startPath: '/index.html',
+    server: {
+      baseDir: './web',
+      middleware: [
+        modRewrite([
+          '!\\.\\w+$ /index.html [L]'
+        ])
+      ]
+    },
+    logLevel: "debug",
+    port: 8000,
+    open: false
+  });
 });
 
 gulp.task('browser-sync-reload', function() {
-    console.log('browser-sync-reload');
-    browserSync.reload();
+  console.log('browser-sync-reload');
+  browserSync.reload();
 });
 
 //------------------------- Bower --------------------------------
@@ -48,10 +82,10 @@ gulp.task('browser-sync-reload', function() {
  * Install bower dependencies
  */
 gulp.task('bower-install', ['bower-rm'], function(cb){
-    return bower().on('error', function(err) {
-        console.log(err);
-        cb();
-    });
+  return bower().on('error', function(err) {
+    console.log(err);
+    cb();
+  });
 });
 
 
@@ -59,8 +93,15 @@ gulp.task('bower-install', ['bower-rm'], function(cb){
  *  Remove all bower dependencies
  */
 gulp.task('bower-rm', function(){
-    return del.sync('assets/components');
+  return gulp.src('assets/components', {read: false})
+    .pipe(rimraf());
 });
+
+/**
+ * Do a bower clean install
+ */
+gulp.task('bower-clean-install', ['bower-rm', 'bower-install']);
+
 
 //------------------------- Watch --------------------------------
 /**
@@ -68,26 +109,22 @@ gulp.task('bower-rm', function(){
  * Watch html/md files, run jekyll & reload BrowserSync
  */
 gulp.task('watch', function () {
-    gulp.watch(['web/**/*'], ['browser-sync-reload']);
+  gulp.watch(partialsHTMLFiles, ['html2js']);
+  gulp.watch(['./tmp/partials.js', './web/scripts/**/*.js', './web/bower_components/rv-common-style/**/*', './web/index.html'], ['browser-sync-reload']);
+  gulp.watch(unitTestFiles, ['test:unit']);
 });
 
-/*---- tooling ---*/
+
+//------------------------ Tooling --------------------------
+
 gulp.task('pretty', function() {
-  return gulp.src('./web/scripts/**/*.js')
+  return gulp.src(appJSFiles)
     .pipe(prettify({config: '.jsbeautifyrc', mode: 'VERIFY_AND_WRITE'}))
     .pipe(gulp.dest('./web/scripts'))
     .on('error', function (error) {
       console.error(String(error));
     });
 });
-
-var appJSFiles = [
-  "./web/scripts/**/*.js"
-];
-
-var localeFiles = [
-  "bower_components/rv-common-i18n/dist/locales/**/*"
-];
 
 gulp.task("clean-dist", function () {
   return gulp.src("dist", {read: false})
@@ -129,26 +166,25 @@ gulp.task("html", ["lint"], function () {
     })
 });
 
-gulp.task("partials", function () {
-  return gulp.src(['./web/partials/*.html'])
-    .pipe(gulp.dest("dist/partials"))
-    .on('error',function(e){
-      console.error(String(e));
-
-    })
+gulp.task("html2js", function() {
+  return gulp.src(partialsHTMLFiles)
+    .pipe(minifyHtml({
+      empty: true,
+      spare: true,
+      quotes: true,
+      loose: true
+    }))
+    .pipe(ngHtml2Js({
+      moduleName: "risevision.apps.partials",
+      prefix: "partials/"
+    }))
+    .pipe(concat("partials.js"))
+    .pipe(gulp.dest("./web/tmp/"));
 });
 
 gulp.task("images", function () {
-  return gulp.src(['./web/images/*.*'])
+  return gulp.src(['./web/images/**/*.*'])
     .pipe(gulp.dest("dist/images"))
-    .on('error',function(e){
-      console.error(String(e));
-    })
-});
-
-gulp.task("data", function () {
-  return gulp.src(['./web/data/*.*'])
-    .pipe(gulp.dest("dist/data"))
     .on('error',function(e){
       console.error(String(e));
     })
@@ -157,16 +193,6 @@ gulp.task("data", function () {
 gulp.task("fonts", function() {
   return gulp.src("./web/bower_components/rv-common-style/dist/fonts/**/*")
     .pipe(gulp.dest("dist/fonts"));
-});
-
-// Added it so the web component google-sheets can work
-gulp.task("bower-components", function() {
-  return gulp.src("./web/bower_components/**/*")
-    .pipe(gulp.dest("dist/bower_components"));
-});
-
-gulp.task('build', function (cb) {
-  runSequence(["clean"], ['pretty'],["html", "fonts", "locales", "partials", "images", "data", "bower-components"], cb);
 });
 
 gulp.task("config", function() {
@@ -178,37 +204,27 @@ gulp.task("config", function() {
     .pipe(gulp.dest("js/config"));
 });
 
-gulp.task("config-e2e", function() {
-  var env = process.env.E2E_ENV || "dev";
-  gutil.log("Environment is", env);
-
-  return gulp.src(["test/e2e/con" +
-    "fig/" + env + ".json"])
-    .pipe(rename("config.json"))
-    .pipe(gulp.dest("test/e2e/config"));
+gulp.task('build', function (cb) {
+  runSequence(["clean", "config"], ['pretty', 'html2js'],["html", "fonts", "locales", "images"], cb);
 });
 
 /*---- testing ----*/
 
-var unitTestFiles = [
-  "web/bower_components/common-header/dist/js/dependencies.js",
-  "web/bower_components/angular-mocks/angular-mocks.js",
-  "web/bower_components/q/q.js",
-  "web/bower_components/common-header/dist/js/common-header.js",
-  "web/bower_components/angular-ui-router/release/angular-ui-router.js",
-  "web/bower_components/angular-translate/angular-translate.js",
-  "web/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
-  "web/bower_components/rv-common-i18n/dist/i18n.js",
-  "web/bower_components/rv-common-app-components/dist/js/focus-me.js",
-  "web/bower_components/rv-common-app-components/dist/js/confirm-instance.js",
-  "node_modules/widget-tester/mocks/segment-analytics-mock.js",
-  "web/scripts/app.js",
-  "web/scripts/**/*.js",
-  "test/unit/**/*.js"
-];
+gulp.task("config-e2e", function() {
+  var env = process.env.E2E_ENV || "dev";
+  gutil.log("Environment is", env);
 
+  return gulp.src(["test/e2e/config/" + env + ".json"])
+    .pipe(rename("config.json"))
+    .pipe(gulp.dest("test/e2e/config"));
+});
 
-gulp.task("test:unit", factory.testUnitAngular({testFiles: unitTestFiles}));
+gulp.task("test:unit", factory.testUnitAngular({
+    coverageFiles: "../../web/scripts/**/*.js",
+    testFiles: unitTestFiles
+}));
+
+gulp.task("coveralls", factory.coveralls());
 
 gulp.task("server", factory.testServer({
   html5mode: true,
@@ -223,30 +239,34 @@ gulp.task("test:e2e:core", ["test:webdrive_update"], factory.testE2EAngular({
   testFiles: process.env.TEST_FILES
 }));
 gulp.task("test:e2e", function (cb) {
-  runSequence("config-e2e","server", "test:e2e:core", "server-close", cb);
+  runSequence("config-e2e", "html2js", "server", "test:e2e:core", "server-close", cb);
 });
-
 
 gulp.task("metrics", factory.metrics());
 gulp.task("test",  function (cb) {
-  runSequence("config", ["test:unit", "test:e2e"], cb);
+  runSequence(["config", "html2js"], ["test:unit", "test:e2e"], "coveralls", cb);
 });
 
 gulp.task("test:ci",  function (cb) {
   runSequence("test:unit", "metrics", cb);
 });
 
-/**
- * Do a bower clean install
- */
-gulp.task('bower-clean-install', ['bower-rm', 'bower-install']);
+//------------------------ Global ---------------------------------
+
+gulp.task('default', [], function() {
+  console.log('***********************'.yellow);
+  console.log('  gulp dev: start a server in the  root folder and watch dev files'.yellow);
+  console.log('  gulp test: run unit and e2e tests'.yellow);
+  console.log('  gulp build: hint, lint, and minify files into ./dist '.yellow);
+  console.log('  gulp bower-clean-install: clean bower install'.yellow);
+  console.log('***********************'.yellow);
+  return true;
+});
+
+gulp.task('dev', ['config', 'html2js', 'browser-sync', 'watch']);
 
 /**
  * Default task, running just `gulp` will compile the sass,
  * compile the jekyll site, launch BrowserSync & watch files.
  */
-gulp.task('default', ['browser-sync', 'watch']);
-
-
-
-
+gulp.task('default', ['dev']);
