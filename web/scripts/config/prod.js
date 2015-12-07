@@ -17,6 +17,7 @@
     .constant('LOCALES_SUFIX', '.json');
 
   angular.module('risevision.apps.config', [])
+    .value('RVA_URL', 'http://rva.risevision.com')
     .value('VIEWER_URL', 'http://preview.risevision.com')
     .value('ALERTS_WS_URL',
       'https://rvaserver2.appspot.com/alerts/cap');
