@@ -6,3 +6,5 @@ reports
 .log
 dist
 web/tmp
+web/scripts/config/config.js
+test/e2e/config/config.json

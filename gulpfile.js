@@ -199,9 +199,9 @@ gulp.task("config", function() {
   var env = process.env.NODE_ENV || "dev";
   gutil.log("Environment is", env);
 
-  return gulp.src(["js/config/" + env + ".js"])
+  return gulp.src(["./web/scripts/config/" + env + ".js"])
     .pipe(rename("config.js"))
-    .pipe(gulp.dest("js/config"));
+    .pipe(gulp.dest("./web/scripts/config"));
 });
 
 gulp.task('build', function (cb) {

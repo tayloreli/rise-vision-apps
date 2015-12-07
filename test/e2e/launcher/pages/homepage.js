@@ -1,5 +1,5 @@
 'use strict';
-var config = require('../config/config.json');
+var config = require('../../config/config.json');
 
 var HomePage = function() {
   var url = config.rootUrl + '/';

@@ -68,7 +68,7 @@ describe('controller: Sign Up', function() {
     setTimeout(function(){
       $modalInstanceOpenSpy.should.not.have.been.called;
       expect(goToLogin).to.be.false;
-      expect(currentState).to.equal('main.home');
+      expect(currentState).to.equal('apps.launcher.home');
       done();
     },10);
   });
@@ -91,7 +91,7 @@ describe('controller: Sign Up', function() {
     setTimeout(function(){
       $modalInstanceOpenSpy.should.have.been.called;
       expect(goToLogin).to.be.false;
-      expect(currentState).to.not.equal('main.home');
+      expect(currentState).to.not.equal('apps.home');
       done();
     },10);
   });
