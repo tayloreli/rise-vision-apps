@@ -1,11 +1,11 @@
 'use strict';
 var config = require('../../config/config.json');
-
 var HomePage = function() {
-  var url = config.rootUrl + '/';
-  var appLauncherContainer = element(by.id('appLauncherContainer'));
-
-  var appTitleText = element(by.id('app-title'));
+  var url = config.rootUrl + '/displays';
+  var displaysAppContainer = element(by.css('.displays-app'));
+  var displaysImage = element(by.id('displays-image'));
+  var manageDisplaysText = element(by.id('manage-displays-text'));
+  var displaysExplanationText = element(by.id('displays-explanation-text'));
   var signUpText = element(by.id('sign-up-text'));
   var signInText = element(by.id('sign-in-text'));
   var signUpLink = element(by.id('sign-up-link'));
@@ -17,14 +17,22 @@ var HomePage = function() {
 
   this.getUrl = function() {
     return url;
-  }
-
-  this.getAppLauncherContainer = function() {
-    return appLauncherContainer;
   };
 
-  this.getAppTitleText = function() {
-    return appTitleText;
+  this.getDisplaysAppContainer = function() {
+    return displaysAppContainer;
+  };
+
+  this.getDisplaysImage = function() {
+    return displaysImage;
+  };
+
+  this.getManageDisplaysText = function() {
+    return manageDisplaysText;
+  };
+
+  this.getDisplaysExplanationText = function() {
+    return displaysExplanationText;
   };
 
   this.getSignUpText = function() {
@@ -41,18 +49,6 @@ var HomePage = function() {
 
   this.getSignInLink = function() {
     return signInLink;
-  };
-
-  this.getMetaByName = function(name) {
-    return element(by.xpath("//meta[@name='"+name+"']"));
-  };
-
-  this.getMetaByItemProp = function(itemprop) {
-    return element(by.xpath("//meta[@itemprop='"+itemprop+"']"));
-  };
-
-  this.getMetaByProperty = function(property) {
-    return element(by.xpath("//meta[@property='"+property+"']"));
   };
 
 };

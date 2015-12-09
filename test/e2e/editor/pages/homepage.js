@@ -2,9 +2,11 @@
 var config = require('../../config/config.json');
 
 var HomePage = function() {
-  var url = config.rootUrl + '/';
-  var appLauncherContainer = element(by.id('appLauncherContainer'));
+  var url = config.rootUrl + '/editor';
+  var editorAppContainer = element(by.css('.editor-app'));
 
+  var editorImage = element(by.id('editor-image'));
+  var manageEditorText = element(by.id('manage-editor-text'));
   var appTitleText = element(by.id('app-title'));
   var signUpText = element(by.id('sign-up-text'));
   var signInText = element(by.id('sign-in-text'));
@@ -19,8 +21,16 @@ var HomePage = function() {
     return url;
   }
 
-  this.getAppLauncherContainer = function() {
-    return appLauncherContainer;
+  this.getEditorAppContainer = function() {
+    return editorAppContainer;
+  };
+
+  this.getEditorImage = function() {
+    return editorImage;
+  };
+
+  this.getManageEditorText = function() {
+    return manageEditorText;
   };
 
   this.getAppTitleText = function() {
@@ -41,18 +51,6 @@ var HomePage = function() {
 
   this.getSignInLink = function() {
     return signInLink;
-  };
-
-  this.getMetaByName = function(name) {
-    return element(by.xpath("//meta[@name='"+name+"']"));
-  };
-
-  this.getMetaByItemProp = function(itemprop) {
-    return element(by.xpath("//meta[@itemprop='"+itemprop+"']"));
-  };
-
-  this.getMetaByProperty = function(property) {
-    return element(by.xpath("//meta[@property='"+property+"']"));
   };
 
 };

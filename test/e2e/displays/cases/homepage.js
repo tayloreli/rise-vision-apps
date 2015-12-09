@@ -2,15 +2,15 @@
 var expect = require('rv-common-e2e').expect;
 var HomePage = require('./../pages/homepage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
-var helper = require('rv-common-e2e').helper;
 var GoogleAuthPage = require('rv-common-e2e').googleAuthPage;
+var helper = require('rv-common-e2e').helper;
+
 var HomePageScenarios = function() {
 
-
   browser.driver.manage().window().setSize(1920, 1080);
-  describe("In order to manage schedules " +
+  describe("In order to manage displays " +
     "As a user " +
-    "I would like to have access to the homepage of the schedules app", function () {
+    "I would like to have access to the homepage of the displays app", function () {
     this.timeout(2000);// to allow for protactor to load the seperate page
     var homepage;
     var commonHeaderPage;
@@ -21,51 +21,50 @@ var HomePageScenarios = function() {
       googleAuthPage = new GoogleAuthPage();
     });
 
-    describe("Given a user who access the schedules app", function () {
+    describe("Given a user who access the displays app", function () {
 
       before(function () {
         homepage.get();
-
+        
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
         
         commonHeaderPage.signOut();
-
+        
         homepage.get();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
       });
 
       it('should load', function () {
-        expect(homepage.getSchedulesAppContainer().isPresent()).to.eventually.be.true;
+        expect(homepage.getDisplaysAppContainer().isPresent()).to.eventually.be.true;
       });
 
       it('should load common header', function () {
         expect(commonHeaderPage.getCommonHeader().isPresent()).to.eventually.be.true;
       });
 
-      it('should have a schedule menu item on the common header', function () {
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).isPresent()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).getText()).to.eventually.equal('Schedules');
+      it('should have a display menu item on the common header', function () {
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).isPresent()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).getText()).to.eventually.equal('Displays');
       });
 
-      it('should go to home when clicking on Schedules menu item', function () {
+      it('should have Alerts menu item on the common header', function () {
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).isPresent()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).getText()).to.eventually.equal('Alerts');
+      });
 
-        commonHeaderPage.getCommonHeaderMenuItems().get(1).click();
-        browser.sleep(10000);
+      it('should go to home when clicking on Displays menu item', function () {
+        commonHeaderPage.getCommonHeaderMenuItems().get(2).click();
         expect(browser.getCurrentUrl()).to.eventually.contain(homepage.getUrl());
       });
 
-      it('should show the schedules image', function () {
-        expect(homepage.getSchedulesImage().isPresent()).to.eventually.be.true;
+      it('should show the displays image', function () {
+        expect(homepage.getDisplaysImage().isPresent()).to.eventually.be.true;
       });
 
-      it('should show the schedules title text', function () {
-        expect(homepage.getAppTitleText().getText()).to.eventually.equal('Schedules');
-      });
-
-      it('should show the manage schedules text', function () {
-        expect(homepage.getManageSchedulesText().getText()).to.eventually.equal('Schedule delivery of HTML content to your digital signage displays, anywhere, anytime.');
+      it('should show the manage displays text', function () {
+        expect(homepage.getManageDisplaysText().getText()).to.eventually.equal('Manage and monitor your digital signage displays, anywhere, anytime.');
       });
 
       it('should show the Sign Up link', function () {
@@ -86,7 +85,6 @@ var HomePageScenarios = function() {
     });
 
     describe("Given a user who wants to sign up", function () {
-
       before(function () {
         homepage.get();
         //wait for spinner to go away.
@@ -100,20 +98,22 @@ var HomePageScenarios = function() {
     });
 
     describe("Given a user who wants to sign in", function () {
-
       before(function () {
         homepage.get();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
       });
 
-      it('should go to google authentication when clicking on the sign in link', function () {
+      it('should go to google authentication when clicking on the sign in link', function (done) {
         homepage.getSignInLink().click().then(function () {
           googleAuthPage.signin();
           expect(browser.getCurrentUrl()).to.eventually.contain(homepage.getUrl());
+
+          done();
         });
       });
     });
+
   });
 };
 
