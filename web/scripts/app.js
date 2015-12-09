@@ -12,7 +12,8 @@ angular.module('risevision.apps', [
     'ui.bootstrap',
     'risevision.apps.partials',
     'risevision.apps.launcher.controllers',
-    'risevision.apps.launcher.directives'
+    'risevision.apps.launcher.directives',
+    'risevision.apps.launcher.services'
   ])
   // Set up our mappings between URLs, templates, and controllers
   .config(['$urlRouterProvider', '$stateProvider', '$locationProvider',
@@ -33,7 +34,8 @@ angular.module('risevision.apps', [
         templateProvider: ['$templateCache', function ($templateCache) {
           return $templateCache.get(
             'partials/launcher/app-launcher.html');
-        }]
+        }],
+        controller: 'HomeCtrl'
       })
 
       .state('main.signup', {
@@ -65,3 +67,4 @@ angular.module('risevision.common.i18n.config', [])
 
 angular.module('risevision.apps.launcher.controllers', []);
 angular.module('risevision.apps.launcher.directives', []);
+angular.module('risevision.apps.launcher.services', []);
