@@ -45,17 +45,17 @@ var HomePageScenarios = function() {
       });
 
       it('should have a display menu item on the common header', function () {
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).isPresent()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).getText()).to.eventually.equal('Displays');
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).isPresent()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).getText()).to.eventually.equal('Displays');
       });
 
       it('should have Alerts menu item on the common header', function () {
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).isPresent()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(3).getText()).to.eventually.equal('Alerts');
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(4).isPresent()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(4).getText()).to.eventually.equal('Alerts');
       });
 
       it('should go to home when clicking on Displays menu item', function () {
-        commonHeaderPage.getCommonHeaderMenuItems().get(2).click();
+        commonHeaderPage.getCommonHeaderMenuItems().get(3).click();
         expect(browser.getCurrentUrl()).to.eventually.contain(homepage.getUrl());
       });
 

@@ -45,13 +45,13 @@ var HomePageScenarios = function() {
       });
 
       it('should have a schedule menu item on the common header', function () {
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).isPresent()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).getText()).to.eventually.equal('Schedules');
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).isPresent()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(2).getText()).to.eventually.equal('Schedules');
       });
 
       it('should go to home when clicking on Schedules menu item', function () {
 
-        commonHeaderPage.getCommonHeaderMenuItems().get(1).click();
+        commonHeaderPage.getCommonHeaderMenuItems().get(2).click();
         browser.sleep(10000);
         expect(browser.getCurrentUrl()).to.eventually.contain(homepage.getUrl());
       });

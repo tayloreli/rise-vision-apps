@@ -44,12 +44,12 @@ var HomePageScenarios = function() {
       });
 
       it('should have a editor menu item on the common header', function () {
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(4).isDisplayed()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(4).getText()).to.eventually.equal('Editor');
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).isDisplayed()).to.eventually.be.true;
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).getText()).to.eventually.equal('Editor');
       });
 
       it('should go to home when clicking on Editor menu item', function () {
-        commonHeaderPage.getCommonHeaderMenuItems().get(4).click();
+        commonHeaderPage.getCommonHeaderMenuItems().get(1).click();
         expect(browser.getCurrentUrl()).to.eventually.contain(homepage.getUrl());
       });
 

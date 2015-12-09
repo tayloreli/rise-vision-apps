@@ -12,6 +12,15 @@ angular.module('risevision.apps.controllers')
           'apps.launcher.signin'
         ]
       }, {
+        title: 'Editor',
+        link: $state.href('apps.editor.home'),
+        states: [
+          'apps.editor.home',
+          'apps.editor.list',
+          'apps.editor.workspace.artboard',
+          'apps.editor.workspace.htmleditor'
+        ]
+      }, {
         title: 'Schedules',
         link: $state.href('apps.schedules.home'),
         states: [
@@ -33,15 +42,6 @@ angular.module('risevision.apps.controllers')
         title: 'Alerts',
         link: $state.href('apps.displays.alerts'),
         states: ['apps.displays.alerts']
-      }, {
-        title: 'Editor',
-        link: $state.href('apps.editor.home'),
-        states: [
-          'apps.editor.home',
-          'apps.editor.list',
-          'apps.editor.workspace.artboard',
-          'apps.editor.workspace.htmleditor'
-        ]
       }];
       $scope.navSelected = 'apps.launcher.home';
 
