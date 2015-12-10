@@ -5,7 +5,7 @@ angular.module('risevision.apps.launcher.controllers')
     function ($modal, userState, $state) {
 
       userState.authenticate(false).then(function () {
-        $state.go('main.home');
+        $state.go('apps.launcher.home');
       }).then(null, function () {
         $modal.open({
           templateUrl: 'signup-modal.html',

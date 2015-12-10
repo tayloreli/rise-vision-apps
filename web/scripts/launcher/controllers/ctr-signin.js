@@ -5,7 +5,7 @@ angular.module('risevision.apps.launcher.controllers')
     function (userState, $state) {
 
       userState.authenticate(false).then(function () {
-        $state.go('main.home');
+        $state.go('apps.launcher.home');
       }).then(null, function () {
         userState.authenticate(true);
       });
