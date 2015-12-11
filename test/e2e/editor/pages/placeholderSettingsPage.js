@@ -1,6 +1,7 @@
 'use strict';
 var PlaceholderSettingsPage = function() {
   var editPlaylistButton = element(by.id('editPlaylistButton'));
+  var editPropertiesButton = element(by.id('editPropertiesButton'));
   var idTextbox = element(by.id('placeholderId'));
   var newIdTextbox = element(by.id('placeholderNewId'));
   var requiredValidation = element(by.id('requiredValidation'));
@@ -14,6 +15,10 @@ var PlaceholderSettingsPage = function() {
   
   this.getEditPlaylistButton = function() {
     return editPlaylistButton;
+  };
+
+  this.getEditPropertiesButton = function() {
+    return editPropertiesButton;
   };
   
   this.getIdTextbox = function() {
