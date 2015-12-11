@@ -56,7 +56,8 @@ var PlaceholderSettingsScenarios = function() {
         // wait for transitions
         browser.sleep(500);
         
-        helper.wait(placeholderSettingsPage.getEditPlaylistButton(), 'Placeholder Settings');
+        helper.wait(placeholderSettingsPage.getEditPlaylistButton(), 'Placeholder Playlist Page');
+        placeholderSettingsPage.getEditPropertiesButton().click();
         
         expect(placeholderSettingsPage.getIdTextbox().getAttribute('value')).to.eventually.equal('ph0');
         
