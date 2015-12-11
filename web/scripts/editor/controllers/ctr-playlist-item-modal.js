@@ -4,10 +4,10 @@ angular.module('risevision.editor.controllers')
   .controller('PlaylistItemModalController', ['$scope',
     'placeholderPlaylistFactory', 'widgetModalFactory', 'gadgetFactory',
     '$modalInstance', 'placeholderFactory', 'item', 'editorFactory',
-    'userState', 'RVA_URL',
+    'userState', 'RVA_URL', 'showWidgetModal',
     function ($scope, placeholderPlaylistFactory, widgetModalFactory,
       gadgetFactory, $modalInstance, placeholderFactory,
-      item, editorFactory, userState, RVA_URL) {
+      item, editorFactory, userState, RVA_URL, showWidgetModal) {
       $scope.PREVIOUS_EDITOR_URL = RVA_URL + '/#/PRESENTATION_MANAGE' + ((
           editorFactory.presentation.id) ? '/id=' + editorFactory.presentation
         .id : '') + '?cid=' + userState.getSelectedCompanyId();
@@ -23,6 +23,10 @@ angular.module('risevision.editor.controllers')
             $scope.widgetName = gadget.name;
           });
         }
+      }
+
+      if (showWidgetModal) {
+        widgetModalFactory.showWidgetModal($scope.item);
       }
 
       $scope.save = function () {

@@ -48,7 +48,9 @@ describe('controller: playlist item modal', function() {
     });
     
     $provide.service('widgetModalFactory',function(){
-      return {}
+      return {
+        showWidgetModal: function() {}
+      }
     });
 
     $provide.service('editorFactory',function(){
@@ -68,7 +70,8 @@ describe('controller: playlist item modal', function() {
     });
 
   }));
-  var $scope, $modalInstance, $modalInstanceDismissSpy, itemProperties, itemType, itemUpdated, updateSubscriptionStatusCalled, presentation;
+  var $scope, $modalInstance, $modalInstanceDismissSpy, itemProperties, itemType, 
+  itemUpdated, updateSubscriptionStatusCalled, presentation, showWidgetModalSpy;
 
   describe('Normal checks', function () {
     beforeEach(function(){
@@ -89,6 +92,7 @@ describe('controller: playlist item modal', function() {
           $scope: $scope,
           $modalInstance : $modalInstance,
           item: itemProperties,
+          showWidgetModal: false,
           editorFactory: $injector.get('editorFactory')
         });
         $scope.$digest();
@@ -162,6 +166,7 @@ describe('controller: playlist item modal', function() {
           $scope: $scope,
           $modalInstance : $modalInstance,
           item: itemProperties,
+          showWidgetModal: false,
           editorFactory: $injector.get('editorFactory')
         });
         $scope.$digest();
@@ -192,6 +197,7 @@ describe('controller: playlist item modal', function() {
           $scope: $scope,
           $modalInstance : $modalInstance,
           item: itemProperties,
+          showWidgetModal: false,
           editorFactory: $injector.get('editorFactory')
         });
         $scope.$digest();
@@ -205,9 +211,36 @@ describe('controller: playlist item modal', function() {
         done();
       }, 10);
     });
+  });
 
-    
+  describe('Widget modal on init: ',function(){
 
+    var _createController = function(showWidgetModal) {
+      inject(function($injector,$rootScope, $controller){
+        $scope = $rootScope.$new();
+
+        var widgetModalFactory = $injector.get('widgetModalFactory');
+        showWidgetModalSpy = sinon.spy(widgetModalFactory, 'showWidgetModal');
+
+        $controller('PlaylistItemModalController', {
+          $scope: $scope,
+          $modalInstance : $modalInstance,
+          item: itemProperties,
+          showWidgetModal: showWidgetModal,
+          editorFactory: $injector.get('editorFactory')
+        });
+      });
+    }
+
+    it('should open widget modal on init if requested', function() {
+      _createController(true);
+      showWidgetModalSpy.should.have.been.called;
+    });
+
+    it('should not open widget modal if not requested', function() {
+      _createController(false);
+      showWidgetModalSpy.should.not.have.been.called;
+    });
   });
 
 

@@ -170,7 +170,8 @@ angular.module('risevision.apps', [
       .state('apps.displays.home', {
         url: '/displays',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/displays/landing-page.html');
+          return $templateCache.get(
+            'partials/displays/landing-page.html');
         }],
         controller: ['canAccessDisplays', '$state',
 
@@ -185,7 +186,8 @@ angular.module('risevision.apps', [
       .state('apps.displays.list', {
         url: '/displays/list',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/displays/displays-list.html');
+          return $templateCache.get(
+            'partials/displays/displays-list.html');
         }],
         controller: 'displaysList',
         resolve: {
@@ -224,7 +226,8 @@ angular.module('risevision.apps', [
       .state('apps.displays.details', {
         url: '/displays/details/:displayId',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/displays/display-details.html');
+          return $templateCache.get(
+            'partials/displays/display-details.html');
         }],
         controller: 'displayDetails',
         resolve: {
@@ -239,7 +242,8 @@ angular.module('risevision.apps', [
       .state('apps.displays.add', {
         url: '/displays/add',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/displays/display-add.html');
+          return $templateCache.get(
+            'partials/displays/display-add.html');
         }],
         controller: 'displayAdd',
         resolve: {
@@ -276,7 +280,8 @@ angular.module('risevision.apps', [
       .state('apps.editor.home', {
         url: '/editor',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/editor/landing-page.html');
+          return $templateCache.get(
+            'partials/editor/landing-page.html');
         }],
         controller: ['canAccessEditor', '$state',
 
@@ -291,7 +296,8 @@ angular.module('risevision.apps', [
       .state('apps.editor.list', {
         url: '/editor/list',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/editor/presentation-list.html');
+          return $templateCache.get(
+            'partials/editor/presentation-list.html');
         }],
         controller: 'PresentationListController',
         resolve: {
@@ -355,7 +361,8 @@ angular.module('risevision.apps', [
       .state('apps.editor.workspace.htmleditor', {
         url: '',
         templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get('partials/editor/html-editor.html');
+          return $templateCache.get(
+            'partials/editor/html-editor.html');
         }],
         controller: 'HtmlEditorController',
         resolve: {

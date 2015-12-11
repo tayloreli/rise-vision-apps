@@ -11,6 +11,7 @@ var PlaceholderPlaylistPage = require('./../pages/placeholderPlaylistPage.js');
 var PlaylistItemModalPage = require('./../pages/playlistItemModalPage.js');
 var StoreProductsModalPage = require('./../pages/storeProductsModalPage.js');
 var WidgetByUrlModalPage = require('./../pages/widgetByUrlModalPage.js');
+var WidgetSettingsPage = require('./../pages/widgetSettingsPage.js');
 var helper = require('rv-common-e2e').helper;
 
 var PlaylistScenarios = function() {
@@ -28,6 +29,7 @@ var PlaylistScenarios = function() {
     var playlistItemModalPage;
     var storeProductsModalPage;
     var widgetByUrlModalPage;
+    var widgetSettingsPage;
 
     before(function () {
       homepage = new HomePage();
@@ -41,6 +43,7 @@ var PlaylistScenarios = function() {
       playlistItemModalPage = new PlaylistItemModalPage();
       storeProductsModalPage = new StoreProductsModalPage();
       widgetByUrlModalPage = new WidgetByUrlModalPage();
+      widgetSettingsPage = new WidgetSettingsPage();
 
       homepage.get();
       //wait for spinner to go away.
@@ -101,7 +104,7 @@ var PlaylistScenarios = function() {
       });
 
       it('should search products',function(){
-        storeProductsModalPage.getSearchInput().sendKeys('video folder');
+        storeProductsModalPage.getSearchInput().sendKeys('video');
         storeProductsModalPage.getSearchInput().sendKeys(protractor.Key.ENTER);
         helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader()).then(function () {
           expect(storeProductsModalPage.getStoreProducts().count()).to.eventually.be.above(0);
@@ -117,10 +120,19 @@ var PlaylistScenarios = function() {
         expect(storeProductsModalPage.getStatusFields().get(0).getText()).to.eventually.equal('Free');
       });
 
-      it('should add a Product and open Playlist Item modal', function () {
+      it('should add a Product and open Widget Settings', function () {
         storeProductsModalPage.getAddProductButtons().get(0).click();
-
         helper.wait(playlistItemModalPage.getPlaylistItemModal(), 'Playlist Item Settings Page');
+        browser.switchTo().frame('widget-modal-frame');
+        
+        expect(widgetSettingsPage.getCloseButton().isDisplayed()).to.eventually.be.true;
+        expect(widgetSettingsPage.getTitle().getText()).to.eventually.equal('Video Settings');        
+      });
+
+      it('should display Playlist Item Settings Page after closing Widget Settings',function(){
+        widgetSettingsPage.getCloseButton().click();
+        browser.switchTo().defaultContent();
+        browser.waitForAngular();
 
         expect(playlistItemModalPage.getPlaylistItemModal().isDisplayed()).to.eventually.be.true;
         expect(playlistItemModalPage.getModalTitle().getText()).to.eventually.equal('Edit Playlist Item');
@@ -221,12 +233,17 @@ var PlaylistScenarios = function() {
         helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
 
         helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader());
-        storeProductsModalPage.getSearchInput().sendKeys('video folder');
+        storeProductsModalPage.getSearchInput().sendKeys('video');
         storeProductsModalPage.getSearchInput().sendKeys(protractor.Key.ENTER);        
         helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader());
         storeProductsModalPage.getAddProductButtons().get(0).click();
 
         helper.wait(playlistItemModalPage.getPlaylistItemModal(), 'Playlist Item Settings Page');
+        browser.switchTo().frame('widget-modal-frame');
+        widgetSettingsPage.getCloseButton().click();
+        browser.switchTo().defaultContent();
+        browser.waitForAngular();
+
         playlistItemModalPage.getNameTextbox().sendKeys(' 2');
 
         playlistItemModalPage.getSaveButton().click();

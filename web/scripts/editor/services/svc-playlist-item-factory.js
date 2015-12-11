@@ -29,7 +29,7 @@ angular.module('risevision.editor.services')
             item.objectData = gadget.url;
             item.objectReference = gadget.id;
 
-            factory.edit(item);
+            factory.edit(item, true);
           });
       };
 
@@ -61,7 +61,7 @@ angular.module('risevision.editor.services')
         modalInstance.result.then(_addProduct);
       };
 
-      factory.edit = function (item) {
+      factory.edit = function (item, showWidgetModal) {
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/playlist-item-modal.html',
           size: 'md',
@@ -69,6 +69,9 @@ angular.module('risevision.editor.services')
           resolve: {
             item: function () {
               return item;
+            },
+            showWidgetModal: function () {
+              return showWidgetModal;
             }
           }
         });
