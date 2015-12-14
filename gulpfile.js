@@ -195,6 +195,11 @@ gulp.task("fonts", function() {
     .pipe(gulp.dest("dist/fonts"));
 });
 
+gulp.task("static-html", function() {
+  return gulp.src('./web/loading-preview.html')
+    .pipe(gulp.dest('dist/'));
+})
+
 gulp.task("config", function() {
   var env = process.env.NODE_ENV || "dev";
   gutil.log("Environment is", env);
@@ -205,7 +210,7 @@ gulp.task("config", function() {
 });
 
 gulp.task('build', function (cb) {
-  runSequence(["clean", "config"], ['pretty', 'html2js'],["html", "fonts", "locales", "images"], cb);
+  runSequence(["clean", "config"], ['pretty', 'html2js'],["html", "static-html", "fonts", "locales", "images"], cb);
 });
 
 /*---- testing ----*/
