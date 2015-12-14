@@ -53,15 +53,24 @@ describe('service: placeholdersFactory:', function() {
       }
     });
 
+    $provide.service('placeholderFactory', function() {
+      return {
+        setPlaceholder: function(placeholder) {}
+      };
+    });
+
   }));
   var placeholders, placeholder, placeholder0, placeholder2, placeholdersFactory, trackerCalled, updateSchedule, currentState;
-  var editorFactory, trackedEvent;
+  var editorFactory, trackedEvent, setPlaceholderSpy;
   beforeEach(function(){
     trackerCalled = undefined;
     currentState = undefined;
     updateSchedule = true;
     
     inject(function($injector){  
+      var placeholderFactory = $injector.get('placeholderFactory');
+      setPlaceholderSpy = sinon.spy(placeholderFactory, 'setPlaceholder');
+
       placeholdersFactory = $injector.get('placeholdersFactory');
     });
   });
@@ -111,6 +120,8 @@ describe('service: placeholdersFactory:', function() {
     expect(placeholders[3].type).to.equal('playlist');
     expect(placeholders[3].timeDefined).to.equal(false);
     expect(placeholders[3].transition).to.equal('none');
+
+    setPlaceholderSpy.should.have.been.calledWith(placeholders[3]);
   });
 
   describe('removePlaceholder: ',function(){

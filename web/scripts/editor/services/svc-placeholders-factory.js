@@ -2,8 +2,8 @@
 
 angular.module('risevision.editor.services')
   .factory('placeholdersFactory', ['editorFactory', 'presentationParser',
-    'presentationTracker',
-    function (editorFactory, presentationParser, presentationTracker) {
+    'presentationTracker', 'placeholderFactory',
+    function (editorFactory, presentationParser, presentationTracker, placeholderFactory) {
       var factory = {};
 
       factory.getPlaceholders = function () {
@@ -41,6 +41,7 @@ angular.module('risevision.editor.services')
         // Update Presentation - adds Placeholder to HTML
         // & assigns Id to placeholder
         presentationParser.updatePresentation(editorFactory.presentation);
+        placeholderFactory.setPlaceholder(placeholder);
       };
 
       var _getItemIndex = function (placeholder) {

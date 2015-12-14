@@ -43,7 +43,9 @@ var PlaceholdersListScenarios = function() {
 
         workspacePage.getAddPlaceholderButton().click();
         workspacePage.getAddPlaceholderButton().click();
-
+        browser.sleep(500); //wait for transition
+        workspacePage.getBackToListButton().click();
+        browser.sleep(500); //wait for transition
       });
 
       describe('Should manage placeholders', function () {

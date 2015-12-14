@@ -46,7 +46,9 @@ var PlaceholderSettingsScenarios = function() {
 
         workspacePage.getAddPlaceholderButton().click();
         workspacePage.getAddPlaceholderButton().click();
-
+        browser.sleep(500);
+        workspacePage.getBackToListButton().click();
+        browser.sleep(500);
       });
 
       it('should show placeholder settings', function () {

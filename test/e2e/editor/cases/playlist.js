@@ -59,17 +59,7 @@ var PlaylistScenarios = function() {
       presentationPropertiesModalPage.getCancelButton().click();
 
       workspacePage.getAddPlaceholderButton().click();
-    });
-
-    before('Open Placeholder settings & switch to playlist', function () {
-      helper.wait(placeholdersListPage.getManageLinks().get(0), 'Presentation Properties Modal');
-      placeholdersListPage.getManageLinks().get(0).click();
-
-      // wait for transitions
       browser.sleep(500);
-
-      helper.wait(placeholderSettingsPage.getEditPlaylistButton(), 'Placeholder Settings Page');
-      placeholderSettingsPage.getEditPlaylistButton().click();
     });
 
     describe('Should Add a content playlist item: ', function () {
