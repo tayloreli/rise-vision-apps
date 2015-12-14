@@ -50,12 +50,8 @@ var ArtboardPlaceholdersScenarios = function() {
           expect(artboardPage.getPlaceholderContainer().isDisplayed()).to.eventually.be.true;
         });
 
-        it('should select placeholder', function (done) {
-          artboardPage.getPlaceholderContainer().getSize().then(function (size) {
-            browser.actions().mouseMove(artboardPage.getPlaceholderContainer(), {x: size.width - 10, y: size.height - 10}).click().perform();
-            expect(artboardPage.getPlaceholderContainer().getAttribute('class')).to.eventually.contain('edit-mode');
-            done();
-          });
+        it('should select placeholder after adding it', function () {
+          expect(artboardPage.getPlaceholderContainer().getAttribute('class')).to.eventually.contain('edit-mode');
         });
 
         it('should deselect by clicking outside the placeholder', function (done) {
