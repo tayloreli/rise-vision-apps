@@ -384,11 +384,11 @@ angular.module('risevision.apps', [
 
       $rootScope.$on('risevision.company.selectedCompanyChanged', function () {
         if ($state.current.name === 'apps.schedules.list' ||
-          $state.current.name === 'apps.schedules.root' ||
+          $state.current.name === 'apps.schedules.home' ||
           $state.current.name === 'apps.editor.list' ||
-          $state.current.name === 'apps.editor.root' ||
-          $state.current.name === 'display.list' ||
-          $state.current.name === 'display.root') {
+          $state.current.name === 'apps.editor.home' ||
+          $state.current.name === 'apps.displays.list' ||
+          $state.current.name === 'apps.displays.home') {
 
           $state.go($state.current.name, null, {
             reload: true
