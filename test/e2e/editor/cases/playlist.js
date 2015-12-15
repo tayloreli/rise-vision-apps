@@ -60,12 +60,32 @@ var PlaylistScenarios = function() {
 
       workspacePage.getAddPlaceholderButton().click();
       browser.sleep(500);
+      
+    });
+
+    describe('Show Playlist by default',function(){
+      it('should show Playlist',function(){
+        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
+        expect(placeholderPlaylistPage.getAddPlayListItemButton().isDisplayed()).to.eventually.be.true;
+      });
+
+      it('should not remember selecting Settings tab',function(){
+        placeholderSettingsPage.getEditPropertiesButton().click();
+        workspacePage.getBackToListButton().click();
+        browser.sleep(500);
+
+        helper.wait(placeholdersListPage.getManageLinks().get(0), 'Placeholders List');
+        placeholdersListPage.getManageLinks().get(0).click();
+        browser.sleep(500);
+
+        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
+        expect(placeholderPlaylistPage.getAddPlayListItemButton().isDisplayed()).to.eventually.be.true;
+      })
+
     });
 
     describe('Should Add a content playlist item: ', function () {
       before('Click Add Content: ', function () {
-        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
-
         placeholderPlaylistPage.getAddPlayListItemButton().click();
         placeholderPlaylistPage.getAddContentButton().click();
         helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
