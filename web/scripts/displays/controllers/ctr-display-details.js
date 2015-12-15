@@ -9,6 +9,7 @@ angular.module('risevision.displays.controllers')
       $loading, $modal, $log, $templateCache, displayTracker) {
       $scope.displayId = $stateParams.displayId;
       $scope.savingDisplay = false;
+      $scope.displayTracker = displayTracker;
 
       $scope.$watch('loadingDisplay', function (loading) {
         if (loading) {

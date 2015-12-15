@@ -116,8 +116,9 @@ describe('controller: display details', function() {
   });
 
   it('should exist',function(){
-    expect($scope).to.be.truely;
-    expect($scope.displayId).to.be.truely;
+    expect($scope).to.be.ok;
+    expect($scope.displayId).to.be.ok;
+    expect($scope.displayTracker).to.be.ok;
 
     expect($scope.save).to.be.a('function');
     expect($scope.confirmDelete).to.be.a('function');
