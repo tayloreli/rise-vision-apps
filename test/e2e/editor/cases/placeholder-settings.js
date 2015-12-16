@@ -119,6 +119,8 @@ var PlaceholderSettingsScenarios = function() {
         browser.sleep(500);
         placeholdersListPage.getManageLinks().get(0).click();
         browser.sleep(500);
+        helper.wait(placeholderSettingsPage.getEditPlaylistButton(), 'Placeholder Playlist Page');
+        placeholderSettingsPage.getEditPropertiesButton().click();
         
         expect(placeholderSettingsPage.getTransitionSelect().$('option:checked').getText()).to.eventually.equal('Slide Up');
       })
