@@ -43,10 +43,9 @@ var PresentationAddScenarios = function() {
       expect(workspacePage.getPreviewButton().isDisplayed()).to.eventually.be.true;
     });
 
-    it('should not show Publish/Restore/Delete Buttons', function () {
+    it('should not show Publish/Restore Buttons', function () {
       expect(workspacePage.getPublishButton().isDisplayed()).to.eventually.be.false;
       expect(workspacePage.getRestoreButton().isDisplayed()).to.eventually.be.false;
-      expect(workspacePage.getDeleteButton().isDisplayed()).to.eventually.be.false;
     });
 
     it('should show Save Button', function () {
@@ -66,13 +65,14 @@ var PresentationAddScenarios = function() {
 
       workspacePage.getSaveButton().click();
       helper.wait(workspacePage.getSaveStatus(), 'Save Status');
-      expect(workspacePage.getDeleteButton().isDisplayed()).to.eventually.be.true;
       expect(workspacePage.getPreviewButton().isEnabled()).to.eventually.be.true;
     });
 
     after(function () {
-      helper.clickWhenClickable(workspacePage.getDeleteButton(), "Presentation Delete Button").then(function () {
-        helper.clickWhenClickable(workspacePage.getDeleteForeverButton(), "Presentation Delete Forever Button").then(function () {
+      workspacePage.getPresentationPropertiesButton().click();
+      helper.wait(presentationPropertiesModalPage.getPresentationPropertiesModal(), 'Presentation Properties Modal');
+      helper.clickWhenClickable(presentationPropertiesModalPage.getDeleteButton(), "Presentation Delete Button").then(function () {
+        helper.clickWhenClickable(presentationPropertiesModalPage.getDeleteForeverButton(), "Presentation Delete Forever Button").then(function () {
           helper.wait(presentationsListPage.getTitle(), 'Presentation List');
         });
       });

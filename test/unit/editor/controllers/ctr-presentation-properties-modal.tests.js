@@ -30,7 +30,8 @@ describe('controller: presentation properties modal', function() {
       return {
         copyPresentation : function () {
           return;
-        }
+        },
+        deletePresentation: function() {}
       };
     });
     $provide.service('$modalInstance',function(){
@@ -43,6 +44,22 @@ describe('controller: presentation properties modal', function() {
         }
       }
     });
+    $provide.service('$modal',function(){
+      return {
+        open: function(func){
+          return {
+            result:{
+              then:function(func){
+                expect(func).to.be.a('function');
+                if(confirmDelete) {
+                  func();  
+                }                
+              }
+            }
+          }
+        }
+      };
+    });
 
     companyId = 'TEST_COMP_ID';
     $provide.service('userState',function(){
@@ -53,7 +70,10 @@ describe('controller: presentation properties modal', function() {
       }
     });
   }));
-  var $scope, $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy, editorFactory, copyPresentationSpy, presentationPropertiesFactory, setPresentationPropertiesSpy, companyId, presentationProperties, placeholders;
+  var $scope, $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy, 
+    editorFactory, copyPresentationSpy, presentationPropertiesFactory, 
+    setPresentationPropertiesSpy, companyId, presentationProperties, placeholders,
+    $modal, confirmDelete;
 
   beforeEach(function(){
 
@@ -63,6 +83,8 @@ describe('controller: presentation properties modal', function() {
       $modalInstance = $injector.get('$modalInstance');
       $modalInstanceDismissSpy = sinon.spy($modalInstance, 'dismiss');
       $modalInstanceCloseSpy = sinon.spy($modalInstance, 'close');
+      $modal = $injector.get('$modal');
+      confirmDelete = false;
 
       editorFactory = $injector.get('editorFactory');
       copyPresentationSpy = sinon.spy(editorFactory, 'copyPresentation');
@@ -122,4 +144,20 @@ describe('controller: presentation properties modal', function() {
     $modalInstanceDismissSpy.should.have.been.called;
   });
 
+  describe('confirm delete',function(){
+    it('should open modal to confirm',function(){
+      var modalOpenSpy = sinon.spy($modal,'open');
+      $scope.confirmDelete();
+      modalOpenSpy.should.have.been.called;
+    });
+
+    it('should dismiss modal and delete on confirm',function(){
+      var editorDeleteSpy = sinon.spy(editorFactory,'deletePresentation');
+      confirmDelete = true
+      $scope.confirmDelete();
+      $modalInstanceDismissSpy.should.have.been.called;
+      editorDeleteSpy.should.have.been.called;
+    });
+
+  });
 });
