@@ -4,7 +4,8 @@ describe('directive: artboard-placeholder', function() {
       $rootScope,
       $scope,
       placeholder,
-      selectedPlaceholder;
+      selectedPlaceholder,
+      widgetRenderer;
 
   placeholder = {
       "width": 294,
@@ -29,13 +30,21 @@ describe('directive: artboard-placeholder', function() {
         placeholder: selectedPlaceholder
       };
     });
+    $provide.service('widgetRenderer', function() {
+      return {
+        register: function(){},
+        unregister: function(){},
+        notifyChanges: function(){}
+      };
+    });
   }));
 
-  beforeEach(inject(function(_$compile_, _$rootScope_, $templateCache){
+  beforeEach(inject(function(_$compile_, _$rootScope_, $templateCache, _widgetRenderer_){
     $compile = _$compile_;
     $rootScope = _$rootScope_;
     $scope = $rootScope.$new();
     $scope.placeholder = placeholder;
+    widgetRenderer = _widgetRenderer_;
   }));
 
   describe('placeholder:', function () {
@@ -89,6 +98,27 @@ describe('directive: artboard-placeholder', function() {
       $scope.$apply();   
       expect(element.hasClass('edit-mode')).to.be.truely;
       expect(parseInt(element.css('z-index'))).to.equal(100);
-    })
+    });
+
+    it('should register renderer on init',function(){
+      var spy = sinon.spy(widgetRenderer,"register");
+      var element = $compile('<artboard-placeholder placeholder="placeholder"></artboard-placeholder>')($scope);
+      spy.should.have.been.calledWith($scope.placeholder);
+    });
+
+    it('should unregister renderer on destroy',function(){
+      var spy = sinon.spy(widgetRenderer,"unregister");
+      var element = $compile('<artboard-placeholder placeholder="placeholder"></artboard-placeholder>')($scope);
+      $scope.$destroy();
+      spy.should.have.been.calledWith($scope.placeholder);
+    });
+
+    it('should notify placeholder changes',function(){
+      var spy = sinon.spy(widgetRenderer,"notifyChanges");
+      var element = $compile('<artboard-placeholder placeholder="placeholder"></artboard-placeholder>')($scope);
+      $scope.placeholder.top = 200;
+      $scope.$apply();
+      spy.should.have.been.calledWith($scope.placeholder);
+    });
   })
 });

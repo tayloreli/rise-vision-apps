@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('risevision.editor.directives')
-  .directive('artboardPlaceholder', ['placeholderFactory',
-    function (placeholderFactory) {
+  .directive('artboardPlaceholder', ['placeholderFactory', 'widgetRenderer',
+    function (placeholderFactory, widgetRenderer) {
       return {
         scope: {
           placeholder: '='
@@ -26,6 +26,7 @@ angular.module('risevision.editor.directives')
                 $scope.placeholder.backgroundScaleToFit ? 'contain' :
                 '');
               element.css('z-index', $scope.placeholder.zIndex);
+              widgetRenderer.notifyChanges($scope.placeholder, element);
             }, true);
 
             $scope.$watch('factory.placeholder', function () {
@@ -37,6 +38,13 @@ angular.module('risevision.editor.directives')
                 element.removeClass('edit-mode');
               }
             }, true);
+
+            widgetRenderer.register($scope.placeholder, element);
+
+            $scope.$on('$destroy', function () {
+              widgetRenderer.unregister($scope.placeholder, element);
+            });
+
           } //link()
       };
     }

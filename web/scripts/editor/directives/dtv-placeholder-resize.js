@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('risevision.editor.directives')
-  .directive('placeholderResize', ['$document',
-    function ($document) {
+  .directive('placeholderResize', ['$document', 'widgetRenderer',
+    function ($document, widgetRenderer) {
       return {
         restrict: 'A',
         link: function ($scope, $element, attrs) {
@@ -67,6 +67,8 @@ angular.module('risevision.editor.directives')
                   $event.stopPropagation();
                   $document.off('mousemove', mousemove);
                   $document.off('mouseup', mouseup);
+                  widgetRenderer.notifyResize($scope.placeholder,
+                    $element);
                 };
 
                 $document.on('mousemove', mousemove);
