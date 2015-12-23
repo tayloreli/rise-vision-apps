@@ -13,12 +13,13 @@ angular.module('risevision.editor.services')
 
       factory._placeholders = {};
 
-      var _isRenderingAllowed = function(objectReference) {
+      var _isRenderingAllowed = function (objectReference) {
         return RENDER_WIDGETS.indexOf(objectReference) !== -1;
-      }
+      };
 
       factory.register = function (placeholder, element) {
-        if (placeholder.items && placeholder.items[0] && _isRenderingAllowed(placeholder.items[0].objectReference)) {
+        if (placeholder.items && placeholder.items[0] &&
+          _isRenderingAllowed(placeholder.items[0].objectReference)) {
           factory._placeholders[placeholder.id] = placeholder;
           _createIframe(placeholder, element);
         }
@@ -40,7 +41,8 @@ angular.module('risevision.editor.services')
 
       factory.notifyChanges = function (placeholder, element) {
         if (factory._placeholders[placeholder.id]) {
-          if (!placeholder.items || !placeholder.items[0] || !_isRenderingAllowed(placeholder.items[0].objectReference)) {
+          if (!placeholder.items || !placeholder.items[0] || !
+            _isRenderingAllowed(placeholder.items[0].objectReference)) {
             factory.unregister(placeholder, element);
           } else {
             gadgetsApi.rpc.call(IFRAME_PREFIX + placeholder.id,

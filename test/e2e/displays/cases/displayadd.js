@@ -62,12 +62,25 @@ var DisplayAddScenarios = function() {
       expect(displayAddPage.getCancelButton().isPresent()).to.eventually.be.true;
     });
 
+    it('should select timezone',function(){
+      displayAddPage.getDisplayUseCompanyAddressCheckbox().click();
+      displayAddPage.getDisplayTimeZoneSelect().element(by.cssContainingText('option', 'Buenos Aires')).click();
+      expect(displayAddPage.getDisplayTimeZoneSelect().$('option:checked').getText()).to.eventually.contain('Buenos Aires');
+    });
+
     it('should add display', function () {
       var displayName = 'TEST_E2E_DISPLAY';
       displayAddPage.getDisplayNameField().sendKeys(displayName);
       displayAddPage.getSaveButton().click();
       helper.wait(displayAddPage.getDeleteButton(), 'Delete Button');
       expect(displayAddPage.getDeleteButton().isDisplayed()).to.eventually.be.true;
+    });
+
+    it('should show correct timezone after reload',function(){
+      browser.refresh();
+      helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
+      browser.sleep(1000);
+      expect(displayAddPage.getDisplayTimeZoneSelect().$('option:checked').getText()).to.eventually.contain('Buenos Aires');
     });
 
     after(function () {

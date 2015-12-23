@@ -7,6 +7,8 @@ var DisplayAddPage = function() {
   var displayUseCompanyAddressCheckbox = element(by.model('display.useCompanyAddress'));
   var displayRebootCheckbox = element(by.model('display.restartEnabled'));
 
+  var displayTimeZoneSelect = element(by.model('display.timeZoneOffset'));  
+
   var displayHoursField = element(by.model('hours'));
   var displayMinutesField = element(by.model('minutes'));
   var displayMeridianButton = element(by.id('meridianButton'));
@@ -41,6 +43,10 @@ var DisplayAddPage = function() {
 
   this.getDisplayRebootCheckbox = function() {
     return displayRebootCheckbox;
+  };
+
+  this.getDisplayTimeZoneSelect = function() {
+    return displayTimeZoneSelect;
   };
 
   this.getDisplayHoursField = function() {
