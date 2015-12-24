@@ -2,8 +2,9 @@
 angular.module('risevision.editor.controllers')
   .controller('storeProductsModal', ['$scope', 'ScrollingListService',
     'store', '$modalInstance', '$loading', '$filter', 'STORE_URL', 'category',
+    '$modal', 'storeAuthorization',
     function ($scope, ScrollingListService, store, $modalInstance, $loading,
-      $filter, STORE_URL, category) {
+      $filter, STORE_URL, category, $modal, storeAuthorization) {
       var defaultCount = 1000;
 
       $scope.search = {
@@ -29,7 +30,31 @@ angular.module('risevision.editor.controllers')
       });
 
       $scope.select = function (product) {
-        $modalInstance.close(product);
+        if (category === 'Templates' && product.paymentTerms.toLowerCase() !==
+          'free') {
+          $loading.start('product-list-loader');
+          storeAuthorization.check(product.productCode).then(function () {
+            $modalInstance.close(product);
+          }, function () {
+            var goToStoreModalInstance = $modal.open({
+              templateUrl: 'partials/editor/go-to-store-modal.html',
+              size: 'md',
+              controller: 'GoToStoreModalController',
+              resolve: {
+                product: function () {
+                  return product;
+                }
+              }
+            });
+            goToStoreModalInstance.result.then(function () {
+              $modalInstance.dismiss();
+            });
+          }).finally(function () {
+            $loading.stop('product-list-loader');
+          });
+        } else {
+          $modalInstance.close(product);
+        }
       };
 
       $scope.dismiss = function () {

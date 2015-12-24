@@ -4,6 +4,7 @@ describe('controller: Store Products Modal', function() {
   beforeEach(module('risevision.editor.services'));
   beforeEach(module(mockTranlate()));
   beforeEach(module(function ($provide) {
+    $provide.value('STORE_AUTHORIZATION_URL','http://www.example.com/api/auth')
     $provide.service('ScrollingListService', function() {
       return function() {
         return {
@@ -40,16 +41,39 @@ describe('controller: Store Products Modal', function() {
         }
       }
     });
-    $provide.value('category', 'Content');
+    $provide.value('category', 'Templates');
+    $provide.service('storeAuthorization',function(){
+      return {
+        check : function(){}
+      };
+    });
+    $provide.service('$modal',function(){
+      return {
+        open: function(func){
+          return {
+            result:{
+              then:function(func){
+                expect(func).to.be.a('function');
+                func();
+              }
+            }
+          }
+        }
+      };
+    });
   }));
   
-  var $scope, $loading, $loadingStartSpy, $loadingStopSpy;
-  var $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy;
+  var $scope, $loading, $loadingStartSpy, $loadingStopSpy, storeAuthorization;
+  var $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy, $q;
+  var $modal;
   beforeEach(function(){
 
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
       $modalInstance = $injector.get('$modalInstance');
+      $q = $injector.get('$q');
+      $modal = $injector.get('$modal');
+      storeAuthorization = $injector.get('storeAuthorization');
       $modalInstanceDismissSpy = sinon.spy($modalInstance, 'dismiss');
       $modalInstanceCloseSpy = sinon.spy($modalInstance, 'close');
       $loading = $injector.get('$loading');
@@ -111,15 +135,57 @@ describe('controller: Store Products Modal', function() {
       expect($scope.dismiss).to.be.a('function');
     });
 
-    it('should close modal when clicked on a product',function(){
-      var product = {
-        id: 'productId',
-        name: 'productName'
-      };
-      $scope.select(product);
+    describe('select:',function(){
+      it('should close modal when clicked on a free product',function(){
+        var product = {paymentTerms: 'free'};
+        $scope.select(product);
 
-      $modalInstanceCloseSpy.should.have.been.calledWith(product);
-    });
+        $modalInstanceCloseSpy.should.have.been.calledWith(product);
+      });
+
+      it('should check store authorization for premium templates',function(done){
+        var product = {productCode: 'pc', paymentTerms: 'premium'};        
+        var checkStub = sinon.stub(storeAuthorization, 'check').returns($q.when(true));
+        
+        $scope.select(product); 
+
+        checkStub.should.have.been.calledWith(product.productCode);
+        $scope.$digest();
+        setTimeout(function(){
+          $modalInstanceCloseSpy.should.have.been.calledWith(product);
+
+          $loadingStartSpy.should.have.been.calledWith('product-list-loader');
+          $loadingStopSpy.should.have.been.calledWith('product-list-loader');
+
+          done();
+        },10);        
+      });
+
+      it('should open modal to handle unauthorizad templates',function(done){
+        var product = { productCode: 'pc', paymentTerms: 'premium' };
+        
+        var deferred = $q.defer();
+        var checkStub = sinon.stub(storeAuthorization, 'check').returns(deferred.promise);
+        deferred.reject();
+
+        var modalOpenSpy = sinon.spy($modal,'open')
+
+        $scope.select(product);
+
+        checkStub.should.have.been.calledWith(product.productCode);
+        $scope.$digest();
+        setTimeout(function(){
+          modalOpenSpy.should.have.been.called;
+          $modalInstanceCloseSpy.should.not.have.been.called;
+          $modalInstanceDismissSpy.should.have.been.called;
+          
+          $loadingStartSpy.should.have.been.calledWith('product-list-loader');
+          $loadingStopSpy.should.have.been.calledWith('product-list-loader');
+
+          done();
+        },10);        
+      });
+    }); 
 
     it('should dismiss modal when clicked on close with no action',function(){
       $scope.dismiss();
