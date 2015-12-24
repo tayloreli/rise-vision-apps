@@ -92,8 +92,9 @@
   
   <div class="form-group">
     <label class="control-label" translate>displays-app.fields.address.timezone.name</label>
-    <select class="form-control" ng-model="display.timeZoneOffset" ng-options="c[1] as c[0] for c in timezones" integer-parser>
+    <select class="form-control" ng-model="display.timeZoneOffset" integer-parser>
       <option value="" ng-show="false" translate>displays-app.fields.address.timezone.placeholder</option>
+      <option value="{{c[1]}}" ng-repeat="c in timezones">{{c[0]}}</option>
     </select>
   </div>
   <hr>
