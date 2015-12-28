@@ -42,5 +42,38 @@ angular.module('risevision.editor.controllers')
           });
         }
       });
+      
+      var _handler;
+      $scope.$watch('factory.$dirty', 
+        function($dirty) {
+          if ($dirty) {
+            window.onbeforeunload = function(e) {
+              return "You have pending unsaved changes. Do you really want to discard them?";
+            };
+            
+            _handler = _handler || $scope.$on('$stateChangeStart', function (event, toState) {
+              if (toState.name.indexOf('workspace') === -1) {
+                var answer = confirm("Are you sure you want to leave this page?")
+                if (!answer) {
+                    event.preventDefault();
+                }
+              }
+            });
+          }
+      });
+
+      $scope.$on("$destroy", function () {
+        _handler && _handler();
+        
+        $window.onbeforeunload = null;
+      });
+
+      $scope.$watch('factory.presentation.layout', 
+        function(oldValue, newValue) {
+          if (oldValue !== newValue) {
+            $scope.factory.$dirty = true;
+          }
+      });
+      
     }
   ]); //ctr

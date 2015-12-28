@@ -41,6 +41,8 @@ angular.module('risevision.editor.services')
 
         factory.errorMessage = '';
         factory.apiError = '';
+        
+        factory.$dirty = false;
       };
 
       factory.newPresentation = function () {
@@ -56,12 +58,13 @@ angular.module('risevision.editor.services')
       factory.newPresentation();
 
       var _updatePresentation = function (presentation) {
-        factory.presentation = presentation;
-
-        presentationParser.parsePresentation(factory.presentation);
-        distributionParser.parseDistribution(factory.presentation);
+        presentationParser.parsePresentation(presentation);
+        distributionParser.parseDistribution(presentation);
 
         factory.hasLegacyItems = presentationParser.hasLegacyItems;
+        
+        factory.presentation = presentation;
+
         $rootScope.$broadcast('presentationUpdated');
       };
 
