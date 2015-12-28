@@ -1,18 +1,22 @@
 'use strict';
 
 angular.module('risevision.displays.services')
-  .factory('canAccessDisplays', ['$q', 'userState',
-    function ($q, userState) {
+  .factory('canAccessDisplays', ['$q', 'userState', '$state',
+    function ($q, userState, $state) {
       return function () {
         var deferred = $q.defer();
         userState.authenticate(false).then(function () {
             if (userState.isRiseVisionUser()) {
               deferred.resolve();
             } else {
-              deferred.reject();
+              return $q.reject();
             }
           })
-          .then(null, deferred.reject);
+          .then(null, function() {
+            $state.go('apps.displays.home');
+            
+            deferred.reject();
+          });
         return deferred.promise;
       };
     }

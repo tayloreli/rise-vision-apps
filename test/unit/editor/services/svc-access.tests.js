@@ -24,9 +24,16 @@ describe('service: access:', function() {
         _restoreState: function(){}
       }
     });
+    $provide.service('$state', function() {
+      return {
+        go: function(state) {
+          newState = state;
+        }
+      };
+    });
   }));
   
-  var canAccessSchedules, authenticate, isRiseVisionUser;
+  var canAccessSchedules, authenticate, isRiseVisionUser, newState;
   beforeEach(function(){
     isRiseVisionUser = true;
     authenticate = true;
@@ -60,6 +67,8 @@ describe('service: access:', function() {
       done("authenticated");
     })
     .then(null, function() {
+      expect(newState).to.equal('apps.editor.home');
+      
       done();
     });  
   });
@@ -73,6 +82,8 @@ describe('service: access:', function() {
       done("authenticated");
     })
     .then(null, function() {
+      expect(newState).to.equal('apps.editor.home');
+      
       done();
     });  
   });
