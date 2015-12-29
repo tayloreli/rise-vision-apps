@@ -112,15 +112,19 @@
 
 <div class="form-group form-inline" ng-show="displayId">
   <label class="control-label" translate>displays-app.fields.id</label>
+  <a ng-show="displayId" target="_blank" class="btn btn-link pull-right" href="https://help.risevision.com/user/create-a-display#download-rise-player">
+    <i class="fa fa-question-circle icon-left"></i>    
+    {{ 'displays-app.fields.controls.howto' | translate }}
+  </a>
   <div class="form-control-static">{{display.id}}</div>
 </div>
 
+
+  
+
+
 <div class="form-group" ng-show="displayId" ng-controller="displayControls">
   <div class="add-bottom hidden-xs">
-    <a ng-href="http://www.risevision.com/player/" target="_blank" class="btn btn-default" ng-click="displayTracker('Player Downloaded', displayId, display.name)">
-      <i class="fa fa-download"></i> 
-      {{ 'displays-app.fields.controls.download' | translate }}
-    </a>
     <button type="button" class="btn btn-default" ng-disabled="!display.playerVersion" ng-click="confirm(displayId, display.name, 'restart')" require-role="da">
       <i class="fa fa-refresh"></i> 
       {{ 'displays-app.fields.controls.restart.name' | translate }}
@@ -130,11 +134,7 @@
       {{ 'displays-app.fields.controls.reboot.name' | translate }}
     </button>
   </div>
-  <div class="add-bottom visible-xs">
-    <a ng-href="https://help.risevision.com/user/create-a-display" target="_blank" class="btn btn-default btn-block half-bottom">
-      <i class="fa fa-download"></i> 
-      {{ 'displays-app.fields.controls.download' | translate }}
-    </a>
+  <div class="add-bottom visible-xs">    
     <button type="button" class="btn btn-default btn-block half-bottom" ng-disabled="!display.playerVersion" ng-click="confirm(displayId, display.name, 'restart')">
       <i class="fa fa-refresh"></i> 
       {{ 'displays-app.fields.controls.restart.name' | translate }}
@@ -159,6 +159,56 @@
     <p class="add-right text-danger" translate translate-values="{displayId: displayId}">displays-app.fields.player.playerWarning</p>
   </div>
 </div>
+
+<div id="riseDownloadPlayer" ng-show="displayId">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="content-box">
+        <div class="content-box-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <img src="https://s3.amazonaws.com/Rise-Images/Icons/windows.png" class="img-responsive">
+            </div>
+            <div class="col-sm-9">
+              <a class="btn btn-primary btn-block" ng-click="displayTracker('Player Download')" href="http://install-versions.risevision.com/installer-win-32.exe" translate>
+                displays-app.download.win32
+              </a>
+              <a class="btn btn-primary btn-block" ng-click="displayTracker('Player Download')" href="http://install-versions.risevision.com/installer-win-64.exe" translate>
+                displays-app.download.win64
+              </a>
+            </div>
+          </div>
+          
+          
+        </div><!--content-box-body-->
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="content-box">
+        <div class="content-box-body">
+          <div class="row">
+            <div class="col-sm-3"><img src="https://s3.amazonaws.com/Rise-Images/Icons/ubuntu.png" class="img-responsive"></div>
+            <div class="col-sm-9">
+              <a class="btn btn-primary btn-block" ng-click="displayTracker('Player Download')" href="http://install-versions.risevision.com/installer-lnx-32.sh" translate>
+               displays-app.download.linux32
+              </a>
+              <a  class="btn btn-primary btn-block" ng-click="displayTracker('Player Download')" href="http://install-versions.risevision.com/installer-lnx-64.sh" translate>
+              displays-app.download.linux64
+              </a>
+            </div>
+          </div>
+          
+         
+        </div>
+      </div>
+    </div>
+  </div>
+    
+    
+</div>
+
+
+
 
 <div ng-show="display.lastActivityDate">
   <div class="form-group form-inline">
