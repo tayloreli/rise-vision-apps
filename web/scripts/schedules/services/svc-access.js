@@ -12,9 +12,9 @@ angular.module('risevision.schedules.services')
               return $q.reject();
             }
           })
-          .then(null, function() {
+          .then(null, function () {
             $state.go('apps.schedules.home');
-            
+
             deferred.reject();
           });
         return deferred.promise;

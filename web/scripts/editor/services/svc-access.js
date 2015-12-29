@@ -12,9 +12,9 @@ angular.module('risevision.editor.services')
               return $q.reject();
             }
           })
-          .then(null, function() {
+          .then(null, function () {
             $state.go('apps.editor.home');
-            
+
             deferred.reject();
           });
         return deferred.promise;

@@ -12,9 +12,9 @@ angular.module('risevision.displays.services')
               return $q.reject();
             }
           })
-          .then(null, function() {
+          .then(null, function () {
             $state.go('apps.displays.home');
-            
+
             deferred.reject();
           });
         return deferred.promise;

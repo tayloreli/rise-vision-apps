@@ -103,7 +103,7 @@ describe('service: editorFactory:', function() {
             currentState = state;
             stateParams = params;
           }
-          return currentState;
+          return Q.resolve();
         },
         is: function(state) {
           return currentState;
@@ -133,10 +133,16 @@ describe('service: editorFactory:', function() {
         }
       }
     });
+    $provide.service('$window', function() {
+      return {
+        open: function(url, target) {
+        }
+      };
+    })
     $provide.value('VIEWER_URL', 'http://rvaviewer-test.appspot.com');
 
   }));
-  var editorFactory, trackerCalled, updatePresentation, currentState, stateParams, presentationParser;
+  var editorFactory, trackerCalled, updatePresentation, currentState, stateParams, presentationParser, $window;
   beforeEach(function(){
     trackerCalled = undefined;
     currentState = undefined;
@@ -145,6 +151,7 @@ describe('service: editorFactory:', function() {
     inject(function($injector){
       editorFactory = $injector.get('editorFactory');
       presentationParser = $injector.get('presentationParser');
+      $window = $injector.get('$window');
     });
   });
 
@@ -164,7 +171,7 @@ describe('service: editorFactory:', function() {
     expect(editorFactory.isRevised).to.be.a('function');
     expect(editorFactory.copyPresentation).to.be.a('function');
     expect(editorFactory.addFromTemplate).to.be.a('function');
-    expect(editorFactory.getPreviewUrl).to.be.a('function');
+    expect(editorFactory.saveAndPreview).to.be.a('function');
   });
   
   it('newPresentation: should reset the presentation',function(){
@@ -510,20 +517,35 @@ describe('service: editorFactory:', function() {
 
   });
 
-  it('getPreviewUrl: ', function(done) {
-    expect(editorFactory.getPreviewUrl()).to.not.be.ok;
-    
-    editorFactory.getPresentation("presentationId")
-      .then(function() {
-        expect(editorFactory.getPreviewUrl()).to.be.ok;
-        expect(editorFactory.getPreviewUrl()).to.equal('http://rvaviewer-test.appspot.com/?type=presentation&id=presentationId&showui=false');
+  describe('saveAndPreview: ', function() {
+    it('should add and preview new presentation', function(done) {
+      var $windowOpenSpy = sinon.spy($window, 'open');
+      
+      editorFactory.saveAndPreview();
+      
+      setTimeout(function() {
+        $windowOpenSpy.should.have.been.called.twice;
+        $windowOpenSpy.should.have.been.calledWith('http://rvaviewer-test.appspot.com/?type=presentation&id=presentationId&showui=false', 'rvPresentationPreview');
 
         done();
-      })
-      .then(null, function(e) {
-        done(e);
-      })
-      .then(null,done);
+      }, 10);
+    });
+    
+    it('should save and preview existing presentation', function(done) {
+      var $windowOpenSpy = sinon.spy($window, 'open');
+      
+      editorFactory.getPresentation("presentationId").then(function() {
+        editorFactory.saveAndPreview();
+        
+        setTimeout(function() {
+          $windowOpenSpy.should.have.been.called.twice;
+          $windowOpenSpy.should.have.been.calledWith('http://rvaviewer-test.appspot.com/?type=presentation&id=presentationId&showui=false', 'rvPresentationPreview');
+
+          done();
+        }, 10);
+      });
+    });
+
   });
 
   describe('publishPresentation: ',function(){

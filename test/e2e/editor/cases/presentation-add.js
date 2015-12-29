@@ -39,8 +39,8 @@ var PresentationAddScenarios = function() {
       expect(workspacePage.getAddPlaceholderButton().isPresent()).to.eventually.be.true;
     });
 
-    it('should disable Preview Button', function () {
-      expect(workspacePage.getPreviewButton().getAttribute('disabled')).to.eventually.equal('true');
+    it('should show Preview Button', function () {
+      expect(workspacePage.getPreviewButton().isDisplayed()).to.eventually.be.true;
     });
 
     it('should not show Publish/Restore/Delete Buttons', function () {
@@ -80,4 +80,3 @@ var PresentationAddScenarios = function() {
   });
 };
 module.exports = PresentationAddScenarios;
-

@@ -7,8 +7,6 @@ angular.module('risevision.editor.directives')
         restrict: 'E',
         templateUrl: 'partials/editor/toolbar.html',
         link: function ($scope) {
-            $scope.previewUrl = editorFactory.getPreviewUrl();
-
             $scope.addNewPlaceholder = function () {
               placeholdersFactory.addNewPlaceholder();
             };

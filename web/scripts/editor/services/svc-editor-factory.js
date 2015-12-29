@@ -20,11 +20,11 @@ angular.module('risevision.editor.services')
   .factory('editorFactory', ['$q', '$state', 'userState', 'presentation',
     'presentationParser', 'distributionParser', 'presentationTracker',
     'VIEWER_URL', 'REVISION_STATUS_REVISED', 'REVISION_STATUS_PUBLISHED',
-    'DEFAULT_LAYOUT', '$modal', '$rootScope',
+    'DEFAULT_LAYOUT', '$modal', '$rootScope', '$window',
     function ($q, $state, userState, presentation, presentationParser,
       distributionParser, presentationTracker, VIEWER_URL,
       REVISION_STATUS_REVISED, REVISION_STATUS_PUBLISHED, DEFAULT_LAYOUT,
-      $modal, $rootScope) {
+      $modal, $rootScope, $window) {
       var factory = {};
 
       factory.openPresentationProperties = function () {
@@ -131,6 +131,8 @@ angular.module('risevision.editor.services')
       };
 
       factory.addPresentation = function () {
+        var deferred = $q.defer();
+
         _clearMessages();
 
         //show loading spinner
@@ -148,15 +150,21 @@ angular.module('risevision.editor.services')
               $state.go('apps.editor.workspace.artboard', {
                 presentationId: resp.item.id
               });
+
+              deferred.resolve(resp.item.id);
             }
           })
           .then(null, function (e) {
             _showErrorMessage('add', e);
+
+            deferred.reject();
           })
           .finally(function () {
             factory.loadingPresentation = false;
             factory.savingPresentation = false;
           });
+
+        return deferred.promise;
       };
 
       factory.updatePresentation = function () {
@@ -177,7 +185,7 @@ angular.module('risevision.editor.services')
 
             _updatePresentation(resp.item);
 
-            deferred.resolve();
+            deferred.resolve(resp.item.id);
           })
           .then(null, function (e) {
             _showErrorMessage('update', e);
@@ -190,6 +198,16 @@ angular.module('risevision.editor.services')
           });
 
         return deferred.promise;
+      };
+
+      factory.save = function () {
+        presentationTracker('Save Presentation', factory.presentation.id,
+          factory.presentation.name);
+        if (factory.presentation.id) {
+          return factory.updatePresentation();
+        } else {
+          return factory.addPresentation();
+        }
       };
 
       factory.deletePresentation = function () {
@@ -283,16 +301,6 @@ angular.module('risevision.editor.services')
         return deferred.promise;
       };
 
-      factory.save = function () {
-        presentationTracker('Save Presentation', factory.presentation.id,
-          factory.presentation.name);
-        if (factory.presentation.id) {
-          factory.updatePresentation();
-        } else {
-          factory.addPresentation();
-        }
-      };
-
       factory.copyPresentation = function () {
         presentationTracker('Presentation Copied', factory.presentation.id,
           factory.presentation.name);
@@ -336,12 +344,24 @@ angular.module('risevision.editor.services')
         });
       };
 
-      factory.getPreviewUrl = function () {
-        if (factory.presentation.id) {
-          return VIEWER_URL + '/?type=presentation&id=' +
-            factory.presentation.id + '&showui=false';
+      var _getPreviewUrl = function (presentationId) {
+        if (presentationId) {
+          return VIEWER_URL + '/?type=presentation&id=' + presentationId +
+            '&showui=false';
         }
         return null;
+      };
+
+      factory.saveAndPreview = function () {
+        presentationTracker('Preview Presentation', factory.presentation.id,
+          factory.presentation.name);
+
+        $window.open('/loading-preview.html', 'rvPresentationPreview');
+
+        factory.save().then(function (presentationId) {
+          $window.open(_getPreviewUrl(presentationId),
+            'rvPresentationPreview');
+        });
       };
 
       var _showErrorMessage = function (action, e) {

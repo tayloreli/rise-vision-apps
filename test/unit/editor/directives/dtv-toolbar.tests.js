@@ -16,7 +16,6 @@ describe('directive: toolbar', function() {
     $provide.service('editorFactory', function() {
       return {
         presentation: {},
-        getPreviewUrl: function(){},
         openPresentationProperties: function() {
           openPresentationPropertiesCalled = true;
         }
@@ -50,7 +49,6 @@ describe('directive: toolbar', function() {
 
   it('should exist', function() {
     expect($scope).to.be.truely;
-    expect($scope.previewUrl).to.be.truely;
     expect($scope.addNewPlaceholder).to.be.a('function');
     expect($scope.openProperties).to.be.a('function');
   });
