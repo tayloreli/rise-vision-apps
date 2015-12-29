@@ -62,12 +62,12 @@ var ArtboardPlaceholdersScenarios = function() {
           });
         });
 
-        it('should deselect by clicking the placeholder again', function (done) {
+        it('should not deselect by clicking the placeholder', function (done) {
           artboardPage.getPlaceholderContainer().getSize().then(function (size) {
             browser.actions().mouseMove(artboardPage.getPlaceholderContainer(), {x: size.width - 10, y: size.height - 10}).click().perform();
             expect(artboardPage.getPlaceholderContainer().getAttribute('class')).to.eventually.contain('edit-mode');
             browser.actions().mouseMove(artboardPage.getPlaceholderContainer(), {x: size.width - 10, y: size.height - 10}).click().perform();
-            expect(artboardPage.getPlaceholderContainer().getAttribute('class')).to.eventually.not.contain('edit-mode');
+            expect(artboardPage.getPlaceholderContainer().getAttribute('class')).to.eventually.contain('edit-mode');
             done();
           });
         });
