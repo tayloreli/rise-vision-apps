@@ -9,12 +9,10 @@ var WorkspacePage = function() {
   var previewButton = element(by.id('previewButton'));
   var saveButton = element(by.id('saveButton'));
   var cancelButton = element(by.id('cancelButton'));
-  var deleteButton = element(by.id('deleteButton'));
   var restoreButton = element(by.id('restoreButton'));
   var publishButton = element(by.id('publishButton'));
   var designButton = element(by.id('designButton'));
-  var htmlButton = element(by.id('htmlButton'));
-  var deleteForeverButton = element(by.buttonText('Delete Forever'));
+  var htmlButton = element(by.id('htmlButton'));  
   var codemirrorHtmlEditor = element(by.id('codemirrorHtmlEditor'));
   var presentationNameContainer = element(by.id('presentationName'));
   var backToListButton = element(by.id('backToListButton'));
@@ -54,10 +52,6 @@ var WorkspacePage = function() {
     return cancelButton;
   };
 
-  this.getDeleteButton = function() {
-    return deleteButton;
-  };
-
   this.getRestoreButton = function() {
     return restoreButton;
   };
@@ -72,10 +66,6 @@ var WorkspacePage = function() {
 
   this.getHtmlButton = function() {
     return htmlButton;
-  };
-
-  this.getDeleteForeverButton = function() {
-    return deleteForeverButton;
   };
 
   this.getAddPlaceholderButton = function() {

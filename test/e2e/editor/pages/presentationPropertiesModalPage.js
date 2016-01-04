@@ -27,6 +27,9 @@ var PresentationPropertiesModalPage = function() {
   var applyButton = element(by.id('applyButton'));
   var cancelButton = element(by.id('presentationPropertiesCancelButton'));
 
+  var deleteButton = element(by.id('deleteButton'));
+  var deleteForeverButton = element(by.buttonText('Delete Forever'));
+
 
 
   this.getWorkspaceContainer = function() {
@@ -101,6 +104,14 @@ var PresentationPropertiesModalPage = function() {
     return cancelButton;
   };
 
+  this.getDeleteButton = function() {
+    return deleteButton;
+  };
+
+  this.getDeleteForeverButton = function() {
+    return deleteForeverButton;
+  };
+  
 };
 
 module.exports = PresentationPropertiesModalPage;

@@ -41,6 +41,12 @@
     </div>
 
   </form>
+
+  <!-- Indicates delete or destructive action -->
+  <button id="deleteButton" ng-show="presentationProperties.id" require-role="cp" type="button" class="btn btn-danger btn-fixed-width" ng-click="confirmDelete()">
+    {{'common.delete' | translate}} Presentation<i class="fa fa-white fa-trash-o icon-right"></i>
+  </button>
+
   </div><!--modal-body-->
   <div class="modal-footer">
 
