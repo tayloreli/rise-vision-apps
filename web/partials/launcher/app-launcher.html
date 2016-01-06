@@ -100,7 +100,7 @@
       </ul>
 
         <div class="text-center add-bottom">
-          <button class="btn btn-lg btn-default" ng-hide="moreTemplates" ng-click="moreTemplates = !moreTemplates">Show More</button>
+          <button class="btn btn-lg btn-default" ng-click="moreTemplates = !moreTemplates">Show <span ng-hide="moreTemplates">More</span><span ng-show="moreTemplates">Less</span></button>
         </div>
 
       </div><!--container-->
