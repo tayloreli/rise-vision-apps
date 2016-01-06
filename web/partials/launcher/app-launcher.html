@@ -1,15 +1,35 @@
 <div id="appLauncherContainer">
   <div class="container">
     <div class="app-launcher-header">
-      <h1>Welcome to Rise Vision</h1>
+      <h1>Welcome to Rise Vision</h1> 
     </div>
 
-    <h2>My Presentations</h2>
-    <p class="lead text-muted">You haven’t added any presentations yet.</p>
+    <h2 class="half-bottom">My Presentations</h2>
+    <p ng-hide="existingUser" class="lead text-muted">You haven’t added any presentations yet.</p>
+
+    <p ng-show="existingUser" class="lead text-muted half-bottom">Last Modified <a class="add-left" href="#">View All</a></p>
+
+    <div class="content-box latest-item" ng-show="existingUser">
+      <a href="#">
+        <div class="content-box-body">
+          <p class="text-muted pull-right">5-Jan-2016 4:14 PM</p>
+          <h3 class="remove-top remove-bottom">Simple Presentation</h3>
+        </div>
+      </a>
+    </div>
+    
   </div>
 
   <div class="app-launcher-block">
-    <div class="templates animated fadeIn">
+
+    <div class="container">
+      <div ng-show="existingUser">
+        <button class="btn btn-primary btn-lg">Add Presentation <i class="fa fa-plus icon-right"></i></button>
+      </div>
+    </div>
+
+
+    <div ng-hide="existingUser" class="templates animated fadeIn">
       <div class="container">
       
       <p class="lead text-white">Add a New Presentation</p>
@@ -109,14 +129,15 @@
   </div><!--block-->  
 
   <div class="container">
+  <hr ng-show="existingUser">
     <div class="app-launcher-block">
-      <h2>My Displays</h2>
+      <h2 class="half-bottom">My Displays</h2>
       <p class="lead text-muted">You haven’t added any displays yet.</p>
       <button class="btn btn-primary btn-lg">Add Display <i class="fa fa-plus icon-right"></i></button>
     </div><!--app-launcher-block-->
     <hr>
     <div class="app-launcher-block">
-      <h2>My Schedules</h2>
+      <h2 class="half-bottom">My Schedules</h2>
       <p class="lead text-muted">You haven’t added any schedules yet.</p>
       <button class="btn btn-primary btn-lg">Add Schedule <i class="fa fa-plus icon-right"></i></button>
     </div><!--app-launcher-block-->
@@ -130,6 +151,6 @@
 
 
 
-
+<button class="btn btn-default" ng-click="existingUser = !existingUser">Existing User</button>
 
 </div><!--appLauncherContainer-->
