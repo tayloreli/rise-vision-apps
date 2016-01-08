@@ -38,6 +38,7 @@ describe('directive: resolution selector', function() {
       '1440x900': '1440 x 900 Wide',
       '1680x1050': '1680 x 1050 Wide',
       '1920x1080': '1920 x 1080 Wide',
+      '3840x2160': '3840 x 2160 Wide',
       '1024x768': '1024 x 768',
       '1280x1024': '1280 x 1024',
       '1600x1200': '1600 x 1200',
@@ -45,7 +46,8 @@ describe('directive: resolution selector', function() {
       '768x1280': '768 x 1280 Portrait',
       '768x1360': '768 x 1360 Portrait',
       '768x1366': '768 x 1366 Portrait',
-      '1080x1920': '1080 x 1920 Portrait'
+      '1080x1920': '1080 x 1920 Portrait',
+      '2160x3840': '2160 x 3840 Portrait',
     };
 
     expect($rootScope.resolutionOptions).to.deep.equal(resolutionOptions);
