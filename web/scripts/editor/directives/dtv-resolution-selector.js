@@ -21,11 +21,13 @@ angular.module('risevision.editor.directives')
               '1440x900': '1440 x 900 Wide',
               '1680x1050': '1680 x 1050 Wide',
               '1920x1080': '1920 x 1080 Wide',
+              '3840x2160': '3840 x 2160 Wide',
               '720x1280': '720 x 1280 Portrait',
               '768x1280': '768 x 1280 Portrait',
               '768x1360': '768 x 1360 Portrait',
               '768x1366': '768 x 1366 Portrait',
               '1080x1920': '1080 x 1920 Portrait',
+              '2160x3840': '2160 x 3840 Portrait',
               'custom': 'Custom'
             };
 
