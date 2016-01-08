@@ -68,6 +68,14 @@ angular.module('risevision.apps', [
         controller: 'HomeCtrl'
       })
 
+      .state('apps.launcher.login', {
+        url: '/login',
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/login.html');
+        }]
+      })
+
       .state('apps.launcher.signup', {
         url: '/signup',
         templateProvider: ['$templateCache', function ($templateCache) {

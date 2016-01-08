@@ -4,6 +4,7 @@
       <h1>Welcome to Rise Vision</h1> 
     </div>
 
+
     <h2 class="half-bottom">My Presentations</h2>
     <p ng-hide="existingUser" class="lead text-muted">You haven’t added any Presentations yet.</p>
 
@@ -32,7 +33,7 @@
     <div ng-hide="existingUser" class="templates animated fadeIn">
       <div class="container">
       
-      <p class="lead text-white">Add a New Presentation</p>
+      <h3 class="remove-top add-bottom">Add a New Presentation</h3>
       <ul class="template-grid">
         <li class="blank-template">
           <a href="#">
@@ -40,6 +41,48 @@
             <p><span><i class="fa fa-plus fa-2x"></i></span> Blank</p>
           </a>
         </li>
+        
+        <li>
+          <a href="#">
+            <img src="https://s3.amazonaws.com/Store-Products/Rise-Vision/presentation_template_rva_hotel1b_landscape.jpg" class="img-responsive">
+            <div class="template-info">
+              <button class="btn btn-default btn-sm pull-right"><i class="fa fa-info"></i></button>
+              <h3>Simple YouTube Template</h3>
+              <p>Free</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="https://s3.amazonaws.com/Store-Products/Rise-Vision/presentation_template_rva_hotel1b_landscape.jpg" class="img-responsive">
+            <div class="template-info">
+              <button class="btn btn-default btn-sm pull-right"><i class="fa fa-info"></i></button>
+              <h3>Simple YouTube Template</h3>
+              <p>Free</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="https://s3.amazonaws.com/Rise-Images/Experimental/template2.jpg" class="img-responsive">
+            <div class="template-info">
+              <button class="btn btn-default btn-sm pull-right"><i class="fa fa-info"></i></button>
+              <h3>Menu Portrait</h3>
+              <p>Free</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <img src="https://s3.amazonaws.com/Store-Products/Rise-Vision/presentation_template_rva_bank2_landscape.jpg" class="img-responsive">
+            <div class="template-info">
+              <button class="btn btn-default btn-sm pull-right"><i class="fa fa-info"></i></button>
+              <h3>Simple Facebook</h3>
+              <p>Free</p>
+            </div>
+          </a>
+        </li>
+
         <li>
           <a href="#">
             <img src="https://s3.amazonaws.com/Store-Products/Rise-Vision/presentation_template_rva_hotel1b_landscape.jpg" class="img-responsive">
@@ -168,9 +211,10 @@
       <p class="lead text-muted">You haven’t added any Schedules yet.</p>
       <button class="btn btn-primary btn-lg">Add Schedule <i class="fa fa-plus icon-right"></i></button>
     </div><!--app-launcher-block-->
-    <hr>
-    <div class="app-launcher-footer">
-      
+    </div><!--container-->
+
+    <div class="app-launcher-footer"> 
+      <div class="container">
       <div class="row">
         <div class="col-sm-2">
           <div class="content-box text-center classic-rva">
@@ -234,16 +278,16 @@
           </div><!--content-box-->
         </div><!--col-->
       </div><!--row-->
-      
+      </div><!--container-->
     </div><!--app-launcher-footer-->
 
-  </div><!--container-->
+  
 
   
 
 
 
 
-<button class="btn btn-default" ng-click="existingUser = !existingUser">Existing User</button>
+<button class="btn btn-default hidden" ng-click="existingUser = !existingUser">Existing User</button>
 
 </div><!--appLauncherContainer-->
