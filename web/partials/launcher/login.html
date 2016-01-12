@@ -10,7 +10,7 @@
 <div class="app-launcher-login">
 	<div class="container">
 
-		<div class="content-box">
+		<div class="content-box" ng-hide="registerStep">
 			<div class="row">
 				<div class="col-sm-4 col-xs-12">
 					<div class="rise-logo"><img src="https://www.risevision.com/images/logo.svg"></div>
@@ -19,7 +19,7 @@
 
 					<h1 class="add-top">Signup</h1>
 					<p class="lead text-muted">Create a Free Account</p>
-					<button class="btn btn-primary btn-hg">Sign Up Up with Google <i class="fa fa-google icon-right"></i></button>
+					<button ng-click="registerStep = !registerStep" class="btn btn-primary btn-hg">Sign Up with Google <i class="fa fa-google icon-right"></i></button>
 					<p><a href="#">I don't have a google account.</a></p>
 
 					<br>
@@ -30,7 +30,58 @@
 			</div><!--row-->
 			
 			
-		</div>	
+		</div><!--content-box-->
+
+
+		<div class="content-box" ng-show="registerStep">
+			<div class="row">
+				<div class="col-sm-4 col-xs-12">
+					<div class="rise-logo"><img src="https://www.risevision.com/images/logo.svg"></div>
+				</div>
+				<div class="col-sm-8 col-xs-12">
+
+					<h1 class="add-top">Let's finish with your details</h1>
+					
+					<form>
+						<div class="form-group">
+							<label class="control-label">First Name</label>
+							<input class="form-control" type="text">
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Last Name</label>
+							<input class="form-control" type="text">
+						</div>
+
+						<div class="form-group">
+							<label class="control-label">Email <span class="text-muted">(We'll only send you system notices and other critical information)</span></label>
+							<input class="form-control" type="text">
+						</div>
+
+						<div class="checkbox">
+							<label class="control-label"><input type="checkbox">
+							I accept the terms of Service and Privacy</label>
+						</div>
+
+						<div class="checkbox">
+							<label class="control-label"><input type="checkbox">
+							Sign up for our newsletter</label>
+
+							
+
+						</div>
+					</form>
+
+					<button class="btn btn-primary btn-hg">Create Account</button>
+					
+
+				</div><!--col-->
+			</div><!--row-->
+			
+			
+		</div><!--content-box-->
+
+
 	</div><!--container-->
 </div><!--app-launcher-login-->
 
