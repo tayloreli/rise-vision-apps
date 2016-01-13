@@ -12,6 +12,7 @@ angular.module('risevision.editor.services')
     'endDate', 'startTime', 'endTime',
     'recurrenceType', 'recurrenceFrequency',
     'recurrenceAbsolute', 'recurrenceDayOfWeek',
+    'recurrenceDaysOfWeek',
     'recurrenceDayOfMonth', 'recurrenceWeekOfMonth',
     'recurrenceMonthOfYear', 'visibility',
     'transition', 'items'
@@ -24,6 +25,7 @@ angular.module('risevision.editor.services')
     'startTime', 'endTime',
     'recurrenceType', 'recurrenceFrequency',
     'recurrenceAbsolute', 'recurrenceDayOfWeek',
+    'recurrenceDaysOfWeek',
     'recurrenceDayOfMonth', 'recurrenceWeekOfMonth',
     'recurrenceMonthOfYear', 'settingsUrl'
   ])
