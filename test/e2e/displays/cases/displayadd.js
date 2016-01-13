@@ -36,10 +36,6 @@ var DisplayAddScenarios = function() {
       expect(displayAddPage.getDisplayNameField().isPresent()).to.eventually.be.true;
     });
 
-    it('should show Status Select button', function () {
-      expect(displayAddPage.getDisplayStatusSelect().isPresent()).to.eventually.be.true;
-    });
-
     it('should show User Company Address Checkbox', function () {
       expect(displayAddPage.getDisplayUseCompanyAddressCheckbox().isPresent()).to.eventually.be.true;
     });
@@ -74,6 +70,10 @@ var DisplayAddScenarios = function() {
       displayAddPage.getSaveButton().click();
       helper.wait(displayAddPage.getDeleteButton(), 'Delete Button');
       expect(displayAddPage.getDeleteButton().isDisplayed()).to.eventually.be.true;
+    });
+    
+    it('should show download buttons', function() {
+      expect(displayAddPage.getDownloadWindows64Button().isDisplayed()).to.eventually.be.true;
     });
 
     it('should show correct timezone after reload',function(){
