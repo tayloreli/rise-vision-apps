@@ -15,10 +15,10 @@
         rv-spinner-start-active="1"
         >
 
-        <div id="productListTable" class="grid-list row no-gutter" vertilize-container>
+        <div id="productListTable" class="grid-list row no-gutter">
           <div class="col-xs-12 col-sm-4 col-md-3" ng-repeat="product in factory.items.list">
             <div class="content-box">
-              <div vertilize>
+              
                 <div class="grid-list-image">
                   <img ng-src="{{product.imageUrl}}">
                 </div>
@@ -26,13 +26,19 @@
                 <p class="text-muted" id="status">{{product.paymentTerms.toLowerCase() === 'free'? 'Free' : 'Premium'}} {{product.trialPeriod > 0 ? ' - '+product.trialPeriod+' Days Trial' : ''}}</p>
                 <a id="addProductButton" class="btn btn-block btn-sm btn-primary" ng-click="select(product)">{{'editor-app.storeProduct.add' | translate}} <i class="fa fa-plus icon-right"></i></a>
                 <a class="btn btn-block btn-sm btn-default" ng-href="{{storeUrl}}/product/{{product.productId}}/" target="_blank">{{'editor-app.storeProduct.details' | translate}}</a>
-              </div>
+              
             </div><!--content-box-->
           </div>
         </div><!--productListTable-->
-
-
       </div>
+
+      <div class="content-box" ng-if="factory.search.category == 'Content'">
+        <div class="content-box-body">
+          <a id="addWidgetByUrl" class="btn btn-default" href="#" ng-click="addWidgetByUrl()">
+          {{'editor-app.addWidget.title' | translate}} <i class="fa fa-code icon-right"></i></a>
+        </div>
+      </div>
+
     </div>
 
   </div>

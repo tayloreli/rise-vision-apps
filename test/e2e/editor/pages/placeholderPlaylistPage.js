@@ -1,28 +1,19 @@
 'use strict';
 var PlaceholderPlaylistPage = function() {
-  var addPlayListItemButton = element(by.id('addPlaylistItemButton'));
   var addContentButton = element(by.id('addContentButton'));
-  var addWidgetByUrlButton = element(by.id('addWidgetByUrlButton'));
 
-  var playlistItems = element.all(by.repeater('item in factory.getItems()'));
+  var playlistItems = element.all(by.css('.editor-playlist-item'));
   var moveUpButtons = element.all(by.id('moveUpButton'));
   var moveDownButtons = element.all(by.id('moveDownButton'));
   var removeButtons = element.all(by.id('removeButton'));
   var removeItemButton = element(by.id('confirmForm')).element(by.buttonText('Remove'));
   var duplicateItemButton = element.all(by.id('duplicateButton'));
-  var itemNameCells = element.all(by.css('.table-playlist-items .playlist-item-name'));
-  var itemStatusCells = element.all(by.css('.table-playlist-items .text-small'));
-
-  this.getAddPlayListItemButton = function() {
-    return addPlayListItemButton;
-  };
+  var itemNameCells = element.all(by.css('.editor-playlist-item  .nameContainer:not(.ng-hide) .playlist-item-name'));
+  var itemStatusCells = element.all(by.css('.editor-playlist-item .playlist-item-status'));
+  var editPlaylistItemButtons = element.all(by.css('.editor-playlist-item .editPlaylistItem'));
 
   this.getAddContentButton = function() {
     return addContentButton;
-  };
-
-  this.getAddWidgetByUrlButton = function() {
-    return addWidgetByUrlButton;
   };
 
   this.getPlaylistItems = function() {
@@ -52,7 +43,11 @@ var PlaceholderPlaylistPage = function() {
   this.getItemStatusCells = function() {
     return itemStatusCells;
   };
-  
+
+  this.getEditPlaylistItemButtons = function() {
+    return editPlaylistItemButtons;
+  };
+
 };
 
 module.exports = PlaceholderPlaylistPage;
