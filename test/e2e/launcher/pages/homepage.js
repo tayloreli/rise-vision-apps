@@ -3,24 +3,39 @@ var config = require('../../config/config.json');
 
 var HomePage = function() {
   var url = config.rootUrl + '/';
+  var protectedPageUrl = config.rootUrl + '/displays/list';
   var appLauncherContainer = element(by.id('appLauncherContainer'));
 
+  var welcomeText = element(by.id('welcome-text'));
   var appTitleText = element(by.id('app-title'));
   var signUpText = element(by.id('sign-up-text'));
   var signInText = element(by.id('sign-in-text'));
   var signUpLink = element(by.id('sign-up-link'));
-  var signInLink = element(by.id('sign-in-link'));
+  var signInLink = element(by.id('sign-in-link'));  
+
 
   this.get = function() {
     browser.get(url);
+  };
+
+  this.getProtectedPage = function() {
+    browser.get(protectedPageUrl);
   };
 
   this.getUrl = function() {
     return url;
   }
 
+  this.getProtectedPageUrl = function() {
+    return protectedPageUrl;
+  }
+
   this.getAppLauncherContainer = function() {
     return appLauncherContainer;
+  };
+
+  this.getWelcomeText = function() {
+    return welcomeText;
   };
 
   this.getAppTitleText = function() {

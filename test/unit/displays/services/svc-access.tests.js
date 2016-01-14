@@ -67,7 +67,7 @@ describe('service: access:', function() {
       done("authenticated");
     })
     .then(null, function() {
-      expect(newState).to.equal('apps.displays.home');
+      expect(newState).to.equal('apps.launcher.unauthorized');
 
       done();
     });  
@@ -82,7 +82,7 @@ describe('service: access:', function() {
       done("authenticated");
     })
     .then(null, function() {
-      expect(newState).to.equal('apps.displays.home');
+      expect(newState).to.equal('apps.launcher.unauthorized');
 
       done();
     });  

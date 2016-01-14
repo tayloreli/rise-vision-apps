@@ -59,6 +59,14 @@ angular.module('risevision.apps', [
         template: '<div class="website" ui-view></div>'
       })
 
+      .state('apps.launcher.unauthorized', {
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/app-launcher.html');
+        }],
+        controller: 'HomeCtrl'
+      })
+
       .state('apps.launcher.home', {
         url: '/',
         templateProvider: ['$templateCache', function ($templateCache) {
@@ -94,12 +102,7 @@ angular.module('risevision.apps', [
 
       .state('apps.schedules.home', {
         url: '/schedules',
-        templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get(
-            'partials/schedules/landing-page.html');
-        }],
         controller: ['canAccessSchedules', '$state',
-
           function (canAccessSchedules, $state) {
             canAccessSchedules().then(function () {
               $state.go('apps.schedules.list');
@@ -169,12 +172,7 @@ angular.module('risevision.apps', [
 
       .state('apps.displays.home', {
         url: '/displays',
-        templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get(
-            'partials/displays/landing-page.html');
-        }],
         controller: ['canAccessDisplays', '$state',
-
           function (canAccessDisplays, $state) {
             canAccessDisplays().then(function () {
               $state.go('apps.displays.list');
@@ -279,12 +277,7 @@ angular.module('risevision.apps', [
 
       .state('apps.editor.home', {
         url: '/editor',
-        templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get(
-            'partials/editor/landing-page.html');
-        }],
         controller: ['canAccessEditor', '$state',
-
           function (canAccessEditor, $state) {
             canAccessEditor().then(function () {
               $state.go('apps.editor.list');
@@ -378,17 +371,16 @@ angular.module('risevision.apps', [
   ])
   .run(['$rootScope', '$state', 'userState',
     function ($rootScope, $state, userState) {
+
       $rootScope.$on('risevision.user.signedOut', function () {
         $state.go('apps.launcher.home');
       });
 
       $rootScope.$on('risevision.company.selectedCompanyChanged', function () {
         if ($state.current.name === 'apps.schedules.list' ||
-          $state.current.name === 'apps.schedules.home' ||
           $state.current.name === 'apps.editor.list' ||
-          $state.current.name === 'apps.editor.home' ||
           $state.current.name === 'apps.displays.list' ||
-          $state.current.name === 'apps.displays.home') {
+          $state.current.name === 'apps.displays.alerts' ) {
 
           $state.go($state.current.name, null, {
             reload: true

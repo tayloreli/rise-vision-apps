@@ -1,6 +1,6 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var AlertsPage = require('./../pages/alertsPage.js');
 var DisplaysListPage = require('./../pages/displaysListPage.js');
