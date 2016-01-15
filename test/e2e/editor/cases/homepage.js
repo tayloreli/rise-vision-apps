@@ -45,7 +45,7 @@ var HomePageScenarios = function() {
 
       it('should have a editor menu item on the common header', function () {
         expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).isDisplayed()).to.eventually.be.true;
-        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).getText()).to.eventually.equal('Editor');
+        expect(commonHeaderPage.getCommonHeaderMenuItems().get(1).getText()).to.eventually.equal('Presentations');
       });
 
       it('should go to home when clicking on Editor menu item', function () {
