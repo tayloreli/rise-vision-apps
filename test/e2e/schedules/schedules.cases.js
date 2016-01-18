@@ -1,4 +1,3 @@
-SigninScenarios = require('./cases/signin.js');
 HomePageScenarios = require('./cases/homepage.js');
 ScheduleListScenarios = require('./cases/schedulelist.js');
 AddDistributionScenarios = require('./cases/add-distribution.js');
@@ -9,7 +8,6 @@ PlaylistScenarios = require('./cases/playlist.js');
 ScheduleAddScenarios = require('./cases/scheduleadd.js');
 
 homePageScenarios = new HomePageScenarios();
-signinScenarios = new SigninScenarios();
 scheduleListScenarios = new ScheduleListScenarios();
 addDistributionScenarios = new AddDistributionScenarios();
 addTimelineScenarios = new AddTimelineScenarios();

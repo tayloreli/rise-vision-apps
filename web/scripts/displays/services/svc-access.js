@@ -13,7 +13,7 @@ angular.module('risevision.displays.services')
             }
           })
           .then(null, function () {
-            $state.go('apps.displays.home');
+            $state.go('apps.launcher.unauthorized');
 
             deferred.reject();
           });

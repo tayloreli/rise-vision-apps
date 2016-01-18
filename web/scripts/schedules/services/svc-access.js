@@ -13,7 +13,7 @@ angular.module('risevision.schedules.services')
             }
           })
           .then(null, function () {
-            $state.go('apps.schedules.home');
+            $state.go('apps.launcher.unauthorized');
 
             deferred.reject();
           });
