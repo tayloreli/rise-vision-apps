@@ -139,7 +139,7 @@ angular.module('risevision.schedules.services')
       factory.getPreviewUrl = function () {
         if (_scheduleId) {
           return VIEWER_URL + '/?type=schedule&id=' + _scheduleId +
-            '&showui=false';
+            '&showui=true';
         }
         return null;
       };
