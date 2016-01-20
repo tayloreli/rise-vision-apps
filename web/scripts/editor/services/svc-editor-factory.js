@@ -312,8 +312,6 @@ angular.module('risevision.editor.services')
         $state.go('apps.editor.workspace.artboard', {
           presentationId: undefined,
           copyPresentation: true
-        }, {
-          reload: true
         });
       };
 

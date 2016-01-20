@@ -30,6 +30,9 @@ describe('controller: schedules list', function() {
         },
         search: function() {
           return {};
+        },
+        url: function() {
+          return {};
         }
       }
     });

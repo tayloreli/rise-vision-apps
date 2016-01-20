@@ -85,9 +85,8 @@ angular.module('risevision.apps', [
       .state('apps.launcher.signup', {
         url: '/signup',
         controller: ['$state', function ($state) {
-            $state.go('apps.launcher.home');
-          }
-        ]
+          $state.go('apps.launcher.home');
+        }]
       })
 
       .state('apps.launcher.signin', {
@@ -97,6 +96,7 @@ angular.module('risevision.apps', [
 
       // schedules
       .state('apps.schedules', {
+        url: '?cid',
         abstract: true,
         template: '<div class="container schedules-app" ui-view></div>'
       })
@@ -166,6 +166,7 @@ angular.module('risevision.apps', [
 
       // displays
       .state('apps.displays', {
+        url: '?cid',
         abstract: true,
         template: '<div class="container displays-app" ui-view ' +
           'off-canvas-content></div>'
@@ -271,6 +272,7 @@ angular.module('risevision.apps', [
 
       // editor
       .state('apps.editor', {
+        url: '?cid',
         abstract: true,
         template: '<div class="editor-app" ui-view ' +
           'off-canvas-content></div>'
@@ -383,7 +385,7 @@ angular.module('risevision.apps', [
           $state.current.name === 'apps.displays.list' ||
           $state.current.name === 'apps.displays.alerts') {
 
-          $state.go($state.current.name, null, {
+          $state.go($state.current, null, {
             reload: true
           });
         }

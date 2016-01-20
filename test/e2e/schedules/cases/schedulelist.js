@@ -51,6 +51,11 @@ var ScheduleListScenarios = function() {
       expect(schedulesListPage.getScheduleAddButton().isPresent()).to.eventually.be.true;
       expect(schedulesListPage.getScheduleAddButton().getText()).to.eventually.equal('Add Schedule');
     });
+    
+    it('schedule add button should be a hyperlink', function () {
+      expect(schedulesListPage.getScheduleAddButton().getAttribute('href')).to.eventually.be.ok;
+      expect(schedulesListPage.getScheduleAddButton().getAttribute('href')).to.eventually.contain('cid=');
+    });
 
     it('should show schedule list table header Name', function () {
       expect(schedulesListPage.getTableHeaderName().isPresent()).to.eventually.be.true;
