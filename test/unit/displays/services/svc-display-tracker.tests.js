@@ -38,10 +38,10 @@ describe('service: display tracker:', function() {
   });
   
   it('should call segment analytics service',function(){
-    displayTracker('Display Updated', 'displayId', 'displayName');
+    displayTracker('Display Updated', 'displayId', 'displayName', 'downloadType');
 
     expect(eventName).to.equal('Display Updated');
-    expect(eventData).to.deep.equal({displayId: 'displayId', displayName: 'displayName', companyId: 'companyId'});
+    expect(eventData).to.deep.equal({displayId: 'displayId', displayName: 'displayName', companyId: 'companyId', downloadType: 'downloadType'});
   });
 
   it('should not call segment w/ blank event',function(){

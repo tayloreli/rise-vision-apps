@@ -3,7 +3,7 @@ var DisplayAddPage = function() {
   var displaysAppContainer = element(by.css('.displays-app'));
   var title = element(by.id('title'));
   var displayNameField = element(by.model('display.name'));
-  var displayStatusSelect = element(by.model('display.status'));
+  var downloadWindows64Button = element(by.id('downloadWindows64'));
   var displayUseCompanyAddressCheckbox = element(by.model('display.useCompanyAddress'));
   var displayRebootCheckbox = element(by.model('display.restartEnabled'));
 
@@ -32,10 +32,10 @@ var DisplayAddPage = function() {
   this.getDisplayNameField = function() {
     return displayNameField;
   };
-
-  this.getDisplayStatusSelect = function() {
-    return displayStatusSelect;
-  };
+  
+  this.getDownloadWindows64Button = function() {
+    return downloadWindows64Button;
+  }
 
   this.getDisplayUseCompanyAddressCheckbox = function() {
     return displayUseCompanyAddressCheckbox;
