@@ -434,6 +434,26 @@ describe('service: PresentationParser ', function() {
       
       expect(newPlaceholderDiv).to.equal(' id="image_Logo" placeholder="true" style="width:600px;height:400px;left:50px;top:50px;z-index:2;position:absolute;"');
     });
+    
+    it('should remove background properties', function() {
+      var placeholderDiv = ' id="image_Logo" placeholder="true" style="width:842px;height:134px;left:34px;top:60px;z-index:0;position:absolute;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"';
+      var placeholder = {
+        id: 'image_Logo',
+        width: 600,
+        height: 400,
+        widthUnits: 'px',
+        heightUnits: 'px',
+        left: 50,
+        top: 50,
+        leftUnits: 'px',
+        topUnits: 'px',
+        zIndex: 2
+      };
+
+      var newPlaceholderDiv = presentationParser.updateDiv(placeholder, placeholderDiv);
+      
+      expect(newPlaceholderDiv).to.equal(' id="image_Logo" placeholder="true" style="width:600px;height:400px;left:50px;top:50px;z-index:2;position:absolute;"');
+    });
   });
   
   it('updatePlaceholders', function() {
@@ -451,7 +471,7 @@ describe('service: PresentationParser ', function() {
 <body style="width:1920px;height:1080px; margin: 0; overflow: hidden;" >\
   <div  id="LocalTime" placeholder="true" style="width:1920px;height:1080px;left:0px;top:0px;z-index:0;position:absolute;background:url(\'image.png\') no-repeat left top;"></div>\
   <div  id="content_Welcome_Text" placeholder="true" style="width:1464px;height:260px;left:477px;top:410px;z-index:1;position:absolute;"></div>\
-  <div  id="LAAnalog" placeholder="true" style="width:400px;height:400px;left:100px;top:10px;z-index:2;position:absolute;background:;background-size:contain;"></div>\
+  <div  id="LAAnalog" placeholder="true" style="width:400px;height:400px;left:100px;top:10px;z-index:2;position:absolute;"></div>\
 </body>';
     
     presentationParser.parsePlaceholders(presentation, placeholdersString);
@@ -529,21 +549,40 @@ describe('service: PresentationParser ', function() {
     // TODO: Fix removal of extra variables form Presentation JSON object.
   });
   
-  it('updateBodyTag', function() {
-    var presentation = {
-      width:1920,
-      height:1080,
-      widthUnits:'px',
-      heightUnits:'px',
-      backgroundStyle:'url(\'/images/bg.jpg\') no-repeat left top',
-      backgroundScaleToFit:true
-    };
-    
-    expect(presentationParser.updateBodyTag(presentation, ''))
-      .to.equal(' style="width:1920px;height:1080px;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"');
+  describe('updateBodyTag: ', function() {
+    it('should update body style', function() {
+      var presentation = {
+        width:1920,
+        height:1080,
+        widthUnits:'px',
+        heightUnits:'px',
+        backgroundStyle:'url(\'/images/bg.jpg\') no-repeat left top',
+        backgroundScaleToFit:true
+      };
       
-    expect(presentationParser.updateBodyTag(presentation, ' style="width:900px;height:60px; margin: 0; overflow: hidden;"'))
-      .to.equal(' style="width:1920px;height:1080px; margin: 0; overflow: hidden;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"');
+      expect(presentationParser.updateBodyTag(presentation, ''))
+        .to.equal(' style="width:1920px;height:1080px;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"');
+        
+      expect(presentationParser.updateBodyTag(presentation, ' style="width:900px;height:60px; margin: 0; overflow: hidden;"'))
+        .to.equal(' style="width:1920px;height:1080px; margin: 0; overflow: hidden;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"');
+    });
+    
+    it('should remove background style', function() {
+      var presentation = {
+        width:1920,
+        height:1080,
+        widthUnits:'px',
+        heightUnits:'px',
+        backgroundScaleToFit:true
+      };
+      
+      expect(presentationParser.updateBodyTag(presentation, ''))
+        .to.equal(' style="width:1920px;height:1080px;"');
+        
+      expect(presentationParser.updateBodyTag(presentation, ' style="width:1920px;height:1080px; margin: 0; overflow: hidden;background:url(\'/images/bg.jpg\') no-repeat left top;background-size:contain;"'))
+        .to.equal(' style="width:1920px;height:1080px; margin: 0; overflow: hidden;"');
+      
+    })
   });
   
   it('updatePresentationHeader', function() {

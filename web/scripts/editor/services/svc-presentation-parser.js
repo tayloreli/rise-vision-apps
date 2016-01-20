@@ -486,8 +486,11 @@ angular.module('risevision.editor.services')
         if (placeholder.backgroundStyle) {
           styleString = htmlParser.updateStyle(backgroundParam, placeholder
             .backgroundStyle, styleString);
+        } else {
+          styleString = htmlParser.removeStyle(backgroundParam,
+            styleString);          
         }
-        if (placeholder.backgroundScaleToFit) {
+        if (placeholder.backgroundStyle && placeholder.backgroundScaleToFit) {
           styleString = htmlParser.updateStyle(backgroundSizeParam,
             backgroundScaleValue, styleString);
         } else {
@@ -696,8 +699,11 @@ angular.module('risevision.editor.services')
         if (presentation.backgroundStyle) {
           styleString = htmlParser.updateStyle(backgroundParam,
             presentation.backgroundStyle, styleString);
+        } else {
+          styleString = htmlParser.removeStyle(backgroundParam,
+            styleString);
         }
-        if (presentation.backgroundScaleToFit) {
+        if (presentation.backgroundStyle && presentation.backgroundScaleToFit) {
           styleString = htmlParser.updateStyle(backgroundSizeParam,
             backgroundScaleValue, styleString);
         } else {
