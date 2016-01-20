@@ -25,7 +25,7 @@
     .value('STORE_AUTHORIZATION_URL',
       'https://store-dot-rvacore-test.appspot.com/v1/widget/auth')
     .value('RVA_URL', 'http://rva-test.appspot.com')
-    .value('VIEWER_URL', 'http://rvaviewer-test.appspot.com')
+    .value('VIEWER_URL', 'http://header-update.rvaviewer-test.appspot.com')
     .value('ALERTS_WS_URL',
       'https://rvacore-test.appspot.com/alerts/cap');
 
