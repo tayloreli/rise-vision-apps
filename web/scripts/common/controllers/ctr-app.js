@@ -12,7 +12,7 @@ angular.module('risevision.apps.controllers')
           'apps.launcher.signin'
         ]
       }, {
-        title: 'Editor',
+        title: 'Presentations',
         link: $state.href('apps.editor.home'),
         states: [
           'apps.editor.home',
