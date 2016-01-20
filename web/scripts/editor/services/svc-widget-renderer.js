@@ -2,10 +2,12 @@
 
 angular.module('risevision.editor.services')
   .value('IFRAME_PREFIX', 'if_')
-  .value('RENDER_WIDGETS', [
-    'ba0da120-7c67-437f-9caf-73585bd30c74',
-    '64cc543c-c2c6-49ab-a4e9-40ceba48a253'
-  ])
+  .value('RENDER_WIDGETS', {
+    'TEXT_WIDGET_PROD': 'ba0da120-7c67-437f-9caf-73585bd30c74',
+    'TEXT_WIDGET_TEST': '64cc543c-c2c6-49ab-a4e9-40ceba48a253',
+    'IMAGE_WIDGET_PROD': '5233a598-35ce-41a4-805c-fd2147f144a3',
+    'IMAGE_WIDGET_TEST': '2707fc05-5051-4d7b-bcde-01fafd6eaa5e'
+  })
   .factory('widgetRenderer', ['gadgetsApi', '$window', 'IFRAME_PREFIX',
     'RENDER_WIDGETS', 'userState',
     function (gadgetsApi, $window, IFRAME_PREFIX, RENDER_WIDGETS, userState) {
@@ -13,19 +15,43 @@ angular.module('risevision.editor.services')
 
       factory._placeholders = {};
 
-      var _isRenderingAllowed = function (objectReference) {
-        return RENDER_WIDGETS.indexOf(objectReference) !== -1;
+      var _isRenderingAllowed = function (playlistItem) {
+        var objectReference = playlistItem.objectReference;
+        for (var k in RENDER_WIDGETS) {
+          if (RENDER_WIDGETS[k] === objectReference) {
+            if (objectReference === RENDER_WIDGETS.IMAGE_WIDGET_PROD ||
+              objectReference === RENDER_WIDGETS.IMAGE_WIDGET_TEST) {
+              var params = JSON.parse(playlistItem.additionalParams);
+              return params && params.selector && params.selector.url &&
+                params.selector.url.slice(0, 8) === 'https://';
+            }
+            return true;
+          }
+        }
+        return false;
+      };
+
+      var _setPlaceholderIcon = function(placeholder) {
+        if (placeholder.items && placeholder.items[0]) {
+          placeholder.className = 'ph-item-icon';  
+        } else {
+          placeholder.className = '';  
+        }        
       };
 
       factory.register = function (placeholder, element) {
         if (placeholder.items && placeholder.items[0] &&
-          _isRenderingAllowed(placeholder.items[0].objectReference)) {
+          _isRenderingAllowed(placeholder.items[0])) {
+          placeholder.className = '';
           factory._placeholders[placeholder.id] = placeholder;
           _createIframe(placeholder, element);
+        } else {
+          _setPlaceholderIcon(placeholder);
         }
       };
 
       factory.unregister = function (placeholder, element) {
+        _setPlaceholderIcon(placeholder);
         delete factory._placeholders[placeholder.id];
         var frameName = IFRAME_PREFIX + placeholder.id;
         gadgetsApi.rpc.removeReceiver(frameName);
@@ -42,7 +68,7 @@ angular.module('risevision.editor.services')
       factory.notifyChanges = function (placeholder, element) {
         if (factory._placeholders[placeholder.id]) {
           if (!placeholder.items || !placeholder.items[0] || !
-            _isRenderingAllowed(placeholder.items[0].objectReference)) {
+            _isRenderingAllowed(placeholder.items[0])) {
             factory.unregister(placeholder, element);
           } else {
             gadgetsApi.rpc.call(IFRAME_PREFIX + placeholder.id,
