@@ -3,9 +3,31 @@
     <i class="fa fa-times"></i>
   </button>
 	<div class="templates animated fadeIn">
-	  <div>
-	  
-	  <h3 class="remove-top add-bottom">Add a New Presentation</h3>
+
+
+		<h3 class="remove-top add-bottom">Add a New Presentation</h3>
+
+	  <div class="row">
+	  	<div class="col-sm-12 col-md-8">
+
+	  		<div class="btn-group add-bottom template-filters" ng-class="{'more-filters' : expandFilters}">
+	  			<button class="btn btn-default active">All</button>
+	  			<button class="btn btn-default">Sports</button>
+	  			<button class="btn btn-default">Events</button>
+	  			<button class="btn btn-default">Religious</button>
+	  			<button class="btn btn-default">Education</button>
+	  			<button class="btn btn-default">Retail</button>
+	  			<button class="btn btn-default">Hospital</button>
+	  			<button class="btn btn-default">Restaurants</button>
+	  			<button class="btn btn-default" ng-click="expandFilters = !expandFilters"><i class="fa fa-ellipsis-h"></i></button>
+	  		</div>
+	  	</div>
+	  	<div class="col-sm-12 col-md-4">
+	  		<div class="input-group add-bottom"><span class="input-group-addon"><i class="fa fa-search"></i></span> <input type="text" class="form-control" placeholder="Search for Templates"> <span class="input-group-addon"><i class="fa fa-times"></i></span></div>
+	  	</div>
+	  </div>
+
+	 
 	  <ul class="template-grid">
 	    <li class="blank-template">
 	      <a href="#">
@@ -165,7 +187,6 @@
 	    </li>
 	  </ul>
 
-	  </div><!--container-->
 	</div><!--templates-->
 
 </div>
