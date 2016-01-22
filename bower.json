@@ -44,5 +44,6 @@
     "angular-mocks": "~1.3.0",
     "rv-common-style": "1.3.48",
     "angular-sanitize": "~1.3.0"
+    
   }
 }
