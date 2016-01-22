@@ -65,8 +65,8 @@ var PlaylistScenarios = function() {
 
     describe('Show Playlist by default',function(){
       it('should show Playlist',function(){
-        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
-        expect(placeholderPlaylistPage.getAddPlayListItemButton().isDisplayed()).to.eventually.be.true;
+        helper.wait(placeholderPlaylistPage.getAddContentButton(), 'Placeholder Playlist Page');
+        expect(placeholderPlaylistPage.getAddContentButton().isDisplayed()).to.eventually.be.true;
       });
 
       it('should not remember selecting Settings tab',function(){
@@ -78,15 +78,14 @@ var PlaylistScenarios = function() {
         placeholdersListPage.getManageLinks().get(0).click();
         browser.sleep(500);
 
-        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
-        expect(placeholderPlaylistPage.getAddPlayListItemButton().isDisplayed()).to.eventually.be.true;
+        helper.wait(placeholderPlaylistPage.getAddContentButton(), 'Placeholder Playlist Page');
+        expect(placeholderPlaylistPage.getAddContentButton().isDisplayed()).to.eventually.be.true;
       })
 
     });
 
     describe('Should Add a content playlist item: ', function () {
       before('Click Add Content: ', function () {
-        placeholderPlaylistPage.getAddPlayListItemButton().click();
         placeholderPlaylistPage.getAddContentButton().click();
         helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
       });
@@ -169,11 +168,19 @@ var PlaylistScenarios = function() {
 
     describe('Should Add Widget by URL: ', function () {
       before('Click Add Widget by URL: ', function () {
-        helper.wait(placeholderPlaylistPage.getAddPlayListItemButton(), 'Placeholder Playlist Page');
+        helper.wait(placeholderPlaylistPage.getAddContentButton(), 'Placeholder Playlist Page');
 
-        placeholderPlaylistPage.getAddPlayListItemButton().click();
-        placeholderPlaylistPage.getAddWidgetByUrlButton().click();
+        placeholderPlaylistPage.getAddContentButton().click();
+        helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
+        helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader());
+
+        storeProductsModalPage.getAddWidgetByUrlButton().click();
+
         helper.wait(widgetByUrlModalPage.getAddWidgetByUrlModal(), 'Add Widget By URL Modal');
+      });
+
+      it('should close Store Products Modal', function () {
+        expect(storeProductsModalPage.getStoreProductsModal().isPresent()).to.eventually.be.false;
       });
 
       it('should open the Add Widget By URL Modal', function () {
@@ -238,7 +245,6 @@ var PlaylistScenarios = function() {
 
     describe('Should manage playlist items: ', function () {
       before('Add a second product', function () {
-        placeholderPlaylistPage.getAddPlayListItemButton().click();
         placeholderPlaylistPage.getAddContentButton().click();
         helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
 
@@ -263,7 +269,6 @@ var PlaylistScenarios = function() {
 
       it('should have 2 items the Playlist', function () {
         expect(placeholderPlaylistPage.getPlaylistItems().count()).to.eventually.equal(3);
-
         expect(placeholderPlaylistPage.getItemNameCells().get(0).getText()).to.eventually.contain('Video Widget');
         expect(placeholderPlaylistPage.getItemNameCells().get(2).getText()).to.eventually.contain('Video Widget 2');
       });
@@ -307,8 +312,8 @@ var PlaylistScenarios = function() {
         });
       });
 
-      it('should open properties', function () {
-        placeholderPlaylistPage.getItemNameCells().get(0).click();
+      it('should open playlist item properties', function () {
+        placeholderPlaylistPage.getEditPlaylistItemButtons().get(0).click();
 
         helper.wait(playlistItemModalPage.getPlaylistItemModal(), 'Playlist Item Settings Page');
 

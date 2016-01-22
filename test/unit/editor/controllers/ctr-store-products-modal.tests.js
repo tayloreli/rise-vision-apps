@@ -61,11 +61,16 @@ describe('controller: Store Products Modal', function() {
         }
       };
     });
+    $provide.service('playlistItemFactory',function(){
+      return {
+        addWidgetByUrl : function(){}
+      }
+    });
   }));
   
   var $scope, $loading, $loadingStartSpy, $loadingStopSpy, storeAuthorization;
   var $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy, $q;
-  var $modal;
+  var $modal, playlistItemAddWidgetByUrlSpy;
   beforeEach(function(){
 
     inject(function($injector,$rootScope, $controller){
@@ -76,6 +81,8 @@ describe('controller: Store Products Modal', function() {
       storeAuthorization = $injector.get('storeAuthorization');
       $modalInstanceDismissSpy = sinon.spy($modalInstance, 'dismiss');
       $modalInstanceCloseSpy = sinon.spy($modalInstance, 'close');
+      var playlistItemFactory = $injector.get('playlistItemFactory');
+      playlistItemAddWidgetByUrlSpy = sinon.spy(playlistItemFactory, 'addWidgetByUrl')
       $loading = $injector.get('$loading');
       $loadingStartSpy = sinon.spy($loading, 'start');
       $loadingStopSpy = sinon.spy($loading, 'stop');
@@ -102,6 +109,7 @@ describe('controller: Store Products Modal', function() {
 
     expect($scope.select).to.be.a('function');
     expect($scope.dismiss).to.be.a('function');
+    expect($scope.addWidgetByUrl).to.be.a('function');
   });
 
   it('should init the scope objects',function(){
@@ -192,6 +200,13 @@ describe('controller: Store Products Modal', function() {
 
       $modalInstanceDismissSpy.should.have.been.called;
     });
+
+    it('should dismiss modal and open add WidgetByUrl modal',function(){
+      $scope.addWidgetByUrl();
+
+      $modalInstanceDismissSpy.should.have.been.called;
+      playlistItemAddWidgetByUrlSpy.should.have.been.called;
+    })
   });
 
 });

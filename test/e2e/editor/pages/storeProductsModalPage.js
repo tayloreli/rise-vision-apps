@@ -13,6 +13,9 @@ var StoreProductsModalPage = function() {
   var productNameFields = element.all(by.id('productName'));
   var statusFields = element.all(by.id('status'));
 
+  var addWidgetByUrlButton = element(by.id('addWidgetByUrl'));
+
+
   this.getStoreProductsModal = function () {
     return storeProductsModal;
   };
@@ -55,6 +58,10 @@ var StoreProductsModalPage = function() {
   
   this.getAddProductButtons = function() {
     return addProductButtons;
+  };
+
+  this.getAddWidgetByUrlButton = function() {
+    return addWidgetByUrlButton;
   };
 };
 
