@@ -32,6 +32,9 @@ angular.module('risevision.displays.controllers')
         display.get($scope.displayId)
           .then(function (result) {
             $scope.display = result.item;
+            if ($scope.display) {
+              $scope.showBrowserUpgradeMode = $scope.display.browserUpgradeMode !== 0;  
+            }            
           })
           .then(null, function (e) {
             $scope.submitError = e.message ? e.message : e.toString();
@@ -161,5 +164,10 @@ angular.module('risevision.displays.controllers')
         return deferred.promise;
       };
 
+      $scope.$watch('display.browserUpgradeMode',function(){
+        if ($scope.display && $scope.display.browserUpgradeMode != 0) {
+          $scope.display.browserUpgradeMode = 1;
+        }
+      });
     }
   ]);
