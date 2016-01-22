@@ -24,10 +24,72 @@
       <resolution-selector></resolution-selector>
     </div><!--form-group-->
 
-    <div class="form-group">
-      <label id="backgroundLabel" translate>editor-app.properties.labels.background</label>
-      <background-image-setting id="backgroundImageSettings" background="presentationProperties.background" company-id="{{companyId}}" color-parent-container-class="'background-color-picker'" color-container-class="'background-color-picker-input'" position-parent-container-class="'background-image-position'" position-container-class="'background-image-position-input'"></background-image-setting>
+<div class="form-group">
+    <label id="backgroundLabel" translate>editor-app.properties.labels.background</label>
+    <!-- Color -->
+    <div class="{{colorParentContainerClass || 'row'}}">
+        <div class="{{colorContainerClass || 'col-md-3'}}" style="position:relative;">
+            <div class="input-group" colorpicker="rgba" colorpicker-parent="true" ng-model="background.color">
+                <input class="form-control" type="text" ng-model="background.color">
+                <span class="input-group-addon color-wheel"></span>
+            </div>
+        </div>
     </div>
+    <!-- Image Choice -->
+    <div class="checkbox">
+        <label>
+            <input name="choice" type="checkbox" ng-model="background.useImage"> {{"background.choice" | translate}}
+        </label>
+    </div>
+    <div id="backgroundImageControls" ng-if="background.useImage">
+        <!-- Image Placeholder -->
+        <div class="form-group">
+            <div ng-if="!imageLoaded" class="image-placeholder">
+                <i class="fa fa-image"></i>
+            </div>
+            <!-- Image -->
+            <div ng-show="imageLoaded" class="row">
+                <div class="col-xs-4">
+                    <img ng-src="{{imageUrl}}" background-image class="img-rounded img-responsive">
+                </div>
+            </div>
+        </div>
+        <!-- File Selector -->
+        <file-selector id="backgroundFileSelector" name="backgroundFileSelector" company-id="{{companyId}}" title="{{'background.image.selector.title' | translate}}" file-label="{{'background.image.selector.file' | translate}}" file-type="image" selector="background.image.selector" ng-model="backgroundfileselector" selector-valid valid hide-subscription></file-selector>
+        <!-- Position -->
+        <div class="row">
+            <div class="col-md-6">
+                <label> Image Position </label>
+                <select name="position" ng-model="position" class="form-control">
+                    <option value="top-left">Top L</option>
+                    <option value="top-center">{{'position.top.center' | translate}}</option>
+                    <option value="top-right">{{'position.top.right' | translate}}</option>
+                    <option value="middle-left">{{'position.middle.left' | translate}}</option>
+                    <option value="middle-center">{{'position.middle.center' | translate}}</option>
+                    <option value="middle-right">{{'position.middle.right' | translate}}</option>
+                    <option value="bottom-left">{{'position.bottom.left' | translate}}</option>
+                    <option value="bottom-center">{{'position.bottom.center' | translate}}</option>
+                    <option value="bottom-right">{{'position.bottom.right' | translate}}</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label> Image Repeat </label>
+                <select name="repeat" ng-model="" class="form-control">
+                    <option>Horizontal</option>
+                    <option>Vertical</option>
+                    <option>Both</option>
+                </select>
+            </div>
+        </div>
+        <!-- Scale to fit -->
+        <div class="checkbox">
+            <label>
+                <input name="scale" type="checkbox" ng-model="background.image.scale"> {{"background.image.scale" | translate}}
+            </label>
+        </div>
+    </div>
+</div>
+
 
     <div class="form-group">
       <label id="playUntilDonePlaceholderLabel" class="control-label" translate>editor-app.properties.labels.playUntilDone</label>
