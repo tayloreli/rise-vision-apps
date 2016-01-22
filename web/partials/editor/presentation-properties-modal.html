@@ -56,23 +56,25 @@
         </div>
         <!-- File Selector -->
         <file-selector id="backgroundFileSelector" name="backgroundFileSelector" company-id="{{companyId}}" title="{{'background.image.selector.title' | translate}}" file-label="{{'background.image.selector.file' | translate}}" file-type="image" selector="background.image.selector" ng-model="backgroundfileselector" selector-valid valid hide-subscription></file-selector>
+        
         <!-- Scale to fit -->
         <script>
-        $(document).on("change", ".imageProperties", function() {
-            alert("I am an alert box!");
+        $(document).on("change", "#imageProperties", function() {
+            $('.imageProperties').prop('disabled', function(i, v) { return !v; });
         });
         </script>
 
         <div class="checkbox">
             <label>
-                <input name="scale" type="checkbox" ng-model="background.image.scale" class="imageProperties"> {{"background.image.scale" | translate}}
+                <input name="scale" type="checkbox" ng-model="background.image.scale" id="imageScale"> {{"background.image.scale" | translate}}
             </label>
         </div>
+
         <!-- Position -->
         <div class="row">
             <div class="col-md-6">
                 <label> Image Position </label>
-                <select name="position" class="form-control">
+                <select name="position" class="form-control imageProperties">
                     <option value="top-left" selected="selected" >{{'position.top.left' | translate}}</option>
                     <option value="top-center">{{'position.top.center' | translate}}</option>
                     <option value="top-right">{{'position.top.right' | translate}}</option>
@@ -87,7 +89,7 @@
           <!-- Repeat -->
             <div class="col-md-6">
                 <label> Image Repeat </label>
-                <select name="repeat" class="form-control">
+                <select name="repeat" class="form-control imageProperties">
                     <option selected="selected">None</option>
                     <option>Horizontal</option>
                     <option>Vertical</option>
