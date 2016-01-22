@@ -56,6 +56,18 @@
         </div>
         <!-- File Selector -->
         <file-selector id="backgroundFileSelector" name="backgroundFileSelector" company-id="{{companyId}}" title="{{'background.image.selector.title' | translate}}" file-label="{{'background.image.selector.file' | translate}}" file-type="image" selector="background.image.selector" ng-model="backgroundfileselector" selector-valid valid hide-subscription></file-selector>
+        <!-- Scale to fit -->
+        <script>
+        $(document).on("change", ".imageProperties", function() {
+            alert("I am an alert box!");
+        });
+        </script>
+
+        <div class="checkbox">
+            <label>
+                <input name="scale" type="checkbox" ng-model="background.image.scale" class="imageProperties"> {{"background.image.scale" | translate}}
+            </label>
+        </div>
         <!-- Position -->
         <div class="row">
             <div class="col-md-6">
@@ -72,22 +84,18 @@
                     <option value="bottom-right">{{'position.bottom.right' | translate}}</option>
                 </select>
             </div>
+          <!-- Repeat -->
             <div class="col-md-6">
                 <label> Image Repeat </label>
                 <select name="repeat" class="form-control">
-                    <option selected="selected" >None</option>
+                    <option selected="selected">None</option>
                     <option>Horizontal</option>
                     <option>Vertical</option>
                     <option>Both</option>
                 </select>
             </div>
         </div>
-        <!-- Scale to fit -->
-        <div class="checkbox">
-            <label>
-                <input name="scale" type="checkbox" ng-model="background.image.scale"> {{"background.image.scale" | translate}}
-            </label>
-        </div>
+        
     </div>
 </div>
 
