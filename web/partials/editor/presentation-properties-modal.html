@@ -28,7 +28,7 @@
     <label id="backgroundLabel" translate>editor-app.properties.labels.background</label>
     <!-- Color -->
     <div class="{{colorParentContainerClass || 'row'}}">
-        <div class="{{colorContainerClass || 'col-md-3'}}" style="position:relative;">
+        <div class="{{colorContainerClass || 'col-xs-12'}}" style="position:relative;">
             <div class="input-group" colorpicker="rgba" colorpicker-parent="true" ng-model="background.color">
                 <input class="form-control" type="text" ng-model="background.color">
                 <span class="input-group-addon color-wheel"></span>
@@ -61,7 +61,7 @@
             <div class="col-md-6">
                 <label> Image Position </label>
                 <select name="position" ng-model="position" class="form-control">
-                    <option value="top-left">Top L</option>
+                    <option value="top-left" selected >{{'position.top.left' | translate}}</option>
                     <option value="top-center">{{'position.top.center' | translate}}</option>
                     <option value="top-right">{{'position.top.right' | translate}}</option>
                     <option value="middle-left">{{'position.middle.left' | translate}}</option>
@@ -75,6 +75,7 @@
             <div class="col-md-6">
                 <label> Image Repeat </label>
                 <select name="repeat" ng-model="" class="form-control">
+                    <option selected >None</option>
                     <option>Horizontal</option>
                     <option>Vertical</option>
                     <option>Both</option>
