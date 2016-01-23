@@ -27,8 +27,18 @@
     </div>
   </div>
 
+   <div class="row">
+      <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#yourPresentations" role="tab" data-toggle="tab">Your Presentations</a></li>
+          <li role="presentation"><a href="#sharedPresentations" role="tab" data-toggle="tab">Shared Presentations</a></li>
+          <li role="presentation"><a href="#yourTemplates" role="tab" data-toggle="tab">Your Templates</a></li>
+      </ul>
+  </div>
+
+
+
   <search-filter filter-config="filterConfig" search="search" do-search="factory.doSearch"></search-filter>
-  <div class="content-box half-top">
+  <div class="content-box half-top tab-pane fade in active" role="tabpanel" id="yourPresentations">
     <div class="scrollable-list"
       scrolling-list="factory.load()"
       rv-spinner rv-spinner-key="presentation-list-loader"
@@ -76,4 +86,10 @@
       </table>
     </div>
   </div><!--content-box-->
+  <div class="content-box half-top tab-pane fade in active" role="tabpanel" id="sharedPresentations">
+  2
+  </div>
+  <div class="content-box half-top tab-pane fade in active" role="tabpanel" id="yourTemplates">
+  3
+  </div>
 </div>
