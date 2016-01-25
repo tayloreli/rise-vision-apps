@@ -1,10 +1,14 @@
 <div id="presentationPropertiesModal">
 
 <script>
-     $(document).on("change", "#showSharedAlert", function() {
-               $('.shared-alert:visible').hide();
-               $('.shared-alert:hidden').show();
-                      }); 
+     $(document).on("change", "#showSharedAlert", function() {    
+         function(){
+            if ( $(this).is(':checked') )
+              $('.shared-alert').show();
+            else
+              $('.shared-alert').hide();
+          }
+      }); 
 </script>
 
   <div class="modal-header">
