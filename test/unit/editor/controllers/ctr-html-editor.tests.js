@@ -56,8 +56,10 @@ describe('controller: HtmlEditor', function() {
 	});
 
 	it('should parse presentation and distribution when scope $destroyed', function () {
+		var scopeApplySpy = sinon.spy($scope, '$apply');
 		$scope.$destroy();  
 		parsePresentationSpy.should.have.been.calledWith(presentation);
 		parseDistributionSpy.should.have.been.calledWith(presentation);
+		scopeApplySpy.should.have.been.called.once;
 	});
 });

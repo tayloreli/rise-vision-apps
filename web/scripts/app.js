@@ -352,7 +352,7 @@ angular.module('risevision.apps', [
       })
 
       .state('apps.editor.workspace.htmleditor', {
-        url: '',
+        url: '/htmleditor',
         templateProvider: ['$templateCache', function ($templateCache) {
           return $templateCache.get(
             'partials/editor/html-editor.html');
