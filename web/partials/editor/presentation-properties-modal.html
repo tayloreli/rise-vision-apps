@@ -2,7 +2,8 @@
 
 <script>
      $(document).on("change", "#showSharedAlert", function() {
-               $('.shared-alert').show();  //show
+               $('.shared-alert:visible').hide();
+               $('.shared-alert:hidden').show();
                       }); 
 </script>
 
