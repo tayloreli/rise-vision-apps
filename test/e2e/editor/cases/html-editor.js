@@ -56,11 +56,16 @@ var HtmlEditorScenarios = function() {
           expect(workspacePage.getCodemirrorHtmlEditor().isDisplayed()).to.eventually.be.true;
           expect(workspacePage.getCodemirrorHtmlEditor().getText()).to.eventually.contain('var presentationData =');
         });
+        
+        it('should update the path to htmleditor', function() {
+          expect(browser.getCurrentUrl()).to.eventually.contain.string('/htmleditor');
+        });
 
         it('should parse and update presentation', function () {
           browser.executeScript("var editor = $('.CodeMirror')[0].CodeMirror;" +
             "editor.replaceRange(\"ph1\",{line:8,ch: 11},{line:8,ch: 14});" +
             "editor.replaceRange(\"ph1\",{line:18,ch: 11},{line:18,ch: 14})");
+            
           workspacePage.getDesignButton().click();
 
           // wait for transitions
@@ -68,10 +73,13 @@ var HtmlEditorScenarios = function() {
 
           expect(placeholdersListPage.getPlaceholders().get(0).getText()).to.eventually.contain('ph1');
         });
+        
+        it('path should not contain htmleditor', function() {
+          expect(browser.getCurrentUrl()).to.eventually.not.contain.string('/htmleditor');
+        });
 
       });
     });
   });
 };
 module.exports = HtmlEditorScenarios;
-
