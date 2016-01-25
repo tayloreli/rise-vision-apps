@@ -1,7 +1,11 @@
 <div id="presentationPropertiesModal">
-<script type="text/javascript">
-  var showShared = false;
+
+<script>
+     $(document).on("change", "#showSharedAlert", function() {
+               $('.shared-alert').show();  //show
+                      }); 
 </script>
+
   <div class="modal-header">
     <button id="dismissButton" type="button" class="close" ng-click="dismiss()">
       <i class="fa fa-times"></i>
@@ -21,9 +25,15 @@
 
     <button id="copyPresentationButton" class="btn btn-default" ng-show="presentationProperties.id" ng-click="copy()">{{'editor-app.properties.labels.copy' | translate}} <i class="fa fa-copy icon-right"></i></button>
     <hr>
-    <div class="form-group"> <div class="checkbox"> <label> <input name="choice" type="checkbox" class="form-control" onClick="showShared=true">Share this Presentation as a Template</label> </div>  </div>
-    <div class="alert alert-info" ng-show="showShared" ng-hide="!showShared"> Your Sub-Companies now have access to this Presentation. </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input name="choice" type="checkbox" id="showSharedAlert">Share this Presentation as a Template</label>
+        </div>
+    </div>
+    <div class="alert alert-info shared-alert" style="display:none"> Your Sub-Companies now have access to this Presentation. </div>
     <hr>
+
     <div class="form-group">
       <label id="resolutionLabel" translate>editor-app.properties.labels.resolution</label>
       <resolution-selector></resolution-selector>
