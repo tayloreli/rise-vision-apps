@@ -2,12 +2,14 @@
 
 <script>
      $(document).on("change", "#showSharedAlert", function() {    
-         function(){
-            if ( $(this).is(':checked') )
+         
+            if ( $(this).is(':checked') ) {
               $('.shared-alert').show();
-            else
+            }
+            else {
               $('.shared-alert').hide();
-          }
+            }
+          
       }); 
 </script>
 
@@ -36,7 +38,7 @@
                 <input name="choice" type="checkbox" id="showSharedAlert">Share this Presentation as a Template</label>
         </div>
     </div>
-    <div class="alert alert-info shared-alert" style="display:none"> Your Sub-Companies now have access to this Presentation. </div>
+    <div class="alert alert-info shared-alert" style="display:none"> Your Sub-Companies currently have access to this Presentation. </div>
     <hr>
 
     <div class="form-group">
@@ -62,14 +64,14 @@
 
   </form>
 
-  <!-- Indicates delete or destructive action -->
-  <button id="deleteButton" ng-show="presentationProperties.id" require-role="cp" type="button" class="btn btn-danger btn-fixed-width" ng-click="confirmDelete()">
-    {{'common.delete' | translate}} Presentation<i class="fa fa-white fa-trash-o icon-right"></i>
-  </button>
+  
 
   </div><!--modal-body-->
   <div class="modal-footer">
-
+    <!-- Indicates delete or destructive action -->
+    <button id="deleteButton" ng-show="presentationProperties.id" require-role="cp" type="button" class="btn btn-danger btn-fixed-width" ng-click="confirmDelete()">
+      {{'common.delete' | translate}} Presentation<i class="fa fa-white fa-trash-o icon-right" style="float:left"></i>
+    </button>
     <button id="applyButton" class="btn btn-primary" ng-click="apply()" ng-disabled="presentationPropertiesDetails.$invalid">{{'common.apply' | translate}} <i class="fa fa-check icon-right"></i></button>
     <button id="presentationPropertiesCancelButton" class="btn btn-default" ng-click="dismiss()">{{'common.cancel' | translate}} <i class="fa fa-times icon-right"></i></button>
   </div>
