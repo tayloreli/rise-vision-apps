@@ -12,5 +12,13 @@ angular.module('risevision.apps.launcher.controllers')
         size: "lg"
       });
     };
+
+    $scope.openShared = function () {
+      $modal.open({
+        templateUrl: "partials/launcher/shared-modal.html",
+        size: "md"
+      });
+    };
+
   }
 ]);
