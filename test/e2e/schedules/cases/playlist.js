@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var SchedulesListPage = require('./../pages/schedulesListPage.js');
 var ScheduleAddPage = require('./../pages/scheduleAddPage.js');
@@ -16,6 +17,7 @@ var PlaylistScenarios = function() {
     'I would like to add URLs to a schedule ', function () {
     this.timeout(2000);// to allow for protactor to load the seperate page
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var schedulesListPage;
     var scheduleAddPage;
@@ -24,16 +26,17 @@ var PlaylistScenarios = function() {
 
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       schedulesListPage = new SchedulesListPage();
       scheduleAddPage = new ScheduleAddPage();
       playlistPage = new PlaylistPage();
       commonHeaderPage = new CommonHeaderPage();
       playlistItemModalPage = new PlaylistItemModalPage();
 
-      homepage.get();
+      homepage.getSchedules();
       //wait for spinner to go away.
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-        commonHeaderPage.signin();
+        loginPage.signIn();
       });
     });
 

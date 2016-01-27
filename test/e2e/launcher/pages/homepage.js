@@ -3,7 +3,10 @@ var config = require('../../config/config.json');
 
 var HomePage = function() {
   var url = config.rootUrl + '/';
-  var protectedPageUrl = config.rootUrl + '/displays/list';
+  var displaysUrl = config.rootUrl + '/displays/list';
+  var editorUrl = config.rootUrl + '/editor/list';
+  var schedulesUrl = config.rootUrl + '/schedules/list';
+
   var appLauncherContainer = element(by.id('appLauncherContainer'));
 
   var welcomeText = element(by.id('welcome-text'));
@@ -19,7 +22,19 @@ var HomePage = function() {
   };
 
   this.getProtectedPage = function() {
-    browser.get(protectedPageUrl);
+    browser.get(displaysUrl);
+  };
+
+  this.getDisplays = function() {
+    browser.get(displaysUrl);
+  };
+
+  this.getEditor = function() {
+    browser.get(editorUrl);
+  };
+
+  this.getSchedules = function() {
+    browser.get(schedulesUrl);
   };
 
   this.getUrl = function() {
@@ -27,7 +42,7 @@ var HomePage = function() {
   }
 
   this.getProtectedPageUrl = function() {
-    return protectedPageUrl;
+    return displaysUrl;
   }
 
   this.getAppLauncherContainer = function() {

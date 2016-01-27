@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var PresentationListPage = require('./../pages/presentationListPage.js');
 var WorkspacePage = require('./../pages/workspacePage.js');
@@ -15,6 +16,7 @@ var TemplateAddScenarios = function() {
     "As a user signed in " +
     "I would like to add presentations", function () {
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var presentationsListPage;
     var workspacePage;
@@ -23,16 +25,17 @@ var TemplateAddScenarios = function() {
 
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       presentationsListPage = new PresentationListPage();
       workspacePage = new WorkspacePage();
       commonHeaderPage = new CommonHeaderPage();
       presentationPropertiesModalPage = new PresentationPropertiesModalPage();
       storeProductsModalPage = new StoreProductsModalPage();
 
-      homepage.get();
+      homepage.getEditor();
       //wait for spinner to go away.
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-        commonHeaderPage.signin();
+        loginPage.signIn();
       });
       presentationsListPage.getPresentationAddButton().click();
       presentationsListPage.getFromTemplatePresentationButton().click();

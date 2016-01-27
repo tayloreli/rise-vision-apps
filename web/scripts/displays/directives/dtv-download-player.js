@@ -6,8 +6,7 @@ angular.module('risevision.displays.directives')
       return {
         restrict: 'E',
         templateUrl: 'partials/displays/download-player.html',
-        link: function () {
-        } //link()
+        link: function () {} //link()
       };
     }
   ]);

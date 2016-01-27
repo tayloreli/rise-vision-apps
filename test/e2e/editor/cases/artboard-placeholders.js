@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var PresentationsListPage = require('./../pages/presentationListPage.js');
 var WorkspacePage = require('./../pages/workspacePage.js');
@@ -14,6 +15,7 @@ var ArtboardPlaceholdersScenarios = function() {
   describe('Select placeholders in artboard: ', function () {
     this.timeout(10000);// to allow for protactor to load the seperate page
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var presentationsListPage;
     var workspacePage;
@@ -23,6 +25,7 @@ var ArtboardPlaceholdersScenarios = function() {
 
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       presentationsListPage = new PresentationsListPage();
       workspacePage = new WorkspacePage();
       artboardPage = new ArtboardPage();
@@ -33,10 +36,10 @@ var ArtboardPlaceholdersScenarios = function() {
 
     describe(' Given a user is adding a new presentation and a new placeholder', function () {
       before(function () {
-        homepage.get();
+        homepage.getEditor();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-          commonHeaderPage.signin();
+          loginPage.signIn();
         });
         presentationsListPage.getPresentationAddButton().click();
         presentationsListPage.getNewPresentationButton().click();

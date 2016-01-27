@@ -1,5 +1,4 @@
 
-HomePageScenarios = require('./cases/homepage.js');
 PresentationListScenarios = require('./cases/presentation-list.js');
 ArtboardScenarios = require('./cases/artboard.js');
 PresentationPropertiesScenarios = require('./cases/presentation-properties.js');
@@ -11,7 +10,6 @@ TemplateAddScenarios = require('./cases/template-add.js');
 HtmlEditorScenarios = require('./cases/html-editor.js');
 PresentationAddScenarios = require('./cases/presentation-add.js');
 
-homePageScenarios = new HomePageScenarios();
 presentationListScenarios = new PresentationListScenarios();
 artboardScenarios = new ArtboardScenarios();
 presentationPropertiesScenarios = new PresentationPropertiesScenarios();

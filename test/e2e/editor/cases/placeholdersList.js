@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var PresentationsListPage = require('./../pages/presentationListPage.js');
 var WorkspacePage = require('./../pages/workspacePage.js');
@@ -13,6 +14,7 @@ var PlaceholdersListScenarios = function() {
   browser.driver.manage().window().setSize(1920, 1080);
   describe('Add placeholder to presentation: ', function () {
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var presentationsListPage;
     var workspacePage;
@@ -21,16 +23,17 @@ var PlaceholdersListScenarios = function() {
 
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       presentationsListPage = new PresentationsListPage();
       workspacePage = new WorkspacePage();
       placeholdersListPage = new PlaceholdersListPage();
       commonHeaderPage = new CommonHeaderPage();
       presentationPropertiesModalPage = new PresentationPropertiesModalPage();
 
-      homepage.get();
+      homepage.getEditor();
       //wait for spinner to go away.
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-        commonHeaderPage.signin();
+        loginPage.signIn();
       });
     });
 
