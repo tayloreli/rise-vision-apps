@@ -7,6 +7,7 @@ var PlaceholderPlaylistPage = function() {
   var moveDownButtons = element.all(by.id('moveDownButton'));
   var removeButtons = element.all(by.id('removeButton'));
   var removeItemButton = element(by.id('confirmForm')).element(by.buttonText('Remove'));
+  var duplicateButtons = element.all(by.id('duplicateButton'));
   var duplicateItemButton = element.all(by.id('duplicateButton'));
   var itemNameCells = element.all(by.css('.editor-playlist-item  .nameContainer:not(.ng-hide) .playlist-item-name'));
   var itemStatusCells = element.all(by.css('.editor-playlist-item .playlist-item-status'));
@@ -35,6 +36,10 @@ var PlaceholderPlaylistPage = function() {
   this.getRemoveItemButton = function() {
     return removeItemButton;
   };
+  
+  this.getDuplicateButtons = function() {
+    return duplicateButtons;
+  }
   
   this.getItemNameCells = function() {
     return itemNameCells;
