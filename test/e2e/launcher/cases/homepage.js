@@ -1,7 +1,9 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
 var HomePage = require('./../pages/homepage.js');
+var LoginPage = require('./../pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
+var GoogleAuthPage = require('rv-common-e2e').googleAuthPage;
 var helper = require('rv-common-e2e').helper;
 
 var HomepageScenarios = function() {
@@ -12,22 +14,34 @@ var HomepageScenarios = function() {
            "I would like to have access to the homepage of the apps launcher", function() {
     this.timeout(2000);// to allow for protactor to load the seperate page
     var homepage;
+    var loginPage;
     var commonHeaderPage;
+    var googleAuthPage;
     before(function (){
       homepage = new HomePage();
+      loginPage = new LoginPage();
       commonHeaderPage = new CommonHeaderPage();
+      googleAuthPage = new GoogleAuthPage();
 
       homepage.get();
       //wait for spinner to go away.
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
     });
 
-    it('should load',function(){
-      expect(homepage.getAppLauncherContainer().isPresent()).to.eventually.be.true;
+    it('should show login page',function(){
+      expect(loginPage.getLoginPageContainer().isPresent()).to.eventually.be.true;
     });
 
-    it('should load common header',function(){
-      expect(commonHeaderPage.getCommonHeader().isPresent()).to.eventually.be.true;
+    it('should sign in the user through google and load launch page',function(){
+      loginPage.getSignInLink().click().then(function () {
+          googleAuthPage.signin();
+          helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
+        });
+      expect(homepage.getAppLauncherContainer().isDisplayed()).to.eventually.be.true;
+    });
+
+    it('should show common header',function(){
+      expect(commonHeaderPage.getCommonHeader().isDisplayed()).to.eventually.be.true;
     });
     
     describe("Given a user who wants to share the url", function () {
@@ -67,6 +81,11 @@ var HomepageScenarios = function() {
         expect(homepage.getMetaByProperty('article:publisher').getAttribute('content')).to.eventually.equal('https://www.facebook.com/risevision');
         expect(homepage.getMetaByProperty('og:site_name').getAttribute('content')).to.eventually.equal('Rise Vision | Apps');
       });
+    });
+
+    after("Should sign out user", function() {
+      helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
+      commonHeaderPage.signOut();
     });
   });
 };

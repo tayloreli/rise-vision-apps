@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var helper = require('rv-common-e2e').helper;
 var WorkspacePage = require('./../pages/workspacePage.js');
@@ -15,12 +16,14 @@ var ArtboardScenarios = function() {
     "As a user " +
     "I would like to edit presentation properties and preview on artboard", function () {
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var workspacePage;
     var presentationListPage;
     var presentationPropertiesModalPage;
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       commonHeaderPage = new CommonHeaderPage();
       workspacePage = new WorkspacePage();
       presentationListPage = new PresentationListPage();
@@ -30,10 +33,10 @@ var ArtboardScenarios = function() {
     describe("Given a user who wants to set presentation properties of a new presentation", function () {
 
       before(function () {
-        homepage.get();
+        homepage.getEditor();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-          commonHeaderPage.signin();
+          loginPage.signIn();
         });
         presentationListPage.getPresentationAddButton().click();
         presentationListPage.getNewPresentationButton().click();

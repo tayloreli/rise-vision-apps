@@ -58,10 +58,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="clickable-row" ng-repeat="presentation in factory.items.list" ui-sref="apps.editor.workspace.artboard({presentationId: presentation.id})">
-            <td class="col-sm-9"><strong>{{presentation.name}}</strong></td>
-            <td class="col-sm-9 hidden-xs"><strong ng-class="{'text-danger': presentation.revisionStatusName==='Revised'}">{{presentation.revisionStatusName | presentationStatus}}</strong></td>
-            <td class="col-sm-2 hidden-xs text-right nowrap" >{{presentation.changeDate | date:'d-MMM-yyyy h:mm a'}}</td>
+          <tr class="clickable-row" ng-repeat="presentation in factory.items.list">
+            <td class="col-sm-9"><a ui-sref="apps.editor.workspace.artboard({presentationId: presentation.id})"><strong>{{presentation.name}}</strong></a></td>
+            <td class="col-sm-9 hidden-xs"><a ui-sref="apps.editor.workspace.artboard({presentationId: presentation.id})"><strong ng-class="{'text-danger': presentation.revisionStatusName==='Revised'}">{{presentation.revisionStatusName | presentationStatus}}</strong></a></td>
+            <td class="col-sm-2 hidden-xs text-right nowrap" ><a ui-sref="apps.editor.workspace.artboard({presentationId: presentation.id})">{{presentation.changeDate | date:'d-MMM-yyyy h:mm a'}}</a></td>
           </tr>
           <!-- If no presentation available -->
           <tr ng-show="factory.items.list.length === 0 && !search.query">

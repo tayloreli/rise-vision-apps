@@ -48,9 +48,14 @@ angular.module('risevision.apps.controllers')
         states: ['apps.storage']
       }];
       $scope.navSelected = 'apps.launcher.home';
+      $scope.hideCH = false;
 
       $rootScope.$on('$stateChangeSuccess', function () {
         $scope.navSelected = $state.current.name;
+        $scope.hideCH = $state.current.name ===
+          'apps.launcher.unauthorized' || $state.current.name ===
+          'apps.launcher.signin' || $state.current.name ===
+          'apps.launcher.signup';
       });
     }
   ]); //ctr

@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
 var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var AlertsPage = require('./../pages/alertsPage.js');
 var DisplaysListPage = require('./../pages/displaysListPage.js');
@@ -16,6 +17,7 @@ var AlertsScenarios = function() {
     "I would like to view and save Alerts", function () {
     this.timeout(2000);// to allow for protactor to load the seperate page
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var alertsPage;
     var displaysListPage;
@@ -23,6 +25,7 @@ var AlertsScenarios = function() {
     var distributionModalPage;
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       commonHeaderPage = new CommonHeaderPage();
       alertsPage = new AlertsPage();
       displaysListPage = new DisplaysListPage();
@@ -36,7 +39,7 @@ var AlertsScenarios = function() {
         homepage.get();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-          commonHeaderPage.signin();
+          loginPage.signIn();
         });
         commonHeaderPage.getCommonHeaderMenuItems().get(4).click();
       });

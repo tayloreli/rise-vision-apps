@@ -34,7 +34,13 @@ var SigninScenarios = function() {
 
 
     it('should not sign in the user through google when it is already signed in',function(){
+      helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
       expect(homepage.getAppLauncherContainer().isPresent()).to.eventually.be.true;
+    });
+
+    after("Should sign out user", function() {
+      helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader');
+      commonHeaderPage.signOut();
     });
   });
 };

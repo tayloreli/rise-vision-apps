@@ -4,7 +4,8 @@ angular.module('risevision.editor.controllers')
     'store', '$modalInstance', '$loading', '$filter', 'STORE_URL', 'category',
     '$modal', 'storeAuthorization', 'playlistItemFactory',
     function ($scope, ScrollingListService, store, $modalInstance, $loading,
-      $filter, STORE_URL, category, $modal, storeAuthorization, playlistItemFactory) {
+      $filter, STORE_URL, category, $modal, storeAuthorization,
+      playlistItemFactory) {
       var defaultCount = 1000;
 
       $scope.search = {
@@ -57,7 +58,7 @@ angular.module('risevision.editor.controllers')
         }
       };
 
-      $scope.addWidgetByUrl = function() {
+      $scope.addWidgetByUrl = function () {
         $modalInstance.dismiss();
         playlistItemFactory.addWidgetByUrl();
       };

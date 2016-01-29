@@ -488,7 +488,7 @@ angular.module('risevision.editor.services')
             .backgroundStyle, styleString);
         } else {
           styleString = htmlParser.removeStyle(backgroundParam,
-            styleString);          
+            styleString);
         }
         if (placeholder.backgroundStyle && placeholder.backgroundScaleToFit) {
           styleString = htmlParser.updateStyle(backgroundSizeParam,

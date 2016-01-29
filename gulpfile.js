@@ -37,7 +37,6 @@ var unitTestFiles = [
   "web/bower_components/angular-mocks/angular-mocks.js",
   "web/bower_components/q/q.js",
   "web/bower_components/common-header/dist/js/common-header.js",
-  "web/bower_components/angular-ui-router/release/angular-ui-router.js",
   "web/bower_components/angular-translate/angular-translate.js",
   "web/bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js",
   "web/bower_components/rv-common-i18n/dist/i18n.js",

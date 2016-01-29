@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var PresentationsListPage = require('./../pages/presentationListPage.js');
 var WorkspacePage = require('./../pages/workspacePage.js');
@@ -19,6 +20,7 @@ var PlaylistScenarios = function() {
   browser.driver.manage().window().setSize(1920, 1080);
   describe('Playlist Scenarios: ', function () {
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var presentationsListPage;
     var workspacePage;
@@ -33,6 +35,7 @@ var PlaylistScenarios = function() {
 
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       presentationsListPage = new PresentationsListPage();
       workspacePage = new WorkspacePage();
       placeholdersListPage = new PlaceholdersListPage();
@@ -45,10 +48,10 @@ var PlaylistScenarios = function() {
       widgetByUrlModalPage = new WidgetByUrlModalPage();
       widgetSettingsPage = new WidgetSettingsPage();
 
-      homepage.get();
+      homepage.getEditor();
       //wait for spinner to go away.
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-        commonHeaderPage.signin();
+        loginPage.signIn();
       });
     });
 
@@ -244,38 +247,17 @@ var PlaylistScenarios = function() {
     });
 
     describe('Should manage playlist items: ', function () {
-      before('Add a second product', function () {
-        placeholderPlaylistPage.getAddContentButton().click();
-        helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
+      it('should duplicate first item', function() {
+        placeholderPlaylistPage.getDuplicateButtons().get(0).click();
 
-        helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader());
-        storeProductsModalPage.getSearchInput().sendKeys('video');
-        storeProductsModalPage.getSearchInput().sendKeys(protractor.Key.ENTER);        
-        helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader());
-        storeProductsModalPage.getAddProductButtons().get(0).click();
-
-        helper.wait(playlistItemModalPage.getPlaylistItemModal(), 'Playlist Item Settings Page');
-        browser.switchTo().frame('widget-modal-frame');
-        widgetSettingsPage.getCloseButton().click();
-        browser.switchTo().defaultContent();
-        browser.waitForAngular();
-
-        playlistItemModalPage.getNameTextbox().sendKeys(' 2');
-
-        playlistItemModalPage.getSaveButton().click();
-
-        expect(playlistItemModalPage.getPlaylistItemModal().isPresent()).to.eventually.be.false;
-      });
-
-      it('should have 2 items the Playlist', function () {
         expect(placeholderPlaylistPage.getPlaylistItems().count()).to.eventually.equal(3);
         expect(placeholderPlaylistPage.getItemNameCells().get(0).getText()).to.eventually.contain('Video Widget');
-        expect(placeholderPlaylistPage.getItemNameCells().get(2).getText()).to.eventually.contain('Video Widget 2');
+        expect(placeholderPlaylistPage.getItemNameCells().get(1).getText()).to.eventually.contain('Video Widget (1)');
       });
-
+      
       it('should display store status for both items', function () {
         expect(placeholderPlaylistPage.getItemStatusCells().get(0).getText()).to.eventually.equal('Free');
-        expect(placeholderPlaylistPage.getItemStatusCells().get(2).getText()).to.eventually.equal('Free');
+        expect(placeholderPlaylistPage.getItemStatusCells().get(1).getText()).to.eventually.equal('Free');
       });
 
       it('arrows should be disabled', function () {
@@ -293,13 +275,13 @@ var PlaylistScenarios = function() {
       it('items should move up and down', function () {
         placeholderPlaylistPage.getMoveUpButtons().get(1).click();
 
-        expect(placeholderPlaylistPage.getItemNameCells().get(0).getText()).to.eventually.contain('Widget from URL');
+        expect(placeholderPlaylistPage.getItemNameCells().get(0).getText()).to.eventually.contain('Video Widget (1)');
         expect(placeholderPlaylistPage.getItemNameCells().get(1).getText()).to.eventually.contain('Video Widget');
 
         placeholderPlaylistPage.getMoveDownButtons().get(0).click();
 
         expect(placeholderPlaylistPage.getItemNameCells().get(0).getText()).to.eventually.contain('Video Widget');
-        expect(placeholderPlaylistPage.getItemNameCells().get(1).getText()).to.eventually.contain('Widget from URL');
+        expect(placeholderPlaylistPage.getItemNameCells().get(1).getText()).to.eventually.contain('Video Widget (1)');
       });
 
       it('should remove item', function (done) {
