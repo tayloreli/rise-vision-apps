@@ -47,6 +47,7 @@ describe('service: placeholderPlaylistFactory:', function() {
     expect(placeholderPlaylistFactory.getItems).to.be.a('function');
     expect(placeholderPlaylistFactory.updateItem).to.be.a('function');
     expect(placeholderPlaylistFactory.removeItem).to.be.a('function');
+    expect(placeholderPlaylistFactory.duplicateItem).to.be.a('function');
     expect(placeholderPlaylistFactory.canPlaylistItemMoveDown).to.be.a('function');
     expect(placeholderPlaylistFactory.canPlaylistItemMoveUp).to.be.a('function');
     expect(placeholderPlaylistFactory.movePlaylistItemDown).to.be.a('function');
@@ -107,6 +108,23 @@ describe('service: placeholderPlaylistFactory:', function() {
 
       expect(items.length).to.equal(3);
       expect(items[1]).to.equal(item);    
+    });
+  });
+  
+  describe('duplicateItem: ', function() {
+    it('should duplicate the item', function() {
+      placeholderPlaylistFactory.duplicateItem(item);
+      
+      expect(items.length).to.equal(4);
+      expect(items[2].name).to.equal('item1 (1)')
+    });
+    
+    it('should not have duplicate names', function() {
+      placeholderPlaylistFactory.duplicateItem(item);
+      placeholderPlaylistFactory.duplicateItem(item);
+      
+      expect(items.length).to.equal(5);
+      expect(items[2].name).to.equal('item1 (2)')
     });
   });
   
