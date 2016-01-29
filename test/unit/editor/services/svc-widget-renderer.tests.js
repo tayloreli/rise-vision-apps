@@ -94,16 +94,34 @@ describe('service: widgetRenderer:', function() {
       expect(placeholder.className).to.equal('ph-item-icon');
     });
 
-    it('should show icon for widgets that are not rendered',function(){
-      placeholder.items[0].objectReference = 'otherId';
+    it('should render Image Widget with old params format',function(){
+      placeholder.items[0].objectReference = '5233a598-35ce-41a4-805c-fd2147f144a3';
+      placeholder.items[0].additionalParams = '{\"url\":\"https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png\"}';
+
       widgetRenderer.register(placeholder,element);
-      expect(placeholder.className).to.equal('ph-item-icon');
+
+      expect(Object.keys(widgetRenderer._placeholders).length).to.equal(1);
+      expect(placeholder.className).to.equal('');
     });
 
-    it('should not show icon if placeholder is empty',function(){     
-      delete placeholder.items;
-      widgetRenderer.register(placeholder,element);
-      expect(placeholder.className).to.equal('');
+    describe('icon:',function(){
+      it('should show icon for widgets that are not rendered',function(){
+        placeholder.items[0].objectReference = 'otherId';
+        widgetRenderer.register(placeholder,element);
+        expect(placeholder.className).to.equal('ph-item-icon');
+      });
+
+      it('should not show icon if placeholder is empty',function(){     
+        delete placeholder.items;
+        widgetRenderer.register(placeholder,element);
+        expect(placeholder.className).to.equal('');
+      });    
+
+      it('shuold show custom icon for Video Widget',function(){
+        placeholder.items[0].objectReference = '2d407395-d1ae-452c-bc27-78124a47132b';
+        widgetRenderer.register(placeholder,element);
+        expect(placeholder.className).to.equal('ph-item-icon ph-video-item');
+      });
     });    
   });
 
