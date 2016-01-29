@@ -42,6 +42,10 @@ angular.module('risevision.apps.controllers')
         title: 'Alerts',
         link: $state.href('apps.displays.alerts'),
         states: ['apps.displays.alerts']
+      }, {
+        title: 'Storage',
+        link: $state.href('apps.storage'),
+        states: ['apps.storage']
       }];
       $scope.navSelected = 'apps.launcher.home';
 

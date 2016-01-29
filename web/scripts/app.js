@@ -94,6 +94,14 @@ angular.module('risevision.apps', [
         controller: 'SignInCtrl'
       })
 
+      .state('apps.storage', {
+        url: '/storage',
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/storage.html');
+        }]
+      })
+
       // schedules
       .state('apps.schedules', {
         abstract: true,
@@ -380,7 +388,7 @@ angular.module('risevision.apps', [
         if ($state.current.name === 'apps.schedules.list' ||
           $state.current.name === 'apps.editor.list' ||
           $state.current.name === 'apps.displays.list' ||
-          $state.current.name === 'apps.displays.alerts' ) {
+          $state.current.name === 'apps.displays.alerts') {
 
           $state.go($state.current.name, null, {
             reload: true
