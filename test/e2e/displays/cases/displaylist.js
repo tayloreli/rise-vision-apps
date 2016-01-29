@@ -1,6 +1,7 @@
 'use strict';
 var expect = require('rv-common-e2e').expect;
-var HomePage = require('./../pages/homepage.js');
+var HomePage = require('./../../launcher/pages/homepage.js');
+var LoginPage = require('./../../launcher/pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var DisplaysListPage = require('./../pages/displaysListPage.js');
 var helper = require('rv-common-e2e').helper;
@@ -13,10 +14,12 @@ var DisplayListScenarios = function() {
     "I would like to see a list of my displays", function () {
     this.timeout(2000);// to allow for protactor to load the seperate page
     var homepage;
+    var loginPage;
     var commonHeaderPage;
     var displaysListPage;
     before(function () {
       homepage = new HomePage();
+      loginPage = new LoginPage();
       commonHeaderPage = new CommonHeaderPage();
       displaysListPage = new DisplaysListPage();
     });
@@ -24,10 +27,10 @@ var DisplayListScenarios = function() {
     describe('Given user sign in', function () {
 
       before(function () {
-        homepage.get();
+        homepage.getDisplays();
         //wait for spinner to go away.
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
-          commonHeaderPage.signin();
+          loginPage.signIn();
         });
       });
 

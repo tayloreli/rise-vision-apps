@@ -24,14 +24,6 @@ var SignupScenarios = function() {
       commonHeaderPage = new CommonHeaderPage();
     });
 
-    it('should show the sign up modal when the user is not signed in',function(){
-      signUpPage.get();
-      helper.wait(signUpPage.getModalDialog(), "Modal dialog");
-      expect(signUpPage.getModalDialog().isDisplayed()).to.eventually.be.true;
-      expect(signUpPage.getModalTitle().isDisplayed()).to.eventually.be.true;
-    });
-
-
     it('should not sign in the user through google when it is already signed in',function(){
       signInPage.get();
       googleAuthPage.signin();

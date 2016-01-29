@@ -62,9 +62,8 @@ angular.module('risevision.apps', [
       .state('apps.launcher.unauthorized', {
         templateProvider: ['$templateCache', function ($templateCache) {
           return $templateCache.get(
-            'partials/launcher/app-launcher.html');
-        }],
-        controller: 'HomeCtrl'
+            'partials/launcher/login.html');
+        }]
       })
 
       .state('apps.launcher.home', {
@@ -73,24 +72,26 @@ angular.module('risevision.apps', [
           return $templateCache.get(
             'partials/launcher/app-launcher.html');
         }],
-        controller: 'HomeCtrl'
+        controller: 'HomeCtrl',
+        resolve: {
+          canAccessLauncher: ['canAccessLauncher',
+            function (canAccessLauncher) {
+              return canAccessLauncher();
+            }
+          ]
+        }
       })
 
       .state('apps.launcher.signup', {
         url: '/signup',
-        templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get(
-            'partials/launcher/app-launcher.html');
-        }],
-        controller: 'SignUpCtrl'
+        controller: ['$state', function ($state) {
+            $state.go('apps.launcher.home');
+          }
+        ]
       })
 
       .state('apps.launcher.signin', {
         url: '/signin',
-        templateProvider: ['$templateCache', function ($templateCache) {
-          return $templateCache.get(
-            'partials/launcher/app-launcher.html');
-        }],
         controller: 'SignInCtrl'
       })
 
@@ -373,14 +374,14 @@ angular.module('risevision.apps', [
     function ($rootScope, $state, userState) {
 
       $rootScope.$on('risevision.user.signedOut', function () {
-        $state.go('apps.launcher.home');
+        $state.go('apps.launcher.unauthorized');
       });
 
       $rootScope.$on('risevision.company.selectedCompanyChanged', function () {
         if ($state.current.name === 'apps.schedules.list' ||
           $state.current.name === 'apps.editor.list' ||
           $state.current.name === 'apps.displays.list' ||
-          $state.current.name === 'apps.displays.alerts' ) {
+          $state.current.name === 'apps.displays.alerts') {
 
           $state.go($state.current.name, null, {
             reload: true
