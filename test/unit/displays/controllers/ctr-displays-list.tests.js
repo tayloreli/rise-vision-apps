@@ -30,6 +30,9 @@ describe('controller: displays list', function() {
         },
         search: function() {
           return {};
+        },
+        url: function() {
+          return {};
         }
       }
     });

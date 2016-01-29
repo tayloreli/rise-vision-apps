@@ -5,10 +5,10 @@
   </div>
 
   <div class="global-actions" require-role="da">
-    <button id="displayAddButton" ui-sref="apps.displays.add" class="btn btn-lg btn-primary" ng-click="displayTracker('Add Display')">
+    <a id="displayAddButton" ui-sref="apps.displays.add" class="btn btn-lg btn-primary" ng-click="displayTracker('Add Display')">
       {{ 'displays-app.actions.new' | translate }}
       <i class="fa fa-plus icon-right"></i> 
-    </button>
+    </a>
   </div>
 </div>
 
@@ -54,11 +54,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr class="clickable-row" ng-class="{ 'bg-warning' : selectedCompayId !== display.companyId }" ng-repeat="display in displays.list" ui-sref="apps.displays.change({displayId: display.id, companyId: display.companyId})">
-          <td class="col-sm-5 ellipsis display-name"><span class="ellipsis">{{display.name}}</span></td>
-          <td class="nowrap display-address visible-lg visible-md"><span class="text-muted ellipsis">{{display.address}}</span></td>
-          <td class="col-sm-2 text-center"><span class="add-left"><i class="fa {{display | status}} fa-circle"></i></span></td>
-          <td class="col-sm-1 hidden-xs nowrap text-right"><span class="text-muted">{{display.lastActivityDate | date:'d-MMM-yyyy h:mm a'}}</span></td>
+        <tr class="clickable-row" ng-class="{ 'bg-warning' : selectedCompayId !== display.companyId }" ng-repeat="display in displays.list">
+          <td class="col-sm-5 ellipsis display-name"><a ui-sref="apps.displays.change({displayId: display.id})"><span class="ellipsis">{{display.name}}</span></a></td>
+          <td class="nowrap display-address visible-lg visible-md"><a ui-sref="apps.displays.change({displayId: display.id})"><span class="text-muted ellipsis">{{display.address}}</span></a></td>
+          <td class="col-sm-2 text-center"><a ui-sref="apps.displays.change({displayId: display.id})"><span class="add-left"><i class="fa {{display | status}} fa-circle"></i></span></a></td>
+          <td class="col-sm-1 hidden-xs nowrap text-right"><a ui-sref="apps.displays.change({displayId: display.id})"><span class="text-muted">{{display.lastActivityDate | date:'d-MMM-yyyy h:mm a'}}</span></a></td>
           
         </tr>
         <!-- If no displays available -->

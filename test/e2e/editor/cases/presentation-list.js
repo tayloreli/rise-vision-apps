@@ -62,6 +62,11 @@ var PresentationListScenarios = function() {
         expect(presentationsListPage.getNewPresentationButton().isDisplayed()).to.eventually.be.true;
         expect(presentationsListPage.getNewPresentationButton().getText()).to.eventually.equal('New');
       });
+      
+      it('new presentation button should be a hyperlink', function () {
+        expect(presentationsListPage.getNewPresentationButton().getAttribute('href')).to.eventually.be.ok;
+        expect(presentationsListPage.getNewPresentationButton().getAttribute('href')).to.eventually.contain('cid=');
+      });
 
       it('should show presentation From Template button', function () {
         expect(presentationsListPage.getFromTemplatePresentationButton().isDisplayed()).to.eventually.be.true;
