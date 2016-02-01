@@ -1,16 +1,17 @@
 'use strict';
 var StoreProductsModalPage = function() {
   var storeProductsModal = element(by.id('addStoreProductModal'));
-  var modalTitle = element(by.css('#addStoreProductModal .modal-title'));
+  var modalTitle = element(by.id('storeModalTitle'));
   var searchFilter = element(by.tagName('search-filter'));
   var searchInput = element(by.id('storeProductsSearchInput'));
   var searchCategories = element.all(by.repeater('tag in productTags'));
 
   var storeProductsLoader = element(by.css('#addStoreProductModal .spinner-backdrop'));
 
-  var storeProductsTable = element(by.id('productListTable'));
-  var storeProducts = element.all(by.repeater('product in factory.items.list'));
-  var addProductButtons = element.all(by.id('addProductButton'));
+  var storeProductsList = element(by.id('productList'));
+  var storeProducts = element.all(by.css('.storeProduct'));
+  var addBlankPresentation = element(by.css('.blank-template'));
+  var suggestTemplate = element(by.css('.suggest-template'));  
   var productNameFields = element.all(by.id('productName'));
   var statusFields = element.all(by.id('status'));
 
@@ -41,8 +42,16 @@ var StoreProductsModalPage = function() {
     return searchCategories;
   }
 
-  this.getStoreProductsTable = function() {
-    return storeProductsTable;
+  this.getStoreProductsList = function() {
+    return storeProductsList;
+  };
+
+  this.getAddBlankPresentation = function() {
+    return addBlankPresentation;
+  };
+
+  this.getSuggestTemplate = function() {
+    return suggestTemplate;
   };
   
   this.getStoreProductsLoader = function() {
@@ -59,10 +68,6 @@ var StoreProductsModalPage = function() {
 
   this.getStatusFields = function() {
     return statusFields;
-  };
-  
-  this.getAddProductButtons = function() {
-    return addProductButtons;
   };
 
   this.getAddWidgetByUrlButton = function() {

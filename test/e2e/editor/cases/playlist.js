@@ -56,8 +56,7 @@ var PlaylistScenarios = function() {
     });
 
     before('Add Presentation & Placeholder: ', function () {
-      presentationsListPage.getPresentationAddButton().click();
-      presentationsListPage.getNewPresentationButton().click();
+      presentationsListPage.openNewPresentation();
       helper.wait(presentationPropertiesModalPage.getPresentationPropertiesModal(), 'Presentation Properties Modal');
       presentationPropertiesModalPage.getCancelButton().click();
 
@@ -106,8 +105,8 @@ var PlaylistScenarios = function() {
         expect(storeProductsModalPage.getSearchInput().getAttribute('placeholder')).to.eventually.equal('Search for Content');
       });
 
-      it('should show a table for listing products', function () {
-        expect(storeProductsModalPage.getStoreProductsTable().isDisplayed()).to.eventually.be.true;
+      it('should show a list of products', function () {
+        expect(storeProductsModalPage.getStoreProductsList().isDisplayed()).to.eventually.be.true;
       });
 
       it('should show products', function () {
@@ -134,7 +133,7 @@ var PlaylistScenarios = function() {
       });
 
       it('should add a Product and open Widget Settings', function () {
-        storeProductsModalPage.getAddProductButtons().get(0).click();
+        storeProductsModalPage.getStoreProducts().get(0).click();
         helper.wait(playlistItemModalPage.getPlaylistItemModal(), 'Playlist Item Settings Page');
         browser.switchTo().frame('widget-modal-frame');
         

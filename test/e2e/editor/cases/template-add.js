@@ -38,7 +38,6 @@ var TemplateAddScenarios = function() {
         loginPage.signIn();
       });
       presentationsListPage.getPresentationAddButton().click();
-      presentationsListPage.getFromTemplatePresentationButton().click();
 
       helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
     });
@@ -61,19 +60,27 @@ var TemplateAddScenarios = function() {
       expect(storeProductsModalPage.getSearchCategories().get(0).getText()).to.eventually.equal("ALL");
     })
 
-    it('should show a table for listing templates', function () {
-      expect(storeProductsModalPage.getStoreProductsTable().isDisplayed()).to.eventually.be.true;
+    it('should show a list of templates', function () {
+      expect(storeProductsModalPage.getStoreProductsList().isDisplayed()).to.eventually.be.true;
     });
 
-    // The Store Templates are not yet released to sub-companies
-    // so there are no templates to select; disabled tests
-    // TODO: re-enable tests when templates are released
-    xit('should show templates', function () {
+    it('should show templates', function () {
       helper.waitDisappear(storeProductsModalPage.getStoreProductsLoader()).then(function () {
         expect(storeProductsModalPage.getStoreProducts().count()).to.eventually.be.above(0);
       });
     });
 
+    it('should show Add Blank Presentation',function(){
+      expect(storeProductsModalPage.getAddBlankPresentation().isDisplayed()).to.eventually.be.true;
+    });
+
+    it('should show a link to Missing Template form',function(){
+      expect(storeProductsModalPage.getSuggestTemplate().isDisplayed()).to.eventually.be.true;
+    });
+
+    // The Store Templates are not yet released to sub-companies
+    // so there are no templates to select; disabled tests
+    // TODO: re-enable tests when templates are released
     xit('should open the Template presentation', function () {
       storeProductsModalPage.getAddProductButtons().get(0).click();
 

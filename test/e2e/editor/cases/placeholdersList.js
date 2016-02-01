@@ -39,8 +39,7 @@ var PlaceholdersListScenarios = function() {
 
     describe(' Given a user is adding a new presentation and a few placeholders', function () {
       before(function () {
-        presentationsListPage.getPresentationAddButton().click();
-        presentationsListPage.getNewPresentationButton().click();
+        presentationsListPage.openNewPresentation();
         helper.wait(presentationPropertiesModalPage.getPresentationPropertiesModal(), 'Presentation Properties Modal');
         presentationPropertiesModalPage.getCancelButton().click();
 

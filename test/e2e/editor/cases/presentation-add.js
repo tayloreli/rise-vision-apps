@@ -34,8 +34,7 @@ var PresentationAddScenarios = function() {
       helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
         loginPage.signIn();
       });
-      presentationsListPage.getPresentationAddButton().click();
-      presentationsListPage.getNewPresentationButton().click();
+      presentationsListPage.openNewPresentation();
     });
 
     it('should show Add Placeholder button', function () {

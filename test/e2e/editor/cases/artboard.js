@@ -38,8 +38,7 @@ var ArtboardScenarios = function() {
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
           loginPage.signIn();
         });
-        presentationListPage.getPresentationAddButton().click();
-        presentationListPage.getNewPresentationButton().click();
+        presentationListPage.openNewPresentation();
       });
 
       it('should load the workspace', function () {

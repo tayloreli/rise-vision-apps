@@ -15,11 +15,12 @@ angular.module('risevision.editor.controllers')
   .controller('storeProductsModal', ['$scope', 'ScrollingListService',
     'store', '$modalInstance', '$loading', '$filter', 'STORE_URL', 'category',
     '$modal', 'storeAuthorization', 'playlistItemFactory', 
-    'TEMPLATE_PRODUCT_TAGS', 'TEMPLATES_CATEGORY',
+    'TEMPLATE_PRODUCT_TAGS', 'TEMPLATES_CATEGORY', 'presentationTracker',
     function ($scope, ScrollingListService, store, $modalInstance, $loading,
       $filter, STORE_URL, category, $modal, storeAuthorization,
-      playlistItemFactory, TEMPLATE_PRODUCT_TAGS, TEMPLATES_CATEGORY) {
+      playlistItemFactory, TEMPLATE_PRODUCT_TAGS, TEMPLATES_CATEGORY, presentationTracker) {
       var defaultCount = 1000;
+      $scope.presentationTracker = presentationTracker;
 
       $scope.productTags = TEMPLATE_PRODUCT_TAGS;
 
