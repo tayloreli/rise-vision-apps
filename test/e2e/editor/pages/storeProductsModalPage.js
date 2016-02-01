@@ -4,6 +4,7 @@ var StoreProductsModalPage = function() {
   var modalTitle = element(by.css('#addStoreProductModal .modal-title'));
   var searchFilter = element(by.tagName('search-filter'));
   var searchInput = element(by.id('storeProductsSearchInput'));
+  var searchCategories = element.all(by.repeater('tag in productTags'));
 
   var storeProductsLoader = element(by.css('#addStoreProductModal .spinner-backdrop'));
 
@@ -35,6 +36,10 @@ var StoreProductsModalPage = function() {
   this.getSearchInput = function() {
     return searchInput;
   };
+  
+  this.getSearchCategories = function() {
+    return searchCategories;
+  }
 
   this.getStoreProductsTable = function() {
     return storeProductsTable;

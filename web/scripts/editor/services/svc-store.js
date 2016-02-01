@@ -37,6 +37,7 @@ angular.module('risevision.editor.services')
 
             var companyId = userState.getSelectedCompanyId();
             var category = search.category;
+            var productTag = search.productTag;
 
             var filterString = 'visibleTo:ALL';
 
@@ -47,6 +48,11 @@ angular.module('risevision.editor.services')
             filterString = '(' + filterString + ')';
             filterString = filterString + ' AND (productTag:' + category +
               ')';
+              
+            if (productTag) {
+              filterString = filterString + ' AND (productTag:' + productTag +
+                ')';
+            }
 
             if (search.query && search.query.length) {
               filterString += ' AND ' + search.query;

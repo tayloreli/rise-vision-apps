@@ -1,12 +1,27 @@
 'use strict';
 angular.module('risevision.editor.controllers')
+  .constant('TEMPLATES_CATEGORY', 'Templates')
+  .constant('TEMPLATE_PRODUCT_TAGS', [
+    'all',
+    'education',
+    'business',
+    'lifestyle',
+    'worship',
+    'healthcare',
+    'hospitality',
+    'retail',
+    'other'
+  ])
   .controller('storeProductsModal', ['$scope', 'ScrollingListService',
     'store', '$modalInstance', '$loading', '$filter', 'STORE_URL', 'category',
-    '$modal', 'storeAuthorization', 'playlistItemFactory',
+    '$modal', 'storeAuthorization', 'playlistItemFactory', 
+    'TEMPLATE_PRODUCT_TAGS', 'TEMPLATES_CATEGORY',
     function ($scope, ScrollingListService, store, $modalInstance, $loading,
       $filter, STORE_URL, category, $modal, storeAuthorization,
-      playlistItemFactory) {
+      playlistItemFactory, TEMPLATE_PRODUCT_TAGS, TEMPLATES_CATEGORY) {
       var defaultCount = 1000;
+
+      $scope.productTags = TEMPLATE_PRODUCT_TAGS;
 
       $scope.search = {
         category: category,
@@ -18,7 +33,9 @@ angular.module('risevision.editor.controllers')
         $scope.search);
 
       $scope.filterConfig = {
-        placeholder: 'Search Products',
+        placeholder: $filter('translate')(
+          'editor-app.storeProduct.' + (category === TEMPLATES_CATEGORY ? 'templates' : 
+          'content') + '.search'),
         id: 'storeProductsSearchInput'
       };
 
@@ -30,9 +47,17 @@ angular.module('risevision.editor.controllers')
         }
       });
 
+      $scope.selectProductTag = function(tag) {
+        if (tag !== $scope.search.productTag && !(!$scope.search.productTag && tag === 'all')) {
+          $scope.search.productTag = tag === 'all' ? undefined : tag; 
+          
+          $scope.factory.doSearch();
+        }
+      }
+
       $scope.select = function (product) {
-        if (category === 'Templates' && product.paymentTerms.toLowerCase() !==
-          'free') {
+        if (category === TEMPLATES_CATEGORY && 
+          product.paymentTerms.toLowerCase() !== 'free') {
           $loading.start('product-list-loader');
           storeAuthorization.check(product.productCode).then(function () {
             $modalInstance.close(product);
