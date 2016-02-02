@@ -5,7 +5,7 @@
 	    <h1 id="title">Storage</h1>
 	  </div>
 
-	  <div class="global-actions">
+	  <div class="global-actions" ng-hide="captionMode">
 	  	<button class="btn btn-lg btn-default">
 	  		Add Folder
 	  		<i class="fa fa-folder fa-lg icon-right"></i>
@@ -26,25 +26,75 @@
 		</span>
 	</div><!--input-group-->
 
-	<div class="icon-nav half-top text-right">
+	<div class="icon-nav half-top text-right" ng-show="captionMode">
+		<span class="add-right">Edit Caption Mode</span>
+		<button class="btn btn-primary" ng-click="captionMode = !captionMode">Save <i class="fa fa-check icon-right"></i></button>
+		<button class="btn btn-default" ng-click="captionMode = !captionMode">Cancel <i class="fa fa-times icon-right"></i></button>
+	</div>
+
+	<div class="icon-nav half-top text-right" ng-hide="captionMode">
 		<span class="add-right">1 Selected</span>
 		<button class="btn btn-lg btn-link disabled"><i class="fa fa-lg fa-cloud-download"></i></button>
 		<button class="btn btn-lg btn-link disabled"><i class="fa fa-lg fa-link"></i></button>
 		<button class="btn btn-lg btn-link disabled"><i class="fa fa-lg fa-trash-o"></i></button>
+		
+		<button class="btn btn-default" ng-click="captionMode = !captionMode">Edit Captions</button>
 	</div>
 
-	<div class="content-box half-top">
+	<div class="content-box half-top caption-mode">
 		<div class="scrollable-list">
-			<table class="table-2 table-hover table-selector multiple-selector">
+			<table class="table-2 table-hover" ng-class="{'table-selector' : !captionMode, 'multiple-selector' : !captionMode}">
 				<thead>
-					<tr>
+					<tr ng-hide="captionMode">
 						<th>Name <i class="fa fa-long-arrow-down"></i></th>
 						<th>Type</th>
 						<th>Size</th>
 						<th class="text-right">Modified</th>
 					</tr>
+					<tr ng-show="captionMode">
+						<th>Name</th>
+						<th colspan="3">Caption</th>
+					</tr>
 				</thead>
-				<tbody>
+				<tbody ng-show="captionMode">
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+					<tr class="clickable-row">
+						<td><span class="file">sample.jpg</span></td>
+						<td>
+							<textarea class="form-control">Caption</textarea>
+						</td>
+					</tr>
+				</tbody>
+				<tbody ng-hide="captionMode">
 					<tr class="clickable-row">
 						<td><span class="file">sample.jpg</span></td>
 						<td>JPG</td>
@@ -127,7 +177,7 @@
 			</table>
 		</div>
 	</div><br><br>
-	<span ng-controller="UxCtrl">
+	<span ng-controller="UxCtrl" class="hidden">
 		<button ng-click="open()">Show Modal</button>
 	</span>
 </div><!--container-->
