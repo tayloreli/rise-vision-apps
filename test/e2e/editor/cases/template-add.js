@@ -48,12 +48,18 @@ var TemplateAddScenarios = function() {
     });
 
     it('should show modal title', function () {
-      expect(storeProductsModalPage.getModalTitle().getText()).to.eventually.equal('Select Content');
+      expect(storeProductsModalPage.getModalTitle().getText()).to.eventually.equal('Add a New Presentation');
     });
 
     it('should show a search box', function () {
       expect(storeProductsModalPage.getSearchFilter().isDisplayed()).to.eventually.be.true;
+      expect(storeProductsModalPage.getSearchInput().getAttribute('placeholder')).to.eventually.equal('Search for Templates');
     });
+
+    it('should show search categories', function() {
+      expect(storeProductsModalPage.getSearchCategories().count()).to.eventually.equal(9);
+      expect(storeProductsModalPage.getSearchCategories().get(0).getText()).to.eventually.equal("ALL");
+    })
 
     it('should show a table for listing templates', function () {
       expect(storeProductsModalPage.getStoreProductsTable().isDisplayed()).to.eventually.be.true;
@@ -90,4 +96,3 @@ var TemplateAddScenarios = function() {
   });
 };
 module.exports = TemplateAddScenarios;
-

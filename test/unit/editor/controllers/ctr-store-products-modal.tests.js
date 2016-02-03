@@ -7,10 +7,7 @@ describe('controller: Store Products Modal', function() {
     $provide.value('STORE_AUTHORIZATION_URL','http://www.example.com/api/auth')
     $provide.service('ScrollingListService', function() {
       return function() {
-        return {
-          search: {},
-          loadingItems: false
-        };
+        return scrollingListService
       };
     });
     $provide.service('store',function(){
@@ -70,8 +67,13 @@ describe('controller: Store Products Modal', function() {
   
   var $scope, $loading, $loadingStartSpy, $loadingStopSpy, storeAuthorization;
   var $modalInstance, $modalInstanceDismissSpy, $modalInstanceCloseSpy, $q;
-  var $modal, playlistItemAddWidgetByUrlSpy;
+  var $modal, playlistItemAddWidgetByUrlSpy, scrollingListService;
   beforeEach(function(){
+    scrollingListService = {
+      search: {},
+      loadingItems: false,
+      doSearch: function() {}
+    };
 
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
@@ -82,7 +84,7 @@ describe('controller: Store Products Modal', function() {
       $modalInstanceDismissSpy = sinon.spy($modalInstance, 'dismiss');
       $modalInstanceCloseSpy = sinon.spy($modalInstance, 'close');
       var playlistItemFactory = $injector.get('playlistItemFactory');
-      playlistItemAddWidgetByUrlSpy = sinon.spy(playlistItemFactory, 'addWidgetByUrl')
+      playlistItemAddWidgetByUrlSpy = sinon.spy(playlistItemFactory, 'addWidgetByUrl');
       $loading = $injector.get('$loading');
       $loadingStartSpy = sinon.spy($loading, 'start');
       $loadingStopSpy = sinon.spy($loading, 'stop');
@@ -106,6 +108,7 @@ describe('controller: Store Products Modal', function() {
     expect($scope.factory.loadingItems).to.be.false;
     expect($scope.search).to.be.ok;
     expect($scope.filterConfig).to.be.ok;
+    expect($scope.selectProductTag).to.be.ok;
 
     expect($scope.select).to.be.a('function');
     expect($scope.dismiss).to.be.a('function');
@@ -134,6 +137,47 @@ describe('controller: Store Products Modal', function() {
       }, 10);
     });
   });
+
+  describe('selectProductTag', function() {
+    var doSearchSpy;
+    beforeEach(function() {
+      doSearchSpy = sinon.spy(scrollingListService, 'doSearch');
+    });
+    
+    it('should select appropriate tag', function() {
+      $scope.selectProductTag('education');
+      
+      expect($scope.search.productTag).to.equal('education');
+      doSearchSpy.should.have.been.called;
+    });
+    
+    it('should select all tag', function() {
+      $scope.search.productTag = 'education';
+      
+      $scope.selectProductTag('all');
+      
+      expect($scope.search.productTag).to.be.undefined;
+      doSearchSpy.should.have.been.called;
+    });
+    
+    it('should not call API twice for all', function() {
+      $scope.search.productTag = undefined;
+
+      $scope.selectProductTag('all');
+      
+      expect($scope.search.productTag).to.be.undefined;
+      doSearchSpy.should.not.have.been.called;
+    });
+    
+    it('should not call API twice for the same category', function() {
+      $scope.search.productTag = 'education';
+
+      $scope.selectProductTag('education');
+      
+      expect($scope.search.productTag).to.equal('education');
+      doSearchSpy.should.not.have.been.called;
+    });
+  })
 
   describe('$modalInstance functionality: ', function() {
     it('should exist',function(){

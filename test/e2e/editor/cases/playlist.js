@@ -98,11 +98,12 @@ var PlaylistScenarios = function() {
       });
 
       it('should show modal title', function () {
-        expect(storeProductsModalPage.getModalTitle().getText()).to.eventually.equal('Select Content');
+        expect(storeProductsModalPage.getModalTitle().getText()).to.eventually.equal('Add Content');
       });
 
       it('should show a search box', function () {
         expect(storeProductsModalPage.getSearchFilter().isDisplayed()).to.eventually.be.true;
+        expect(storeProductsModalPage.getSearchInput().getAttribute('placeholder')).to.eventually.equal('Search for Content');
       });
 
       it('should show a table for listing products', function () {
