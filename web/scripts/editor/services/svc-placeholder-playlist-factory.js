@@ -32,18 +32,18 @@ angular.module('risevision.editor.services')
         }
       };
 
-      var _setItemCopyName = function(item, index) {
+      var _setItemCopyName = function (item, index) {
         var items = factory.getItems();
         index = index || 1;
         var itemName = item.name + ' (' + index + ')';
-        
+
         for (var i = 0; i < items.length; i++) {
           if (items[i].name === itemName) {
             // Same name exists
             return _setItemCopyName(item, ++index);
           }
         }
-        
+
         item.name = itemName;
 
         return;
@@ -53,7 +53,7 @@ angular.module('risevision.editor.services')
         var index = _getItemIndex(item);
         if (index !== -1) {
           var newItem = angular.copy(item);
-          
+
           _setItemCopyName(newItem);
 
           factory.getItems().splice(index + 1, 0, newItem);

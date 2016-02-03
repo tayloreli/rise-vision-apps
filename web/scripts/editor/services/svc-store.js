@@ -48,10 +48,10 @@ angular.module('risevision.editor.services')
             filterString = '(' + filterString + ')';
             filterString = filterString + ' AND (productTag:' + category +
               ')';
-              
+
             if (productTag) {
-              filterString = filterString + ' AND (productTag:' + productTag +
-                ')';
+              filterString = filterString + ' AND (productTag:' +
+                productTag + ')';
             }
 
             if (search.query && search.query.length) {
