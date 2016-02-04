@@ -14,11 +14,12 @@ angular.module('risevision.editor.controllers')
   ])
   .controller('storeProductsModal', ['$scope', 'ScrollingListService',
     'store', '$modalInstance', '$loading', '$filter', 'STORE_URL', 'category',
-    '$modal', 'storeAuthorization', 'playlistItemFactory', 
+    '$modal', 'storeAuthorization', 'playlistItemFactory',
     'TEMPLATE_PRODUCT_TAGS', 'TEMPLATES_CATEGORY', 'presentationTracker',
     function ($scope, ScrollingListService, store, $modalInstance, $loading,
       $filter, STORE_URL, category, $modal, storeAuthorization,
-      playlistItemFactory, TEMPLATE_PRODUCT_TAGS, TEMPLATES_CATEGORY, presentationTracker) {
+      playlistItemFactory, TEMPLATE_PRODUCT_TAGS, TEMPLATES_CATEGORY,
+      presentationTracker) {
       var defaultCount = 1000;
       $scope.presentationTracker = presentationTracker;
 
@@ -35,8 +36,8 @@ angular.module('risevision.editor.controllers')
 
       $scope.filterConfig = {
         placeholder: $filter('translate')(
-          'editor-app.storeProduct.' + (category === TEMPLATES_CATEGORY ? 'templates' : 
-          'content') + '.search'),
+          'editor-app.storeProduct.' + (category === TEMPLATES_CATEGORY ?
+            'templates' : 'content') + '.search'),
         id: 'storeProductsSearchInput'
       };
 
@@ -48,16 +49,17 @@ angular.module('risevision.editor.controllers')
         }
       });
 
-      $scope.selectProductTag = function(tag) {
-        if (tag !== $scope.search.productTag && !(!$scope.search.productTag && tag === 'all')) {
-          $scope.search.productTag = tag === 'all' ? undefined : tag; 
-          
+      $scope.selectProductTag = function (tag) {
+        if (tag !== $scope.search.productTag && !(!$scope.search.productTag &&
+            tag === 'all')) {
+          $scope.search.productTag = tag === 'all' ? undefined : tag;
+
           $scope.factory.doSearch();
         }
-      }
+      };
 
       $scope.select = function (product) {
-        if (category === TEMPLATES_CATEGORY && 
+        if (category === TEMPLATES_CATEGORY &&
           product.paymentTerms.toLowerCase() !== 'free') {
           $loading.start('product-list-loader');
           storeAuthorization.check(product.productCode).then(function () {
