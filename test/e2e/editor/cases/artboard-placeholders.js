@@ -41,8 +41,7 @@ var ArtboardPlaceholdersScenarios = function() {
         helper.waitDisappear(commonHeaderPage.getLoader(), 'CH spinner loader').then(function () {
           loginPage.signIn();
         });
-        presentationsListPage.getPresentationAddButton().click();
-        presentationsListPage.getNewPresentationButton().click();
+        presentationsListPage.openNewPresentation();
         helper.wait(presentationPropertiesModalPage.getPresentationPropertiesModal(), 'Presentation Properties Modal');
         presentationPropertiesModalPage.getCancelButton().click();
 

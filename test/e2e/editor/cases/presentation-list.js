@@ -53,27 +53,6 @@ var PresentationListScenarios = function() {
       expect(presentationsListPage.getPresentationAddButton().getText()).to.eventually.equal('Add Presentation');
     });
 
-    describe('Given I click on the Add Presentation Button', function () {
-      before(function () {
-        presentationsListPage.getPresentationAddButton().click();
-      });
-
-      it('should show presentation new button', function () {
-        expect(presentationsListPage.getNewPresentationButton().isDisplayed()).to.eventually.be.true;
-        expect(presentationsListPage.getNewPresentationButton().getText()).to.eventually.equal('New');
-      });
-      
-      it('new presentation button should be a hyperlink', function () {
-        expect(presentationsListPage.getNewPresentationButton().getAttribute('href')).to.eventually.be.ok;
-        expect(presentationsListPage.getNewPresentationButton().getAttribute('href')).to.eventually.contain('cid=');
-      });
-
-      it('should show presentation From Template button', function () {
-        expect(presentationsListPage.getFromTemplatePresentationButton().isDisplayed()).to.eventually.be.true;
-        expect(presentationsListPage.getFromTemplatePresentationButton().getText()).to.eventually.equal('From Template');
-      });
-    });
-
     it('should show presentation list table header Name', function () {
       expect(presentationsListPage.getTableHeaderName().isDisplayed()).to.eventually.be.true;
       expect(presentationsListPage.getTableHeaderName().getText()).to.eventually.equal('Name');

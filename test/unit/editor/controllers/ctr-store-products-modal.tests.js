@@ -109,6 +109,7 @@ describe('controller: Store Products Modal', function() {
     expect($scope.search).to.be.ok;
     expect($scope.filterConfig).to.be.ok;
     expect($scope.selectProductTag).to.be.ok;
+    expect($scope.presentationTracker).to.be.ok;
 
     expect($scope.select).to.be.a('function');
     expect($scope.dismiss).to.be.a('function');
