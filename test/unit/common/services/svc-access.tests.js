@@ -1,6 +1,6 @@
 'use strict';
 describe('service: access:', function() {
-  beforeEach(module('risevision.schedules.services'));
+  beforeEach(module('risevision.apps.services'));
 
   beforeEach(module(function ($provide) {
     $provide.service('$q', function() {return Q;});
@@ -20,7 +20,10 @@ describe('service: access:', function() {
         },
         isRiseVisionUser : function(){
           return isRiseVisionUser;
-        }, 
+        },
+        isLoggedIn: function() {
+          return isLoggedIn;
+        },
         _restoreState: function(){}
       }
     });
@@ -33,23 +36,24 @@ describe('service: access:', function() {
     });
   }));
   
-  var canAccessSchedules, authenticate, isRiseVisionUser, newState;
+  var canAccessApps, authenticate, isRiseVisionUser, isLoggedIn, newState;
   beforeEach(function(){
     isRiseVisionUser = true;
     authenticate = true;
+    isLoggedIn = true;
 
     inject(function($injector){
-      canAccessSchedules = $injector.get('canAccessSchedules');
+      canAccessApps = $injector.get('canAccessApps');
     });
   });
 
   it('should exist',function(){
-    expect(canAccessSchedules).to.be.truely;
-    expect(canAccessSchedules).to.be.a('function');
+    expect(canAccessApps).to.be.truely;
+    expect(canAccessApps).to.be.a('function');
   });
   
   it('should return resolve if authenticated',function(done){
-    canAccessSchedules()
+    canAccessApps()
     .then(function(){
       done();
     })
@@ -61,8 +65,25 @@ describe('service: access:', function() {
   it('should reject if user is not Rise Vision User',function(done){
     isRiseVisionUser = false;
     authenticate = true;
+    isLoggedIn = true;
 
-    canAccessSchedules()
+    canAccessApps()
+    .then(function() {
+      done("authenticated");
+    })
+    .then(null, function() {
+      expect(newState).to.equal('apps.launcher.unregistered');
+
+      done();
+    });  
+  });
+  
+  it('should reject if user is not Rise Vision User',function(done){
+    isRiseVisionUser = false;
+    authenticate = true;
+    isLoggedIn = false;
+
+    canAccessApps()
     .then(function() {
       done("authenticated");
     })
@@ -76,8 +97,9 @@ describe('service: access:', function() {
   it('should reject if user is not authenticated',function(done){
     isRiseVisionUser = true;
     authenticate = false;
+    isLoggedIn = false;
 
-    canAccessSchedules()
+    canAccessApps()
     .then(function() {
       done("authenticated");
     })

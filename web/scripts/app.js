@@ -24,6 +24,7 @@ angular.module('risevision.apps', [
     'risevision.common.i18n',
     'risevision.apps.partials',
     'risevision.apps.config',
+    'risevision.apps.services',
     'risevision.apps.controllers',
     'risevision.apps.launcher.controllers',
     'risevision.apps.launcher.services',
@@ -65,6 +66,13 @@ angular.module('risevision.apps', [
             'partials/launcher/login.html');
         }]
       })
+      
+      .state('apps.launcher.unregistered', {
+        templateProvider: ['$templateCache', function ($templateCache) {
+          return $templateCache.get(
+            'partials/launcher/signup.html');
+        }]
+      })
 
       .state('apps.launcher.home', {
         url: '/',
@@ -74,9 +82,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'HomeCtrl',
         resolve: {
-          canAccessLauncher: ['canAccessLauncher',
-            function (canAccessLauncher) {
-              return canAccessLauncher();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -103,9 +111,9 @@ angular.module('risevision.apps', [
 
       .state('apps.schedules.home', {
         url: '/schedules',
-        controller: ['canAccessSchedules', '$state',
-          function (canAccessSchedules, $state) {
-            canAccessSchedules().then(function () {
+        controller: ['canAccessApps', '$state',
+          function (canAccessApps, $state) {
+            canAccessApps().then(function () {
               $state.go('apps.schedules.list');
             });
           }
@@ -120,9 +128,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'schedulesList',
         resolve: {
-          canAccessSchedules: ['canAccessSchedules',
-            function (canAccessSchedules) {
-              return canAccessSchedules();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -136,10 +144,10 @@ angular.module('risevision.apps', [
         }],
         controller: 'scheduleDetails',
         resolve: {
-          scheduleInfo: ['canAccessSchedules', 'scheduleFactory',
+          scheduleInfo: ['canAccessApps', 'scheduleFactory',
             '$stateParams',
-            function (canAccessSchedules, scheduleFactory, $stateParams) {
-              return canAccessSchedules().then(function () {
+            function (canAccessApps, scheduleFactory, $stateParams) {
+              return canAccessApps().then(function () {
                 //load the schedule based on the url param
                 return scheduleFactory.getSchedule($stateParams.scheduleId);
               });
@@ -156,9 +164,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'scheduleAdd',
         resolve: {
-          scheduleInfo: ['canAccessSchedules', 'scheduleFactory',
-            function (canAccessSchedules, scheduleFactory) {
-              return canAccessSchedules().then(scheduleFactory.newSchedule);
+          scheduleInfo: ['canAccessApps', 'scheduleFactory',
+            function (canAccessApps, scheduleFactory) {
+              return canAccessApps().then(scheduleFactory.newSchedule);
             }
           ]
         }
@@ -174,9 +182,9 @@ angular.module('risevision.apps', [
 
       .state('apps.displays.home', {
         url: '/displays',
-        controller: ['canAccessDisplays', '$state',
-          function (canAccessDisplays, $state) {
-            canAccessDisplays().then(function () {
+        controller: ['canAccessApps', '$state',
+          function (canAccessApps, $state) {
+            canAccessApps().then(function () {
               $state.go('apps.displays.list');
             });
           }
@@ -191,9 +199,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'displaysList',
         resolve: {
-          canAccessDisplays: ['canAccessDisplays',
-            function (canAccessDisplays) {
-              return canAccessDisplays();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -201,11 +209,11 @@ angular.module('risevision.apps', [
 
       .state('apps.displays.change', {
         url: '/displays/change/:displayId/:companyId',
-        controller: ['canAccessDisplays', 'userState', '$stateParams',
+        controller: ['canAccessApps', 'userState', '$stateParams',
           '$state', '$location',
-          function (canAccessDisplays, userState, $stateParams, $state,
+          function (canAccessApps, userState, $stateParams, $state,
             $location) {
-            return canAccessDisplays().then(function () {
+            return canAccessApps().then(function () {
                 if (userState.getSelectedCompanyId() !== $stateParams
                   .companyId) {
                   return userState.switchCompany($stateParams.companyId);
@@ -231,9 +239,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'displayDetails',
         resolve: {
-          canAccessDisplays: ['canAccessDisplays',
-            function (canAccessDisplays) {
-              return canAccessDisplays();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -247,9 +255,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'displayAdd',
         resolve: {
-          canAccessDisplays: ['canAccessDisplays',
-            function (canAccessDisplays) {
-              return canAccessDisplays();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -262,9 +270,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'AlertsCtrl',
         resolve: {
-          canAccessDisplays: ['canAccessDisplays',
-            function (canAccessDisplays) {
-              return canAccessDisplays();
+          canAccessApps: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -280,9 +288,9 @@ angular.module('risevision.apps', [
 
       .state('apps.editor.home', {
         url: '/editor',
-        controller: ['canAccessEditor', '$state',
-          function (canAccessEditor, $state) {
-            canAccessEditor().then(function () {
+        controller: ['canAccessApps', '$state',
+          function (canAccessApps, $state) {
+            canAccessApps().then(function () {
               $state.go('apps.editor.list');
             });
           }
@@ -297,9 +305,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'PresentationListController',
         resolve: {
-          canAccess: ['canAccessEditor',
-            function (canAccessEditor) {
-              return canAccessEditor();
+          canAccess: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -313,11 +321,11 @@ angular.module('risevision.apps', [
         }],
         controller: 'WorkspaceController',
         resolve: {
-          presentationInfo: ['canAccessEditor', 'editorFactory',
+          presentationInfo: ['canAccessApps', 'editorFactory',
             '$stateParams', '$location',
-            function (canAccessEditor, editorFactory, $stateParams,
+            function (canAccessApps, editorFactory, $stateParams,
               $location) {
-              return canAccessEditor().then(function () {
+              return canAccessApps().then(function () {
                 if ($stateParams.presentationId && $stateParams.presentationId !==
                   'new') {
                   return editorFactory.getPresentation($stateParams
@@ -346,9 +354,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'ArtboardController',
         resolve: {
-          canAccess: ['canAccessEditor',
-            function (canAccessEditor) {
-              return canAccessEditor();
+          canAccess: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -362,9 +370,9 @@ angular.module('risevision.apps', [
         }],
         controller: 'HtmlEditorController',
         resolve: {
-          canAccess: ['canAccessEditor',
-            function (canAccessEditor) {
-              return canAccessEditor();
+          canAccess: ['canAccessApps',
+            function (canAccessApps) {
+              return canAccessApps();
             }
           ]
         }
@@ -399,6 +407,7 @@ angular.module('risevision.apps', [
   // ])
 ;
 
+angular.module('risevision.apps.services', []);
 angular.module('risevision.apps.controllers', []);
 
 angular.module('risevision.apps.launcher.controllers', []);
