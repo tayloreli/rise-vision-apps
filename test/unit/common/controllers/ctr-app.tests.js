@@ -44,6 +44,10 @@ describe('controller: app', function() {
     $state.current.name = 'apps.launcher.unauthorized';
     rootScope.$broadcast('$stateChangeSuccess');
     expect($scope.hideCH).to.be.true;
+    
+    $state.current.name = 'apps.launcher.unregistered';
+    rootScope.$broadcast('$stateChangeSuccess');
+    expect($scope.hideCH).to.be.true;
 
     $state.current.name = 'apps.launcher.home';
     rootScope.$broadcast('$stateChangeSuccess');
