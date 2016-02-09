@@ -5,6 +5,7 @@ var LoginPage = require('./../pages/loginPage.js');
 var CommonHeaderPage = require('rv-common-e2e').commonHeaderPage;
 var GoogleAuthPage = require('rv-common-e2e').googleAuthPage;
 var helper = require('rv-common-e2e').helper;
+var StoreProductsModalPage = require('./../../editor/pages/storeProductsModalPage.js');
 
 var HomepageScenarios = function() {
   
@@ -17,11 +18,13 @@ var HomepageScenarios = function() {
     var loginPage;
     var commonHeaderPage;
     var googleAuthPage;
+    var storeProductsModalPage;
     before(function (){
       homepage = new HomePage();
       loginPage = new LoginPage();
       commonHeaderPage = new CommonHeaderPage();
       googleAuthPage = new GoogleAuthPage();
+      storeProductsModalPage = new StoreProductsModalPage();
 
       homepage.get();
       //wait for spinner to go away.
@@ -42,6 +45,12 @@ var HomepageScenarios = function() {
 
     it('should show common header',function(){
       expect(commonHeaderPage.getCommonHeader().isDisplayed()).to.eventually.be.true;
+    });
+
+    it('should open Templates modal when adding new presentation',function(){
+      homepage.getPresentationAddButton().click();
+      helper.wait(storeProductsModalPage.getStoreProductsModal(), 'Select Content Modal');
+      expect(storeProductsModalPage.getStoreProductsModal().isDisplayed()).to.eventually.be.true;
     });
     
     describe("Given a user who wants to share the url", function () {

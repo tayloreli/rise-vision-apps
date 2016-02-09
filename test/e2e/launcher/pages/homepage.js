@@ -8,6 +8,7 @@ var HomePage = function() {
   var schedulesUrl = config.rootUrl + '/schedules/list';
 
   var appLauncherContainer = element(by.id('appLauncherContainer'));
+  var presentationAddButton = element(by.id('presentationAddButton'));
 
   var welcomeText = element(by.id('welcome-text'));
   var appTitleText = element(by.id('app-title'));
@@ -47,6 +48,10 @@ var HomePage = function() {
 
   this.getAppLauncherContainer = function() {
     return appLauncherContainer;
+  };
+
+  this.getPresentationAddButton = function() {
+    return presentationAddButton;
   };
 
   this.getWelcomeText = function() {
