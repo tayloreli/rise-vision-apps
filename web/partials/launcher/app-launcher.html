@@ -1,123 +1,178 @@
 <div id="appLauncherContainer">
-  <div class="page-content apps-launcher">
-    <div class="apps-launcher-tour">
-      <div class="container">
-      <div class="headline add-bottom">
-        <h2 id="welcome-text" class="remove-bottom half-top">Welcome to Rise Vision!</h2>
-        <span class"text-muted">You’re three steps away from amazing digital signage. Ready to get started?</span>
-      </div><!--headline-->
-      <div class="row">
-        <div class="col-sm-4"> 
-          <div class="content-box half-bottom">
-            <div class="image">
-              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/create.png" class="img-responsive">
-            </div><!--image-->
-            <div class="padding-large-horizontal padding-small-vertical">  
-              <h4>1. Create</h4>
-              <p class="text-muted add-left add-right">Create your first Presentation with our easy to use Editor.</p><br>
-              <a ui-sref="apps.editor.workspace.artboard" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Presentation')">Create Presentation</a>
-            </div>
-          </div><!--content-box-->
-        </div><!--col-->
-        <div class="col-sm-4">
-          <div class="content-box half-bottom">
-            <div class="image">
-              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/show.png" class="img-responsive">
-            </div><!--image-->
-            <div class="padding-large-horizontal padding-small-vertical">  
-              <h4>2. Display</h4>
-              <p class="text-muted add-left add-right">Add your displays to Rise Vision and start sharing content with your audience.</p>
-              <a ui-sref="apps.displays.add" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Display')">Add Display</a>
-            </div>
-          </div><!--content-box-->
-        </div>
-        <div class="col-sm-4">
-          <div class="content-box half-bottom">
-            <div class="image">
-              <img src="https://s3.amazonaws.com/Rise-Images/Experimental/organize.png" class="img-responsive">
-            </div><!--image-->
-            <div class="padding-large-horizontal padding-small-vertical">  
-              <h4>3. Manage</h4>
-              <p class="text-muted add-left add-right">Create a Schedule to choose when and where you’d like your content to show.</p>
-              <a ui-sref="apps.schedules.add" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Schedule')">Add Schedule</a>
-            </div>
-          </div><!--content-box-->
-        </div>           
-      </div><!--row-->
-      </div>
-    </div>
+
+  <div class="app-launcher-header">
+    <div class="container">
+      <h1>Welcome to Rise Vision</h1>
+    </div> 
   </div>
 
-  <div class="website">
-    <div class="page-content">
-    <div class="home-features">
-      <div class="container" vertilize-container>
-        <div class="row">
-          <div class="col-sm-4">
-            <a href="http://rva.risevision.com/#PRESENTATIONS" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/editor-image.png"></div>
-                <h3>Editor</h3>
-                <p>Create and manage HTML content for your digital signage displays.</p>
-              </div>
-            </a>
-          </div><!--col-->
+  <div class="container" ng-init="listLimit=5">
 
-          <div class="col-sm-4">
-            <a href="http://store.risevision.com" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/store-image.png"></div>
-                <h3>Store</h3>
-                <p>A digital signage store full of content, services, applications and hardware for Rise Vision.</p>
-              </div>
-            </a>
-          </div><!--col-->
+    <div class="app-launcher-block" ng-controller="PresentationListController">
+      <div class="app-launcher-block-header">
+        <h2 class="add-bottom">My Presentations</h2>
+        <a ui-sref="apps.editor.list" ng-show="factory.items.list.length > 0">View All</a>
+      </div><!--app-launcher-block-header-->
 
-          <div class="col-sm-4">
-            <a href="http://storage.risevision.com" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/storage-image.png"></div>
-                <h3>Storage</h3>
-                <p>Manage and deliver media to your digital signage displays.</p>
-              </div>
-            </a>
-          </div><!--col-->  
-          </div><!--row-->
+      <style type="text/css">
+      .loading-box {
+        min-height: 100px;
+      }
+      </style>
 
-          <div class="row">
+    
+      <p class="text-muted" ng-show="factory.items.list.length === 0 && !factory.loadingItems" translate>editor-app.list.empty</p>
 
-            <div class="col-sm-4">
-            <a href="http://rva.risevision.com/#DISPLAYS" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/displays-image.png"></div>
-                <h3>Displays</h3>
-                <p>Manage and monitor your digital signage displays.</p>
-              </div>
-            </a>
-            </div><!--col-->
+      <p class="text-muted lead half-bottom" ng-show="factory.items.list.length > 0">Recently Modified</p>
+      <div class="content-box" ng-class="{'scrollable-list':factory.loadingItems}" 
+          ng-show="factory.loadingItems || factory.items.list.length > 0" 
+          rv-spinner rv-spinner-key="presentation-list-loader" rv-spinner-start-active="1">
+        <table class="table-2 table-hover">
+          <tr class="clickable-row" ng-repeat="presentation in factory.items.list">
+            <td><a ui-sref="apps.editor.workspace.artboard({presentationId: presentation.id})"><strong>{{presentation.name}}</strong></a></td>
+          </tr>
+        </table>
+      </div>  
+  
+      <div class="add-top">
+        <button ng-click="launcherTracker('Add Presentation'); editorFactory.addFromTemplate()" class="btn btn-primary btn-lg">
+          {{'editor-app.list.actions.add' |translate}} <i class="fa fa-plus icon-right"></i>
+        </button>
+      </div>
+    </div><!--app-launcher-block-->  
 
-            <div class="col-sm-4">
-            <a href="http://rva.risevision.com/#SCHEDULES" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/schedule-image.png"></div>
-                <h3>Schedules</h3>
-                <p>Schedule delivery of HTML content to your digital signage displays.</p>
-              </div>
-            </a>
-            </div>
+    <hr>
 
-            <div class="col-sm-4">
-            <a href="https://community.risevision.com" class="feature" vertilize>
-              <div class="content-box-body">
-                <div class="image"><img src="images/community-image.png"></div>
-                <h3>Community</h3>
-                <p>Ask questions, share ideas and connect with other people who are passionate about digital signage.</p>
-              </div>
-            </a>
-            </div>
-          </div><!--row-->
-        </div>
-      </div><!--home-features-->
-    </div><!--page-content-->
-  </div><!--website-->
+    <div class="app-launcher-block" ng-controller="displaysList">
+
+      <div class="app-launcher-block-header">
+        <h2 class="add-bottom">My Displays</h2>
+        <a ui-sref="apps.displays.list" ng-show="displays.list.length > 0">View All</a>
+      </div><!--app-launcher-block-header-->
+
+      <p class="text-muted" ng-show="displays.list.length === 0 && !loadingDisplays" translate>displays-app.list.empty</p>
+
+      <p class="text-muted lead half-bottom" ng-show="displays.list.length > 0">Recently Modified</p>
+      <div class="content-box" ng-class="{'scrollable-list':loadingDisplays}" 
+          ng-show="loadingDisplays || displays.list.length > 0" 
+          rv-spinner rv-spinner-key="displays-list-loader" rv-spinner-start-active="1">
+        <table class="table-2 table-hover">
+          <tr class="clickable-row" ng-repeat="display in displays.list">
+            <td><a ui-sref="apps.displays.change({displayId: display.id})"><strong>{{display.name}}</strong></a></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="add-top">
+        <a id="displayAddButton" ui-sref="apps.displays.add" class="btn btn-lg btn-primary" ng-click="launcherTracker('Add Display')" require-role="da">
+          {{ 'displays-app.actions.new' | translate }}
+          <i class="fa fa-plus icon-right"></i> 
+        </a>
+      </div>      
+
+    </div><!--app-launcher-block-->  
+
+    <hr>
+
+    <div class="app-launcher-block" ng-controller="schedulesList">
+
+      <div class="app-launcher-block-header">
+        <h2 class="add-bottom">My Schedules</h2>
+        <a ui-sref="apps.schedules.list" ng-show="schedules.list.length > 0">View All</a>
+      </div><!--app-launcher-block-header-->
+
+      <p class="text-muted" ng-show="schedules.list.length === 0 && !loadingSchedules" translate>schedules-app.list.empty</p>
+
+      <p class="text-muted lead half-bottom" ng-show="schedules.list.length > 0">Recently Modified</p>
+      <div class="content-box" ng-class="{'scrollable-list':loadingSchedules}" 
+          ng-show="loadingSchedules || schedules.list.length > 0"
+          rv-spinner rv-spinner-key="schedules-list-loader" rv-spinner-start-active="1">
+        <table class="table-2 table-hover">
+          <tr class="clickable-row" ng-repeat="schedule in schedules.list">
+            <td><a ui-sref="apps.schedules.details({scheduleId: schedule.id})"><strong>{{schedule.name}}</strong></a></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="add-top">
+        <a id="scheduleAddButton" ui-sref="apps.schedules.add" class="btn btn-lg btn-primary" ng-click="launcherTracker('Add Schedule')" require-role="cp">
+        {{ 'schedules-app.actions.new' | translate }}
+        <i class="fa fa-plus icon-right"></i> 
+        </a>
+      </div>
+    </div><!--app-launcher-block-->  
+    <hr>
+  </div><!--container-->
+
+  
+
+  <div class="app-launcher-footer"> 
+    <div class="container">
+    <div class="row">
+      <div class="col-sm-2">
+        <div class="content-box text-center classic-rva">
+          <a ui-sref="apps.editor.list">
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/editor-image.png">
+            <h3>Editor</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+      <div class="col-sm-2">
+        <div class="content-box text-center classic-rva">
+          <a ui-sref="apps.displays.list">
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/displays-image.png">
+            <h3>Displays</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+      <div class="col-sm-2">
+        <div class="content-box text-center classic-rva">
+          <a ui-sref="apps.schedules.list">
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/schedule-image.png">
+            <h3>Schedules</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+      <div class="col-sm-2">
+        <div class="content-box text-center">
+          <a href="https://store.risevision.com/" target="_blank" link-cid>
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/store-image.png">
+            <h3>Store</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+      <div class="col-sm-2">
+        <div class="content-box text-center">
+          <a href="https://storage.risevision.com/" target="_blank" link-cid>
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/storage-image.png">
+            <h3>Storage</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+      
+      <div class="col-sm-2">
+        <div class="content-box text-center">
+          <a href="https://community.risevision.com/rise_vision_inc" target="_blank">
+          <div class="content-box-body">
+            <img class="img-responsive" src="https://s3.amazonaws.com/Rise-Images/landing-page/community-image.png">
+            <h3>Community</h3>
+          </div><!--content-box-body-->
+          </a>
+        </div><!--content-box-->
+      </div><!--col-->
+    </div><!--row-->
+    </div><!--container-->
+  </div><!--app-launcher-footer-->
+  <br/>
+
 </div><!--appLauncherContainer-->

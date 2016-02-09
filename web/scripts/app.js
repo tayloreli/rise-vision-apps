@@ -56,7 +56,7 @@ angular.module('risevision.apps', [
 
       .state('apps.launcher', {
         abstract: true,
-        template: '<div class="website" ui-view></div>'
+        template: '<div class="app-launcher" ui-view></div>'
       })
 
       .state('apps.launcher.unauthorized', {
