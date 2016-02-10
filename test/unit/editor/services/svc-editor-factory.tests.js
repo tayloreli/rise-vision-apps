@@ -123,8 +123,6 @@ describe('service: editorFactory:', function() {
         open : function(obj){
           var deferred = Q.defer();
 
-          obj.resolve.category();
-
           deferred.resolve({rvaEntityId: 'id1'});
           
           return {
@@ -142,7 +140,8 @@ describe('service: editorFactory:', function() {
     $provide.value('VIEWER_URL', 'http://rvaviewer-test.appspot.com');
 
   }));
-  var editorFactory, trackerCalled, updatePresentation, currentState, stateParams, presentationParser, $window;
+  var editorFactory, trackerCalled, updatePresentation, currentState, stateParams, 
+    presentationParser, $window, $modal;
   beforeEach(function(){
     trackerCalled = undefined;
     currentState = undefined;
@@ -152,6 +151,7 @@ describe('service: editorFactory:', function() {
       editorFactory = $injector.get('editorFactory');
       presentationParser = $injector.get('presentationParser');
       $window = $injector.get('$window');
+      $modal = $injector.get('$modal');
     });
   });
 
@@ -172,6 +172,8 @@ describe('service: editorFactory:', function() {
     expect(editorFactory.copyPresentation).to.be.a('function');
     expect(editorFactory.addPresentationModal).to.be.a('function');
     expect(editorFactory.saveAndPreview).to.be.a('function');
+    expect(editorFactory.preview).to.be.a('function');
+    expect(editorFactory.addFromSharedTemplateModal).to.be.a('function');
   });
 
   it('should initialize',function(){
@@ -531,6 +533,33 @@ describe('service: editorFactory:', function() {
 
   });
 
+  it('addFromSharedTemplateModal: ', function(done) {
+    var $modalOpenSpy = sinon.spy($modal, 'open');
+
+    editorFactory.addFromSharedTemplateModal();
+    expect(trackerCalled).to.equal("Add Presentation from Shared Template");
+
+    $modalOpenSpy.should.have.been.calledWith({
+      templateUrl: 'partials/editor/shared-templates-modal.html',
+      size: 'md',
+      controller: 'SharedTemplatesModalController'
+    });
+    
+    setTimeout(function() {
+      expect(editorFactory.loadingPresentation).to.be.false;
+
+      expect(editorFactory.presentation.id).to.not.be.ok;
+      expect(editorFactory.presentation.name).to.equal('Copy of some presentation');
+      
+      expect(trackerCalled).to.equal('Presentation Copied');
+      expect(currentState).to.equal('apps.editor.workspace.artboard');
+      expect(stateParams).to.deep.equal({presentationId: undefined, copyPresentation:true});
+
+      done();
+    }, 10);
+
+  });
+
   it('newCopyOf: ', function(done) {
     editorFactory.newCopyOf("presentationId");
     
@@ -579,6 +608,17 @@ describe('service: editorFactory:', function() {
     });
 
   });
+
+  it('should preview a presentation (or template)', function(done) {
+      var $windowOpenSpy = sinon.spy($window, 'open');
+      
+      editorFactory.preview('presentationId');
+      
+      setTimeout(function() {
+        $windowOpenSpy.should.have.been.calledWith('http://rvaviewer-test.appspot.com/?type=presentation&id=presentationId&showui=false', 'rvPresentationPreview');
+        done();
+      }, 10);
+    });
 
   describe('publishPresentation: ',function(){
     it('should publish the presentation',function(done){

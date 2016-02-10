@@ -9,6 +9,7 @@ PlaylistScenarios = require('./cases/playlist.js');
 TemplateAddScenarios = require('./cases/template-add.js');
 HtmlEditorScenarios = require('./cases/html-editor.js');
 PresentationAddScenarios = require('./cases/presentation-add.js');
+SharedTemplatesScenarios = require('./cases/shared-templates.js');
 
 presentationListScenarios = new PresentationListScenarios();
 artboardScenarios = new ArtboardScenarios();
@@ -20,3 +21,4 @@ playlistScenarios = new PlaylistScenarios();
 templateAddScenarios = new TemplateAddScenarios();
 htmlEditorScenarios = new HtmlEditorScenarios();
 presentationAddScenarios = new PresentationAddScenarios();
+sharedTemplatesScenarios = new SharedTemplatesScenarios();

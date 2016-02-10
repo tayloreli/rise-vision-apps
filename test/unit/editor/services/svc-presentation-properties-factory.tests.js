@@ -14,7 +14,9 @@ describe('service: presentationPropertiesFactory:', function() {
       heightUnits: 'px',
       background: undefined,
       hidePointer: true,
-      donePlaceholder: ''
+      donePlaceholder: '',
+      isTemplate: false,
+      isStoreProduct: false
     };
 
     existentPresentationProperties = {
@@ -26,7 +28,9 @@ describe('service: presentationPropertiesFactory:', function() {
       heightUnits: 'px',
       background: {'color':'rgba(255,255,255,1)'},
       hidePointer: true,
-      donePlaceholder: 'done placeholder'
+      donePlaceholder: 'done placeholder',
+      isTemplate: true,
+      isStoreProduct: false
     };
 
     presentation = {
@@ -39,7 +43,9 @@ describe('service: presentationPropertiesFactory:', function() {
       backgroundStyle: 'rgba(255,255,255,1)',
       backgroundScaleToFit: false,
       hidePointer: true,
-      donePlaceholder: 'done placeholder'
+      donePlaceholder: 'done placeholder',
+      isTemplate: true,
+      isStoreProduct: false
     };
 
     editorFactory = {
