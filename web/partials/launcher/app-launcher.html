@@ -15,7 +15,7 @@
             <div class="padding-large-horizontal padding-small-vertical">  
               <h4>1. Create</h4>
               <p class="text-muted add-left add-right">Create your first Presentation with our easy to use Editor.</p><br>
-              <a ui-sref="apps.editor.workspace.artboard" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Presentation')">Create Presentation</a>
+              <button id="presentationAddButton" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Presentation'); editorFactory.addFromTemplate()">Add Presentation</button>
             </div>
           </div><!--content-box-->
         </div><!--col-->

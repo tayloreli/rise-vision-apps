@@ -8,6 +8,7 @@ describe('controller: Home', function() {
       $controller('HomeCtrl', {
         $scope: $scope,
         launcherTracker: function(){},
+        editorFactory: function(){},
       });
       $scope.$digest();
     });
@@ -15,5 +16,6 @@ describe('controller: Home', function() {
   it('should exist',function(){
     expect($scope).to.be.ok;
     expect($scope.launcherTracker).to.be.ok;
+    expect($scope.editorFactory).to.be.ok;
   });
 });
