@@ -66,7 +66,7 @@ angular.module('risevision.apps', [
             'partials/launcher/login.html');
         }]
       })
-      
+
       .state('apps.launcher.unregistered', {
         templateProvider: ['$templateCache', function ($templateCache) {
           return $templateCache.get(

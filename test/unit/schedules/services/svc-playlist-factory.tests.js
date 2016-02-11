@@ -27,7 +27,11 @@ describe('service: playlistFactory:', function() {
     $provide.service('scheduleFactory',function () {
       return scheduleFactory;
     });
-
+    $provide.service('scheduleTracker', function() { 
+      return function(name) {
+        trackerCalled = name;
+      };
+    });
   }));
   var playlist, playlistItem, playlistItem0, playlistItem2, playlistFactory, trackerCalled, updateSchedule, currentState;
   var scheduleFactory;
@@ -80,6 +84,7 @@ describe('service: playlistFactory:', function() {
   it('getNewUrlItem: ', function() {
     var playlistItem = playlistFactory.getNewUrlItem();
     
+    expect(trackerCalled).to.equal('Add URL Item to Schedule');
     expect(playlistItem.duration).to.equal(10);
     expect(playlistItem.type).to.equal('url');
     expect(playlistItem.name).to.equal('URL Item');
@@ -88,6 +93,7 @@ describe('service: playlistFactory:', function() {
   it('getNewPresentationItem: ', function() {
     var playlistItem = playlistFactory.getNewPresentationItem();
     
+    expect(trackerCalled).to.equal('Add Presentation to Schedule');
     expect(playlistItem.duration).to.equal(10);
     expect(playlistItem.type).to.equal('presentation');
   });
