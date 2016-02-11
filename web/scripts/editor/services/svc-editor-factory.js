@@ -43,7 +43,7 @@ angular.module('risevision.editor.services')
         factory.apiError = '';
       };
 
-      factory.newPresentation = function () {
+      var _init = function () {
         factory.presentation = {
           layout: DEFAULT_LAYOUT
         };
@@ -53,8 +53,14 @@ angular.module('risevision.editor.services')
         _clearMessages();
       };
 
-      factory.newPresentation();
+      _init();
+      
+      factory.newPresentation = function() {
+        presentationTracker('New Presentation');
 
+        _init();
+      };
+      
       var _updatePresentation = function (presentation) {
         factory.presentation = presentation;
 
@@ -201,8 +207,6 @@ angular.module('risevision.editor.services')
       };
 
       factory.save = function () {
-        presentationTracker('Save Presentation', factory.presentation.id,
-          factory.presentation.name);
         if (factory.presentation.id) {
           return factory.updatePresentation();
         } else {
@@ -302,12 +306,14 @@ angular.module('risevision.editor.services')
       };
 
       factory.copyPresentation = function () {
-        presentationTracker('Presentation Copied', factory.presentation.id,
+        presentationTracker((factory.presentation.isTemplate ? 
+          'Template' : 'Presentation') + ' Copied', factory.presentation.id,
           factory.presentation.name);
 
         factory.presentation.id = undefined;
         factory.presentation.name = 'Copy of ' + factory.presentation.name;
         factory.presentation.revisionStatusName = undefined;
+        factory.presentation.isTemplate = false;
 
         $state.go('apps.editor.workspace.artboard', {
           presentationId: undefined,
@@ -320,8 +326,9 @@ angular.module('risevision.editor.services')
           .then(factory.copyPresentation);
       };
 
-      factory.addFromTemplate = function () {
-        presentationTracker('Add Presentation From Template');
+      factory.addPresentationModal = function () {
+        presentationTracker('Add Presentation');
+        
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/store-products-modal.html',
           size: 'lg',
@@ -334,10 +341,10 @@ angular.module('risevision.editor.services')
         });
 
         modalInstance.result.then(function (productDetails) {
-          presentationTracker('Template Selected');
           if (!productDetails || !productDetails.rvaEntityId) {
             return;
           }
+
           factory.newCopyOf(productDetails.rvaEntityId);
         });
       };

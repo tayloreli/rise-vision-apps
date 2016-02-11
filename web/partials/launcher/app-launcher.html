@@ -15,7 +15,7 @@
             <div class="padding-large-horizontal padding-small-vertical">  
               <h4>1. Create</h4>
               <p class="text-muted add-left add-right">Create your first Presentation with our easy to use Editor.</p><br>
-              <button id="presentationAddButton" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Presentation'); editorFactory.addFromTemplate()">Add Presentation</button>
+              <button id="presentationAddButton" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="editorFactory.addPresentationModal()">Add Presentation</button>
             </div>
           </div><!--content-box-->
         </div><!--col-->
@@ -39,7 +39,7 @@
             <div class="padding-large-horizontal padding-small-vertical">  
               <h4>3. Manage</h4>
               <p class="text-muted add-left add-right">Create a Schedule to choose when and where you’d like your content to show.</p>
-              <a ui-sref="apps.schedules.add" class="btn btn-hg btn-primary add-bottom btn-block" ng-click="launcherTracker('Add Schedule')">Add Schedule</a>
+              <a ui-sref="apps.schedules.add" class="btn btn-hg btn-primary add-bottom btn-block">Add Schedule</a>
             </div>
           </div><!--content-box-->
         </div>           

@@ -170,12 +170,23 @@ describe('service: editorFactory:', function() {
     expect(editorFactory.deletePresentation).to.be.a('function');
     expect(editorFactory.isRevised).to.be.a('function');
     expect(editorFactory.copyPresentation).to.be.a('function');
-    expect(editorFactory.addFromTemplate).to.be.a('function');
+    expect(editorFactory.addPresentationModal).to.be.a('function');
     expect(editorFactory.saveAndPreview).to.be.a('function');
   });
+
+  it('should initialize',function(){
+    expect(editorFactory.presentation.layout).to.be.ok;
+    expect(editorFactory.presentation.parsed).to.be.true;
+    expect(editorFactory.presentationId).to.not.be.ok;
+  });
+
   
   it('newPresentation: should reset the presentation',function(){
+    editorFactory.presentation.id = 'presentationId';
+    
     editorFactory.newPresentation();
+    
+    expect(trackerCalled).to.equal('New Presentation');
     
     expect(editorFactory.presentation.layout).to.be.ok;
     expect(editorFactory.presentation.parsed).to.be.true;
@@ -463,26 +474,47 @@ describe('service: editorFactory:', function() {
     });
   });
   
-  it('copyPresentation: should copy the presentation',function(){
-    editorFactory.presentation = {
-      id: 'someId',
-      name: 'New Presentation',
-      revisionStatusname: 'revised'
-    };
-    
-    editorFactory.copyPresentation();
-    
-    expect(editorFactory.presentation.id).to.not.be.ok;
-    expect(editorFactory.presentation.name).to.equal('Copy of New Presentation');
-    
-    expect(trackerCalled).to.equal('Presentation Copied');
-    expect(currentState).to.equal('apps.editor.workspace.artboard');
-    expect(stateParams).to.deep.equal({presentationId: undefined, copyPresentation:true});
+  describe('copyPresentation: ', function() {
+    it('should copy the presentation',function(){
+      editorFactory.presentation = {
+        id: 'someId',
+        name: 'New Presentation',
+        revisionStatusname: 'revised'
+      };
+      
+      editorFactory.copyPresentation();
+      
+      expect(editorFactory.presentation.id).to.not.be.ok;
+      expect(editorFactory.presentation.name).to.equal('Copy of New Presentation');
+      
+      expect(trackerCalled).to.equal('Presentation Copied');
+      expect(currentState).to.equal('apps.editor.workspace.artboard');
+      expect(stateParams).to.deep.equal({presentationId: undefined, copyPresentation:true});
+    });
+  
+    it('should copy a template',function(){
+      editorFactory.presentation = {
+        id: 'someId',
+        name: 'New Presentation',
+        revisionStatusname: 'revised',
+        isTemplate: true
+      };
+      
+      editorFactory.copyPresentation();
+      
+      expect(editorFactory.presentation.id).to.not.be.ok;
+      expect(editorFactory.presentation.name).to.equal('Copy of New Presentation');
+      expect(editorFactory.presentation.isTemplate).to.be.false;
+      
+      expect(trackerCalled).to.equal('Template Copied');
+      expect(currentState).to.equal('apps.editor.workspace.artboard');
+      expect(stateParams).to.deep.equal({presentationId: undefined, copyPresentation:true});
+    });
   });
   
-  it('addFromTemplate: ', function(done) {
-    editorFactory.addFromTemplate();
-    expect(trackerCalled).to.equal("Add Presentation From Template");
+  it('addPresentationModal: ', function(done) {
+    editorFactory.addPresentationModal();
+    expect(trackerCalled).to.equal("Add Presentation");
     
     setTimeout(function() {
       expect(editorFactory.loadingPresentation).to.be.false;
@@ -591,10 +623,27 @@ describe('service: editorFactory:', function() {
     });
   });
 
-  describe('save:',function(){
-    it('should track event',function(){
+  describe('save: ',function(){
+    it('should add presentation', function(done){
       editorFactory.save();
-      expect(trackerCalled).to.equal("Save Presentation");
+      
+      setTimeout(function(){
+        expect(trackerCalled).to.equal("Presentation Created");
+        
+        done();
+      }, 10);
+    });
+    
+    it('should update presentation', function(done){
+      editorFactory.presentation.id = "presentationId";
+      
+      editorFactory.save();
+      
+      setTimeout(function(){
+        expect(trackerCalled).to.equal("Presentation Updated");
+        
+        done();
+      }, 10);
     });
   });
 

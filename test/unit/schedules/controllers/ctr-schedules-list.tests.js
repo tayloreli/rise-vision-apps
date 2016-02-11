@@ -101,7 +101,6 @@ describe('controller: schedules list', function() {
 
   it('should exist',function(){
     expect($scope).to.be.truely;
-    expect($scope.scheduleTracker).to.be.ok;
 
     expect($scope.sortBy).to.be.a('function');
     expect($scope.doSearch).to.be.a('function');

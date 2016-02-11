@@ -142,7 +142,6 @@ describe('controller: display details', function() {
       $scope.displayDetails.$valid = true;
       $scope.display = {id:123};
       $scope.save();
-      expect(trackerCalled).to.equal('Save Display');
       expect($scope.savingDisplay).to.be.true;
       setTimeout(function(){
         expect(trackerCalled).to.equal('Display Updated');
@@ -159,7 +158,6 @@ describe('controller: display details', function() {
       $scope.displayDetails = {};
       $scope.displayDetails.$valid = true;
       $scope.save();
-      expect(trackerCalled).to.equal('Save Display');
       setTimeout(function(){
         expect($state._state).to.be.empty;
         expect(trackerCalled).to.not.equal('Display Updated');
