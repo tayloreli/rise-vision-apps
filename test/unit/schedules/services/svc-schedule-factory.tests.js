@@ -93,8 +93,18 @@ describe('service: scheduleFactory:', function() {
     expect(scheduleFactory.getPreviewUrl).to.be.a('function');
   });
   
+  it('should initialize',function(){
+    expect(scheduleFactory.schedule).to.deep.equal({content: [], distributeToAll: false, distribution: []});
+    expect(scheduleFactory.scheduleId).to.not.be.truely;
+  });
+  
   it('newSchedule: should reset the schedule',function(){
+    scheduleFactory.schedule.id = 'scheduleId';
+    scheduleFactory.scheduleId = 'scheduleId';
+    
     scheduleFactory.newSchedule();
+    
+    expect(trackerCalled).to.equal('Add Schedule');
     
     expect(scheduleFactory.schedule).to.deep.equal({content: [], distributeToAll: false, distribution: []});
     expect(scheduleFactory.scheduleId).to.not.be.truely;

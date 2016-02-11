@@ -24,7 +24,7 @@
           rv-spinner-start-active="1">
 
       <li class="blank-template" ng-if="factory.search.category == 'Templates' && !factory.loadingItems">
-        <a class="clickable" id="newPresentationButton" ui-sref="apps.editor.workspace.artboard" ng-click="dismiss(); presentationTracker('New Presentation')">
+        <a class="clickable" id="newPresentationButton" ui-sref="apps.editor.workspace.artboard" ng-click="dismiss();">
           <p><span><i class="fa fa-plus fa-2x"></i></span> {{'editor-app.storeProduct.templates.blank' | translate}}</p>
         </a>
       </li>

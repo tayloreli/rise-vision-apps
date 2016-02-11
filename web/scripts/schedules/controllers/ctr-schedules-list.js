@@ -2,13 +2,12 @@
 
 angular.module('risevision.schedules.controllers')
   .controller('schedulesList', ['$scope', 'userState', 'schedule', 'BaseList',
-    '$location', '$loading', '$filter', 'scheduleTracker',
+    '$location', '$loading', '$filter',
     function ($scope, userState, schedule, BaseList, $location, $loading,
-      $filter, scheduleTracker) {
+      $filter) {
       var DB_MAX_COUNT = 40; //number of records to load at a time
 
       $scope.schedules = new BaseList(DB_MAX_COUNT);
-      $scope.scheduleTracker = scheduleTracker;
 
       $scope.search = angular.extend({
         sortBy: 'changeDate',

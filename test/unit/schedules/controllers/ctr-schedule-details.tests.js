@@ -46,18 +46,11 @@ describe('controller: schedule details', function() {
         }
       }
     });
-
-    $provide.service('scheduleTracker',function(){
-      return function(eventName,scheduleId, scheduleName) {
-        trackedEvent = eventName;
-      };
-    });
   }));
-  var $scope, $state, updateCalled, deleteCalled, confirmDelete, trackedEvent;
+  var $scope, $state, updateCalled, deleteCalled, confirmDelete;
   beforeEach(function(){
     updateCalled = false;
     deleteCalled = false;
-    trackedEvent = undefined;
     
     inject(function($injector,$rootScope, $controller){
       $scope = $rootScope.$new();
@@ -96,7 +89,6 @@ describe('controller: schedule details', function() {
       $scope.schedule = {id:123};
       $scope.save();
 
-      expect(trackedEvent).to.equal('Save Schedule');
       expect(updateCalled).to.be.true;
     });
   });
