@@ -15,7 +15,7 @@ angular.module('risevision.schedules.services')
         factory.apiError = '';
       };
 
-      var _init = function() {
+      var _init = function () {
         _scheduleId = undefined;
 
         factory.schedule = {
@@ -26,12 +26,12 @@ angular.module('risevision.schedules.services')
 
         _clearMessages();
       };
-      
+
       _init();
 
-      factory.newSchedule = function() {
+      factory.newSchedule = function () {
         scheduleTracker('Add Schedule');
-        
+
         _init();
       };
 

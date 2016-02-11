@@ -54,13 +54,13 @@ angular.module('risevision.editor.services')
       };
 
       _init();
-      
-      factory.newPresentation = function() {
+
+      factory.newPresentation = function () {
         presentationTracker('New Presentation');
 
         _init();
       };
-      
+
       var _updatePresentation = function (presentation) {
         factory.presentation = presentation;
 
@@ -306,9 +306,9 @@ angular.module('risevision.editor.services')
       };
 
       factory.copyPresentation = function () {
-        presentationTracker((factory.presentation.isTemplate ? 
-          'Template' : 'Presentation') + ' Copied', factory.presentation.id,
-          factory.presentation.name);
+        presentationTracker((factory.presentation.isTemplate ?
+            'Template' : 'Presentation') + ' Copied',
+          factory.presentation.id, factory.presentation.name);
 
         factory.presentation.id = undefined;
         factory.presentation.name = 'Copy of ' + factory.presentation.name;
@@ -328,7 +328,7 @@ angular.module('risevision.editor.services')
 
       factory.addPresentationModal = function () {
         presentationTracker('Add Presentation');
-        
+
         var modalInstance = $modal.open({
           templateUrl: 'partials/editor/store-products-modal.html',
           size: 'lg',

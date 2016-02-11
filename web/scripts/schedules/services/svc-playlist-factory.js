@@ -3,13 +3,17 @@
 angular.module('risevision.schedules.services')
   .constant('TYPE_URL', 'url')
   .constant('TYPE_PRESENTATION', 'presentation')
-  .factory('playlistFactory', ['scheduleFactory', 'TYPE_URL',
-    'TYPE_PRESENTATION',
-    function (scheduleFactory, TYPE_URL, TYPE_PRESENTATION) {
+  .factory('playlistFactory', ['scheduleFactory', 'scheduleTracker',
+    'TYPE_URL', 'TYPE_PRESENTATION',
+    function (scheduleFactory, scheduleTracker, TYPE_URL, TYPE_PRESENTATION) {
       var DEFAULT_DURATION = 10;
       var factory = {};
 
       factory.getNewPresentationItem = function () {
+        scheduleTracker('Add Presentation to Schedule',
+          scheduleFactory.schedule.id, scheduleFactory.schedule.name
+        );
+
         return {
           duration: DEFAULT_DURATION,
           type: TYPE_PRESENTATION
@@ -17,6 +21,10 @@ angular.module('risevision.schedules.services')
       };
 
       factory.getNewUrlItem = function () {
+        scheduleTracker('Add URL Item to Schedule',
+          scheduleFactory.schedule.id, scheduleFactory.schedule.name
+        );
+
         return {
           duration: DEFAULT_DURATION,
           type: TYPE_URL,

@@ -50,8 +50,8 @@ angular.module('risevision.apps.controllers')
         $scope.navSelected = $state.current.name;
         $scope.hideCH = $state.current.name ===
           'apps.launcher.unauthorized' ||
-          $state.current.name === 'apps.launcher.unregistered'|| 
-          $state.current.name === 'apps.launcher.signin' || 
+          $state.current.name === 'apps.launcher.unregistered' ||
+          $state.current.name === 'apps.launcher.signin' ||
           $state.current.name === 'apps.launcher.signup';
       });
     }
