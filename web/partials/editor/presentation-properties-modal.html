@@ -20,6 +20,21 @@
 
     <hr>
     <div class="form-group">
+       <div class="checkbox">
+           <label>
+               <input name="sharePresentation" type="checkbox" ng-model="presentationProperties.isTemplate">{{'editor-app.properties.labels.shareAsTemplate' | translate}}</label>
+       </div>
+   </div>
+
+   <div class="form-group" ng-if="presentationProperties.isTemplate" require-role="sa">
+       <div class="checkbox">
+           <label>
+               <input name="sharePresentation" type="checkbox" ng-model="presentationProperties.isStoreProduct">{{'editor-app.properties.labels.isStoreProduct' | translate}}</label>
+       </div>
+   </div>
+
+   <hr>
+    <div class="form-group">
       <label id="resolutionLabel" translate>editor-app.properties.labels.resolution</label>
       <resolution-selector></resolution-selector>
     </div><!--form-group-->

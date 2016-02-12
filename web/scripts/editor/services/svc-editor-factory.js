@@ -314,6 +314,7 @@ angular.module('risevision.editor.services')
         factory.presentation.name = 'Copy of ' + factory.presentation.name;
         factory.presentation.revisionStatusName = undefined;
         factory.presentation.isTemplate = false;
+        factory.presentation.isStoreProduct = false;
 
         $state.go('apps.editor.workspace.artboard', {
           presentationId: undefined,
@@ -349,6 +350,22 @@ angular.module('risevision.editor.services')
         });
       };
 
+      factory.addFromSharedTemplateModal = function () {
+        presentationTracker('Add Presentation from Shared Template');
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editor/shared-templates-modal.html',
+          size: 'md',
+          controller: 'SharedTemplatesModalController'
+        });
+
+        modalInstance.result.then(function (templateId) {
+          if (!templateId) {
+            return;
+          }
+          factory.newCopyOf(templateId);
+        });
+      };
+
       var _getPreviewUrl = function (presentationId) {
         if (presentationId) {
           return VIEWER_URL + '/?type=presentation&id=' + presentationId +
@@ -357,15 +374,19 @@ angular.module('risevision.editor.services')
         return null;
       };
 
-      factory.saveAndPreview = function () {
+      factory.preview = function (presentationId) {
         presentationTracker('Preview Presentation', factory.presentation.id,
           factory.presentation.name);
 
+        $window.open(_getPreviewUrl(presentationId),
+          'rvPresentationPreview');
+      };
+
+      factory.saveAndPreview = function () {
         $window.open('/loading-preview.html', 'rvPresentationPreview');
 
         factory.save().then(function (presentationId) {
-          $window.open(_getPreviewUrl(presentationId),
-            'rvPresentationPreview');
+          factory.preview(presentationId);
         });
       };
 

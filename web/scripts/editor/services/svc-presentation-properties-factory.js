@@ -16,7 +16,9 @@ angular.module('risevision.editor.services')
           heightUnits: 'px',
           background: undefined,
           hidePointer: true,
-          donePlaceholder: ''
+          donePlaceholder: '',
+          isTemplate: false,
+          isStoreProduct: false
         };
       };
 
@@ -37,6 +39,9 @@ angular.module('risevision.editor.services')
           presentationProperties.hidePointer = editorFactory.presentation.hidePointer;
           presentationProperties.donePlaceholder = editorFactory.presentation
             .donePlaceholder;
+          presentationProperties.isTemplate = editorFactory.presentation.isTemplate;
+          presentationProperties.isStoreProduct = editorFactory.presentation
+            .isStoreProduct;
         }
 
         return presentationProperties;
@@ -57,6 +62,9 @@ angular.module('risevision.editor.services')
           editorFactory.presentation.hidePointer = presentationProperties.hidePointer;
           editorFactory.presentation.donePlaceholder =
             presentationProperties.donePlaceholder;
+          editorFactory.presentation.isTemplate = presentationProperties.isTemplate;
+          editorFactory.presentation.isStoreProduct =
+            presentationProperties.isStoreProduct;
 
           presentationParser.updatePresentation(editorFactory.presentation);
         }

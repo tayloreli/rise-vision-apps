@@ -9,6 +9,7 @@ var PresentationListPage = function() {
   var title = element(by.id('title'));
   var searchFilter = element(by.tagName('search-filter'));
   var presentationAddButton = element(by.id('presentationAddButton'));
+  var sharedTemplatesButton = element(by.id('sharedTemplatesButton'));
 
   var presentationListTable = element(by.id('presentationListTable'));
   var tableHeaderName = element(by.id('tableHeaderName'));
@@ -38,6 +39,10 @@ var PresentationListPage = function() {
 
   this.getPresentationAddButton = function() {
     return presentationAddButton;
+  };
+
+  this.getSharedTemplatesButton = function() {
+    return sharedTemplatesButton;
   };
 
   this.getPresentationListTable = function() {
