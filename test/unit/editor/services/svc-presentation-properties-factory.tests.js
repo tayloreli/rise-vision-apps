@@ -97,7 +97,7 @@ describe('service: presentationPropertiesFactory:', function() {
       presentation.backgroundStyle = 'url(\'/images/bg.jpg\') no-repeat left top',
       presentation.backgroundScaleToFit = true;
 
-      existentPresentationProperties.background = {'useImage':true,'image':{'url':'/images/bg.jpg','position':'top-left','scale':true}};
+      existentPresentationProperties.background = {'useImage':true,'image':{'url':'/images/bg.jpg','position':'top-left','scale':true, 'repeat': 'no-repeat'}};
 
       expect(presentationPropertiesFactory.getPresentationProperties()).to.deep.equal(existentPresentationProperties);
     });
@@ -106,7 +106,7 @@ describe('service: presentationPropertiesFactory:', function() {
       presentation.backgroundStyle = 'url(\'/images/bg.jpg\') no-repeat',
         presentation.backgroundScaleToFit = true;
 
-      existentPresentationProperties.background = {'useImage':true,'image':{'url':'/images/bg.jpg','scale':true}};
+      existentPresentationProperties.background = {'useImage':true,'image':{'url':'/images/bg.jpg','scale':true, 'repeat': 'no-repeat'}};
 
       expect(presentationPropertiesFactory.getPresentationProperties()).to.deep.equal(existentPresentationProperties);
     });
