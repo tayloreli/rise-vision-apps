@@ -23,6 +23,13 @@ angular.module('risevision.editor.services')
         ['right bottom', 'bottom-right']
       ];
 
+      var REPEAT_OPTIONS = [
+        'repeat',
+        'no-repeat',
+        'repeat-y',
+        'repeat-x'
+      ];
+
       factory.parseBackground = function (backgroundStyle,
         backgroundScaleToFit) {
         var background = {};
@@ -59,6 +66,12 @@ angular.module('risevision.editor.services')
               }
             }
 
+            for (var i = 0; i < REPEAT_OPTIONS.length; i++) {
+              if (backgroundStyle.indexOf(REPEAT_OPTIONS[i]) !== -1) {
+                background.image.repeat = REPEAT_OPTIONS[i];
+              }
+            }
+
             background.image.scale = backgroundScaleToFit;
           }
 
@@ -78,7 +91,13 @@ angular.module('risevision.editor.services')
         if (background && background.useImage) {
           backgroundStyle += backgroundStyle ? ' ' : '';
           backgroundStyle += 'url(\'' + background.image.url +
-            '\') no-repeat';
+            '\')';
+
+          if (background.image.repeat && !background.image.scale) {
+            backgroundStyle += ' ' + background.image.repeat;
+          } else {
+            backgroundStyle += ' no-repeat';
+          }
 
           if (background.image.position) {
             for (var i = 0; i < POSITION_OPTIONS.length; i++) {

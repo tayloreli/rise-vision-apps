@@ -16,7 +16,7 @@ angular.module('risevision.apps', [
     'risevision.common.components.distribution-selector',
     'risevision.common.components.presentation-selector',
     'risevision.widget.common.storage-selector',
-    'risevision.widget.common.background-image-setting',
+    'risevision.common.components.background-image-setting',
     'risevision.widget.common',
     'ui.codemirror',
     'angular.vertilize',

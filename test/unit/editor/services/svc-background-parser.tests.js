@@ -29,23 +29,35 @@ describe('service: backgroundParser:', function() {
     });
 
     it('should parse background with image background and scale to fit true', function() {
-      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','position':'top-left','scale':true}};
+      var background = {'useImage':true,'image':{'url':'/images/bg.jpg', repeat: 'no-repeat','position':'top-left','scale':true}};
+
+      expect(backgroundParser.parseBackground('url(\'/images/bg.jpg\') no-repeat left top', true)).to.deep.equal(background);
+    });
+
+    it('should parse background with image background and scale to fit true without repeat', function() {
+      var background = {'useImage':true,'image':{'url':'/images/bg.jpg', repeat: 'no-repeat', 'position':'top-left','scale':true}};
 
       expect(backgroundParser.parseBackground('url(\'/images/bg.jpg\') no-repeat left top', true)).to.deep.equal(background);
     });
     
     it('should parse background with image and color', function() {
       var backgroundString = 'rgb(170, 170, 170) url(\'https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png\') no-repeat center center';
-      var background = {"color":"rgb(170, 170, 170)","useImage":true,"image":{"url":"https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png","position":"middle-center","scale":true}};
+      var background = {"color":"rgb(170, 170, 170)","useImage":true,"image":{"url":"https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png","position":"middle-center","scale":true,repeat: 'no-repeat'}};
       
       expect(backgroundParser.parseBackground(backgroundString, true)).to.deep.equal(background);
       
     });
 
     it('should parse image background and without position', function() {
-      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','scale':true}};
+      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','scale':true, repeat: 'no-repeat'}};
 
       expect(backgroundParser.parseBackground('url(\'/images/bg.jpg\') no-repeat', true)).to.deep.equal(background);
+    });
+
+    it('should parse image background repeat vertical', function() {
+      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','scale':true, repeat: 'repeat-y'}};
+
+      expect(backgroundParser.parseBackground('url(\'/images/bg.jpg\') repeat-y', true)).to.deep.equal(background);
     });
   });
 
@@ -55,7 +67,7 @@ describe('service: backgroundParser:', function() {
     });
 
     it('should get image background and scale to fit true', function() {
-      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','position':'top-left','scale':true}};
+      var background = {'useImage':true,'image':{'url':'/images/bg.jpg','position':'top-left', repeat: 'no-repeat','scale':true}};
 
       expect(backgroundParser.getStyle(background)).to.equal('url(\'/images/bg.jpg\') no-repeat left top');
       expect(backgroundParser.getScaleToFit(background)).to.be.true;
@@ -64,11 +76,20 @@ describe('service: backgroundParser:', function() {
     
     it('should get image & clor background', function() {
       var backgroundString = 'rgb(170, 170, 170) url(\'https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png\') no-repeat center center';
-      var background = {"color":"rgb(170, 170, 170)","useImage":true,"image":{"url":"https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png","position":"middle-center","scale":true}};
+      var background = {"color":"rgb(170, 170, 170)","useImage":true,"image":{"url":"https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png","position":"middle-center", repeat: 'no-repeat',"scale":true}};
       
       expect(backgroundParser.getStyle(background)).to.equal(backgroundString);
       
     });
+
+    it('should not repeat when scaling', function() {
+      var backgroundString = 'rgb(170, 170, 170) url(\'https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png\') no-repeat center center';
+      var background = {"color":"rgb(170, 170, 170)","useImage":true,"image":{"url":"https://storage.googleapis.com/risemedialibrary-b428b4e8-c8b9-41d5-8a10-b4193c789443/image-1.png","position":"middle-center", repeat: 'repeat',"scale":true}};
+      
+      expect(backgroundParser.getStyle(background)).to.equal(backgroundString);
+      
+    });
+    
     
   });
 
