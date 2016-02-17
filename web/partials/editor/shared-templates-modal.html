@@ -25,10 +25,10 @@
           </tr>
         </thead>
         <tbody>
-        <tr class="clickable-row" data-ng-click="toggleObject.item = $index; select(template.id)" data-ng-class="{'active' : toggleObject.item == $index}" ng-repeat="template in factory.items.list">
-            <td id="templateName">{{template.name}}</td>
+        <tr class="text-clickable-row" data-ng-class="{'active' : toggleObject.item == $index}" ng-repeat="template in factory.items.list">
+            <td id="templateName"><a href="" ng-click="toggleObject.item = $index; select(template.id)">{{template.name}}</a></td>
             <td class="text-right"><a id="templatePreview" href="" ng-click="editorFactory.preview(template.id); $event.stopPropagation()" translate>editor-app.sharedTemplates.preview</a></td>
-          </tr>
+        </tr>
         </tbody>
       </table>
     </div>
