@@ -17,15 +17,14 @@ angular.module('risevision.editor.controllers')
       if (!item.objectReference && item.settingsUrl) {
         $scope.widgetName = item.name;
       } else {
-        if (item.objectReference && (item.type === 'widget' || item.type ===
-            'gadget')) {
+        if (item.objectReference && item.type === 'widget') {
           gadgetFactory.getGadget(item.objectReference).then(function (gadget) {
             $scope.widgetName = gadget.name;
           });
         }
       }
 
-      if (showWidgetModal) {
+      if (showWidgetModal && item.type === 'widget' ) {
         widgetModalFactory.showWidgetModal($scope.item);
       }
 
