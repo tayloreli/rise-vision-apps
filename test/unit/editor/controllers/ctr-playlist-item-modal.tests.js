@@ -155,6 +155,39 @@ describe('controller: playlist item modal', function() {
     });
   });
 
+  describe('Gadget checks', function () {
+    beforeEach(function(){
+      presentation = {
+        id : ''
+      };
+
+      inject(function($injector,$rootScope, $controller){
+        itemUpdated = null;
+        itemProperties.type = 'gadget';
+        updateSubscriptionStatusCalled = false;
+        $scope = $rootScope.$new();
+
+        $controller('PlaylistItemModalController', {
+          $scope: $scope,
+          $modalInstance : $modalInstance,
+          item: itemProperties,
+          showWidgetModal: false,
+          editorFactory: $injector.get('editorFactory')
+        });
+        $scope.$digest();
+      });
+    });
+
+    it('should not load widget name for Gadget', function(done) {
+      setTimeout(function() {
+        expect($scope.widgetName).to.not.equal('Widget');
+
+        done();
+      }, 10);
+    });
+
+  });
+
   describe('Check presentation id on the previous editor url', function () {
     beforeEach(function(){
       presentation.id = 852;
@@ -238,6 +271,12 @@ describe('controller: playlist item modal', function() {
     });
 
     it('should not open widget modal if not requested', function() {
+      _createController(false);
+      showWidgetModalSpy.should.not.have.been.called;
+    });
+
+    it('should not open widget modal for gadgets', function() {
+      itemProperties.type = 'gadget';
       _createController(false);
       showWidgetModalSpy.should.not.have.been.called;
     });
