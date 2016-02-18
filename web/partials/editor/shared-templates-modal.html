@@ -16,8 +16,11 @@
       >
       <table class="table-2 table-hover" id="templatesTable">
         <thead>
-          <tr>
-            <th id="tableHeaderName" translate>editor-app.sharedTemplates.name</th>
+          <tr class="clickable" ng-click="factory.sortBy('name')">
+            <th id="tableHeaderName">
+              {{'editor-app.sharedTemplates.name' | translate}}
+              <i ng-if="search.sortBy == 'name'" class="fa" ng-class="{false: 'fa-long-arrow-up', true: 'fa-long-arrow-down'}[search.reverse]"></i>
+            </th>
             <th></th>
           </tr>
         </thead>

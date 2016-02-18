@@ -6,7 +6,7 @@ angular.module('risevision.editor.controllers')
     function ($scope, ScrollingListService, template, editorFactory,
       $loading, $filter, $modalInstance) {
       $scope.search = {
-        sortBy: 'publish',
+        sortBy: 'name',
         reverse: false
       };
 
