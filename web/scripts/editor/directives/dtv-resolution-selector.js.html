@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/dtv-resolution-selector.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/dtv-resolution-selector.js</span></h1>
+    <h2>
+        Statements: <span class="metric">85.71% <small>(12 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">62.5% <small>(5 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">75% <small>(3 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">85.71% <small>(12 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../../index.html">All files</a> &#187; <a href="index.html">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/</a> &#187; dtv-resolution-selector.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('risevision.editor.directives')
+  .directive('resolutionSelector', [
+    function () {
+      return {
+        restrict: 'E',
+        scope: false,
+        templateUrl: 'partials/editor/resolution-selector.html',
+        link: function (scope) {
+&nbsp;
+            // view will show resolutions on the same order from this object declaration
+            scope.resolutionOptions = {
+              '1024x768': '1024 x 768',
+              '1280x1024': '1280 x 1024',
+              '1600x1200': '1600 x 1200',
+              '1280x720': '1280 x 720 Wide',
+              '1280x768': '1280 x 768 Wide',
+              '1360x768': '1360 x 768 Wide',
+              '1366x768': '1366 x 768 Wide',
+              '1440x900': '1440 x 900 Wide',
+              '1680x1050': '1680 x 1050 Wide',
+              '1920x1080': '1920 x 1080 Wide',
+              '3840x2160': '3840 x 2160 Wide',
+              '720x1280': '720 x 1280 Portrait',
+              '768x1280': '768 x 1280 Portrait',
+              '768x1360': '768 x 1360 Portrait',
+              '768x1366': '768 x 1366 Portrait',
+              '1080x1920': '1080 x 1920 Portrait',
+              '2160x3840': '2160 x 3840 Portrait',
+              'custom': 'Custom'
+            };
+&nbsp;
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.presentationProperties.width &amp;&amp; scope.presentationProperties
+              .height) {
+              scope.resolutionOption = scope.presentationProperties.width +
+                'x' + scope.presentationProperties.height;
+              <span class="missing-if-branch" title="if path not taken" >I</span>if (!(scope.resolutionOption in scope.resolutionOptions)) {
+<span class="cstat-no" title="statement not covered" >                scope.resolutionOption = 'custom';</span>
+              }
+            }
+&nbsp;
+            scope.updateResolution = function () {
+              <span class="missing-if-branch" title="else path not taken" >E</span>if (scope.resolutionOption !== 'custom') {
+                var sizes = scope.resolutionOption.split('x');
+                scope.presentationProperties.width = parseInt(sizes[0]);
+                scope.presentationProperties.height = parseInt(sizes[1]);
+              }
+            };
+&nbsp;
+            scope.objectKeys = <span class="fstat-no" title="function not covered" >function (obj) {</span>
+<span class="cstat-no" title="statement not covered" >              return Object.keys(obj);</span>
+            };
+&nbsp;
+          } //link()
+      };
+    }
+  ]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 10:38:19 GMT-0700 (Mountain Standard Time)</div>
+</div>
+<script src="../../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../../sorter.js"></script>
+</body>
+</html>

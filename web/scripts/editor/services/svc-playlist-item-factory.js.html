@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/svc-playlist-item-factory.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/svc-playlist-item-factory.js</span></h1>
+    <h2>
+        Statements: <span class="metric">97.3% <small>(36 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">60% <small>(6 / 10)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">91.67% <small>(11 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">97.3% <small>(36 / 37)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../../index.html">All files</a> &#187; <a href="index.html">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/</a> &#187; svc-playlist-item-factory.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('risevision.editor.services')
+  .factory('playlistItemFactory', ['$modal', 'gadgetFactory',
+    'presentationTracker', 'editorFactory',
+    function ($modal, gadgetFactory, presentationTracker, editorFactory) {
+      var factory = {};
+&nbsp;
+      var _newPlaylistItem = function () {
+        return {
+          duration: 10,
+          distributeToAll: true,
+          timeDefined: false,
+          additionalParams: null
+        };
+      };
+&nbsp;
+      var _addProduct = function (productDetails) {
+        presentationTracker('Content Selected', editorFactory.presentation.id,
+          editorFactory.presentation.name);
+        gadgetFactory.getGadgetByProduct(productDetails.productCode)
+          .then(function (gadget) {
+            var item = _newPlaylistItem();
+&nbsp;
+            item.type = gadget.gadgetType ? gadget.gadgetType.toLowerCase() :
+<span class="branch-1 cbranch-no" title="branch not covered" >              'widget';</span>
+            item.name = gadget.name ? gadget.name : <span class="branch-1 cbranch-no" title="branch not covered" >'Widget Item';</span>
+&nbsp;
+            item.objectData = gadget.url;
+            item.objectReference = gadget.id;
+&nbsp;
+            factory.edit(item, true);
+          });
+      };
+&nbsp;
+      var _addWidget = function (widgetDetails) {
+        var item = _newPlaylistItem();
+        item.type = 'widget';
+        item.name = 'Widget from URL';
+        item.objectData = widgetDetails.url;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (widgetDetails.settingsUrl) {
+          item.settingsUrl = widgetDetails.settingsUrl;
+        }
+        factory.edit(item);
+      };
+&nbsp;
+      factory.addContent = function () {
+        presentationTracker('Add Content', editorFactory.presentation.id,
+          editorFactory.presentation.name);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editor/store-products-modal.html',
+          size: 'lg',
+          controller: 'storeProductsModal',
+          resolve: {
+            category: function () {
+              return 'Content';
+            }
+          }
+        });
+&nbsp;
+        modalInstance.result.then(_addProduct);
+      };
+&nbsp;
+      factory.edit = function (item, showWidgetModal) {
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editor/playlist-item-modal.html',
+          size: 'md',
+          controller: 'PlaylistItemModalController',
+          resolve: {
+            item: function () {
+              return item;
+            },
+            showWidgetModal: <span class="fstat-no" title="function not covered" >function () {</span>
+<span class="cstat-no" title="statement not covered" >              return showWidgetModal;</span>
+            }
+          }
+        });
+      };
+&nbsp;
+      factory.addWidgetByUrl = function () {
+        presentationTracker('Add Widget By URL', editorFactory.presentation
+          .id, editorFactory.presentation.name);
+        var modalInstance = $modal.open({
+          templateUrl: 'partials/editor/widget-item-modal.html',
+          controller: 'WidgetItemModalController',
+          size: 'md'
+        });
+        modalInstance.result.then(function (result) {
+          <span class="missing-if-branch" title="else path not taken" >E</span>if (result &amp;&amp; result.url) {
+            _addWidget(result);
+          }
+        });
+      };
+&nbsp;
+&nbsp;
+      return factory;
+    }
+  ]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 10:38:19 GMT-0700 (Mountain Standard Time)</div>
+</div>
+<script src="../../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../../sorter.js"></script>
+</body>
+</html>

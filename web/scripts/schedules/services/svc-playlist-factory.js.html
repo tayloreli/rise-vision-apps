@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/schedules/services/svc-playlist-factory.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/schedules/services/svc-playlist-factory.js</span></h1>
+    <h2>
+        Statements: <span class="metric">100% <small>(44 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">81.25% <small>(13 / 16)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">100% <small>(14 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">100% <small>(44 / 44)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../../index.html">All files</a> &#187; <a href="index.html">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/schedules/services/</a> &#187; svc-playlist-factory.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">47</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('risevision.schedules.services')
+  .constant('TYPE_URL', 'url')
+  .constant('TYPE_PRESENTATION', 'presentation')
+  .factory('playlistFactory', ['scheduleFactory', 'scheduleTracker',
+    'TYPE_URL', 'TYPE_PRESENTATION',
+    function (scheduleFactory, scheduleTracker, TYPE_URL, TYPE_PRESENTATION) {
+      var DEFAULT_DURATION = 10;
+      var factory = {};
+&nbsp;
+      factory.getNewPresentationItem = function () {
+        scheduleTracker('Add Presentation to Schedule',
+          scheduleFactory.schedule.id, scheduleFactory.schedule.name
+        );
+&nbsp;
+        return {
+          duration: DEFAULT_DURATION,
+          type: TYPE_PRESENTATION
+        };
+      };
+&nbsp;
+      factory.getNewUrlItem = function () {
+        scheduleTracker('Add URL Item to Schedule',
+          scheduleFactory.schedule.id, scheduleFactory.schedule.name
+        );
+&nbsp;
+        return {
+          duration: DEFAULT_DURATION,
+          type: TYPE_URL,
+          name: 'URL Item'
+        };
+      };
+&nbsp;
+      factory.getPlaylist = function () {
+        return scheduleFactory.schedule.content ? scheduleFactory.schedule.content :
+          scheduleFactory.schedule.content = [];
+      };
+&nbsp;
+      var _getItemIndex = function (playlistItem) {
+        return factory.getPlaylist() ?
+          factory.getPlaylist().indexOf(playlistItem) : <span class="branch-1 cbranch-no" title="branch not covered" >-1;</span>
+      };
+&nbsp;
+      factory.isNew = function (playlistItem) {
+        return _getItemIndex(playlistItem) === -1;
+      };
+&nbsp;
+      factory.updatePlaylistItem = function (playlistItem) {
+        if (_getItemIndex(playlistItem) === -1) {
+          factory.getPlaylist().push(playlistItem);
+        }
+      };
+&nbsp;
+      factory.removePlaylistItem = function (playlistItem) {
+        var index = _getItemIndex(playlistItem);
+        if (index !== -1) {
+          factory.getPlaylist().splice(index, 1);
+        }
+      };
+&nbsp;
+      factory.duplicatePlaylistItem = function (playlistItem) {
+        var index = _getItemIndex(playlistItem);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (index !== -1) {
+          var newPlaylistItem = angular.copy(playlistItem);
+          newPlaylistItem.name = 'Copy of ' + newPlaylistItem.name;
+&nbsp;
+          factory.getPlaylist().splice(index + 1, 0, newPlaylistItem);
+        }
+      };
+&nbsp;
+      factory.canPlaylistItemMoveDown = function (playlistItem) {
+        var index = _getItemIndex(playlistItem);
+&nbsp;
+        return index &gt; -1 &amp;&amp; index &lt; factory.getPlaylist().length - 1;
+      };
+&nbsp;
+      factory.canPlaylistItemMoveUp = function (playlistItem) {
+        return _getItemIndex(playlistItem) &gt; 0;
+      };
+&nbsp;
+      var _moveItem = function (playlistItem, newIndex) {
+        var index = _getItemIndex(playlistItem);
+        var playlist = factory.getPlaylist();
+&nbsp;
+        playlist.splice(newIndex, 0, playlist.splice(index, 1)[0]);
+      };
+&nbsp;
+      factory.movePlaylistItemDown = function (playlistItem) {
+        if (factory.canPlaylistItemMoveDown(playlistItem)) {
+          _moveItem(playlistItem, _getItemIndex(playlistItem) + 1);
+        }
+      };
+&nbsp;
+      factory.movePlaylistItemUp = function (playlistItem) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (factory.canPlaylistItemMoveUp(playlistItem)) {
+          _moveItem(playlistItem, _getItemIndex(playlistItem) - 1);
+        }
+      };
+&nbsp;
+      return factory;
+    }
+  ]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 10:38:19 GMT-0700 (Mountain Standard Time)</div>
+</div>
+<script src="../../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../../sorter.js"></script>
+</body>
+</html>

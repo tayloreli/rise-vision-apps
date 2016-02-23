@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/dtv-placeholder-resize.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/dtv-placeholder-resize.js</span></h1>
+    <h2>
+        Statements: <span class="metric">1.64% <small>(1 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 14)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">1.64% <small>(1 / 61)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../../index.html">All files</a> &#187; <a href="index.html">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/directives/</a> &#187; dtv-placeholder-resize.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('risevision.editor.directives')
+  .directive('placeholderResize', ['$document', 'widgetRenderer',
+<span class="fstat-no" title="function not covered" >    function ($document, widgetRenderer) {</span>
+<span class="cstat-no" title="statement not covered" >      return {</span>
+        restrict: 'A',
+        link: <span class="fstat-no" title="function not covered" >function ($scope, $element, attrs) {</span>
+<span class="cstat-no" title="statement not covered" >            var $mouseDown;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var resizeUp = <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var lowest = $mouseDown.top + $mouseDown.height;</span>
+<span class="cstat-no" title="statement not covered" >              var top = $mouseDown.top + ($event.pageY - $mouseDown.pageY);</span>
+<span class="cstat-no" title="statement not covered" >              top = top &gt; lowest ? lowest : top;</span>
+<span class="cstat-no" title="statement not covered" >              var height = $mouseDown.top - top + $mouseDown.height;</span>
+<span class="cstat-no" title="statement not covered" >              $scope.$apply(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.top = top;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.height = height;</span>
+              });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var resizeRight = <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var width = $mouseDown.width + ($event.pageX - $mouseDown.pageX);</span>
+<span class="cstat-no" title="statement not covered" >              width = width &gt; 0 ? width : 0;</span>
+<span class="cstat-no" title="statement not covered" >              $scope.$apply(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.width = width;</span>
+              });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var resizeDown = <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var height = $mouseDown.height + ($event.pageY - $mouseDown.pageY);</span>
+<span class="cstat-no" title="statement not covered" >              height = height &gt; 0 ? height : 0;</span>
+<span class="cstat-no" title="statement not covered" >              $scope.$apply(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.height = height;</span>
+              });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var resizeLeft = <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var rightest = $mouseDown.left + $mouseDown.width;</span>
+<span class="cstat-no" title="statement not covered" >              var left = $mouseDown.left + ($event.pageX - $mouseDown.pageX);</span>
+<span class="cstat-no" title="statement not covered" >              left = left &gt; rightest ? rightest : left;</span>
+<span class="cstat-no" title="statement not covered" >              var width = $mouseDown.left - left + $mouseDown.width;</span>
+<span class="cstat-no" title="statement not covered" >              $scope.$apply(<span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.left = left;</span>
+<span class="cstat-no" title="statement not covered" >                $scope.placeholder.width = width;</span>
+              });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            var createResizer = <span class="fstat-no" title="function not covered" >function (className, handlers) {</span></span>
+<span class="cstat-no" title="statement not covered" >              var newElement = angular.element('&lt;div class="' + className +</span>
+                '"&gt;&lt;/div&gt;');
+<span class="cstat-no" title="statement not covered" >              $element.append(newElement);</span>
+<span class="cstat-no" title="statement not covered" >              newElement.on('mousedown', <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                $event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                $event.stopPropagation();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var mousemove = <span class="fstat-no" title="function not covered" >function ($event) {</span></span>
+<span class="cstat-no" title="statement not covered" >                  $event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                  $event.stopPropagation();</span>
+<span class="cstat-no" title="statement not covered" >                  for (var i = 0; i &lt; handlers.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >                    handlers[i]($event);</span>
+                  }
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                var mouseup = <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="cstat-no" title="statement not covered" >                  $event.preventDefault();</span>
+<span class="cstat-no" title="statement not covered" >                  $event.stopPropagation();</span>
+<span class="cstat-no" title="statement not covered" >                  $document.off('mousemove', mousemove);</span>
+<span class="cstat-no" title="statement not covered" >                  $document.off('mouseup', mouseup);</span>
+<span class="cstat-no" title="statement not covered" >                  widgetRenderer.notifyResize($scope.placeholder,</span>
+                    $element);
+                };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $document.on('mousemove', mousemove);</span>
+<span class="cstat-no" title="statement not covered" >                $document.on('mouseup', mouseup);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >                $mouseDown = $event;</span>
+<span class="cstat-no" title="statement not covered" >                $mouseDown.top = $element[0].offsetTop;</span>
+<span class="cstat-no" title="statement not covered" >                $mouseDown.left = $element[0].offsetLeft;</span>
+<span class="cstat-no" title="statement not covered" >                $mouseDown.width = $element[0].offsetWidth;</span>
+<span class="cstat-no" title="statement not covered" >                $mouseDown.height = $element[0].offsetHeight;</span>
+              });
+            };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >            createResizer('sw-resize', [resizeDown, resizeLeft]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('ne-resize', [resizeUp, resizeRight]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('nw-resize', [resizeUp, resizeLeft]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('se-resize', [resizeDown, resizeRight]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('w-resize', [resizeLeft]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('e-resize', [resizeRight]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('n-resize', [resizeUp]);</span>
+<span class="cstat-no" title="statement not covered" >            createResizer('s-resize', [resizeDown]);</span>
+          } //link()
+      };
+    }
+  ]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 10:38:19 GMT-0700 (Mountain Standard Time)</div>
+</div>
+<script src="../../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/svc-widget-renderer.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../../../../../../prettify.css">
+    <link rel="stylesheet" href="../../../../../../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../../../../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header high">
+    <h1>Code coverage report for <span class="entity">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/svc-widget-renderer.js</span></h1>
+    <h2>
+        Statements: <span class="metric">85.14% <small>(63 / 74)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">78.57% <small>(33 / 42)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">75% <small>(9 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">85.14% <small>(63 / 74)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../../../../../../index.html">All files</a> &#187; <a href="index.html">D:/VisualStudio Projects/Visual Studio Code/rise-vision-apps/web/scripts/editor/services/</a> &#187; svc-widget-renderer.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">18</span>
+<span class="cline-any cline-yes">36</span>
+<span class="cline-any cline-yes">14</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">10</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-yes">9</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">17</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-yes">2</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-yes">12</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+angular.module('risevision.editor.services')
+  .value('IFRAME_PREFIX', 'if_')
+  .value('RENDER_WIDGETS', {
+    'TEXT_WIDGET_PROD': 'ba0da120-7c67-437f-9caf-73585bd30c74',
+    'TEXT_WIDGET_TEST': '64cc543c-c2c6-49ab-a4e9-40ceba48a253',
+    'IMAGE_WIDGET_PROD': '5233a598-35ce-41a4-805c-fd2147f144a3',
+    'IMAGE_WIDGET_TEST': '2707fc05-5051-4d7b-bcde-01fafd6eaa5e'
+  })
+  .value('CUSTOM_WIDGET_ICONS', {
+    '2d407395-d1ae-452c-bc27-78124a47132b': 'ph-video-item', // Video Widget - Prod
+    '4bf6fb3d-1ead-4bfb-b66f-ae1fcfa3c0c6': 'ph-video-item' // Video Widget - Test
+  })
+  .factory('widgetRenderer', ['gadgetsApi', '$window', 'IFRAME_PREFIX',
+    'RENDER_WIDGETS', 'userState', 'CUSTOM_WIDGET_ICONS',
+    function (gadgetsApi, $window, IFRAME_PREFIX, RENDER_WIDGETS, userState,
+      CUSTOM_WIDGET_ICONS) {
+      var factory = {};
+&nbsp;
+      factory._placeholders = {};
+&nbsp;
+      var _isRenderingAllowed = function (playlistItem) {
+        var objectReference = playlistItem.objectReference;
+        for (var k in RENDER_WIDGETS) {
+          if (RENDER_WIDGETS[k] === objectReference) {
+            if (objectReference === RENDER_WIDGETS.IMAGE_WIDGET_PROD ||
+              objectReference === RENDER_WIDGETS.IMAGE_WIDGET_TEST) {
+              var params = JSON.parse(playlistItem.additionalParams);
+              return (params.url &amp;&amp; params.url.slice(0, 8) === 'https://') ||
+                (params &amp;&amp; params.selector &amp;&amp; params.selector.url &amp;&amp; params
+                  .selector.url.slice(0, 8) === 'https://');
+            }
+            return true;
+          }
+        }
+        return false;
+      };
+&nbsp;
+      var _setPlaceholderIcon = function (placeholder) {
+        if (placeholder.items &amp;&amp; placeholder.items[0]) {
+          var objectReference = placeholder.items[0].objectReference;
+          if (Object.keys(CUSTOM_WIDGET_ICONS).indexOf(objectReference) &gt;=
+            0) {
+            placeholder.className = 'ph-item-icon ' + CUSTOM_WIDGET_ICONS[
+              objectReference];
+          } else {
+            placeholder.className = 'ph-item-icon';
+          }
+        } else {
+          placeholder.className = '';
+        }
+      };
+&nbsp;
+      factory.register = function (placeholder, element) {
+        if (placeholder.items &amp;&amp; placeholder.items[0] &amp;&amp;
+          _isRenderingAllowed(placeholder.items[0])) {
+          placeholder.className = '';
+          factory._placeholders[placeholder.id] = placeholder;
+          _createIframe(placeholder, element);
+        } else {
+          _setPlaceholderIcon(placeholder);
+        }
+      };
+&nbsp;
+      factory.unregister = function (placeholder, element) {
+        _setPlaceholderIcon(placeholder);
+        delete factory._placeholders[placeholder.id];
+        var frameName = IFRAME_PREFIX + placeholder.id;
+        gadgetsApi.rpc.removeReceiver(frameName);
+        element.find('#' + frameName).remove();
+      };
+&nbsp;
+      factory.notifyResize = function (placeholder, element) {
+        if (factory._placeholders[placeholder.id]) {
+          factory.unregister(placeholder, element);
+          factory.register(placeholder, element);
+        }
+      };
+&nbsp;
+      factory.notifyChanges = function (placeholder, element) {
+        if (factory._placeholders[placeholder.id]) {
+          if (!placeholder.items || !placeholder.items[0] || !
+            _isRenderingAllowed(placeholder.items[0])) {
+            factory.unregister(placeholder, element);
+          } else {
+            gadgetsApi.rpc.call(IFRAME_PREFIX + placeholder.id,
+              'rsparam_set_' +
+              placeholder.id, null, 'additionalParams', placeholder.items[
+                0].additionalParams);
+          }
+        } else {
+          factory.register(placeholder, element);
+        }
+      };
+&nbsp;
+      var _createIframe = function (placeholder, element) {
+        var renderId = placeholder.id;
+        var widgetUrl = placeholder.items[0].objectData +
+          '?up_id=' + renderId +
+          '&amp;up_companyId=' + userState.getSelectedCompanyId() +
+          '&amp;up_rsW=' + placeholder.width +
+          '&amp;up_rsH=' + placeholder.height +
+          '&amp;parent=' + encodeURIComponent($window.location.origin);
+&nbsp;
+        widgetUrl = widgetUrl
+          .replace('http://', '//')
+          .replace('https://', '//');
+&nbsp;
+        var frameName = IFRAME_PREFIX + renderId;
+        var myFrame = document.createElement('iFrame');
+        myFrame.setAttribute('id', frameName);
+        myFrame.setAttribute('name', frameName);
+        myFrame.style.width = '100%';
+        myFrame.style.height = '100%';
+        myFrame.setAttribute('allowTransparency', true);
+        myFrame.setAttribute('frameBorder', '0');
+        myFrame.setAttribute('scrolling', 'no');
+        element.append(myFrame);
+        var myFrameObj = (myFrame.contentWindow) ? myFrame.contentWindow :
+<span class="branch-1 cbranch-no" title="branch not covered" >          (myFrame.contentDocument.document) ? myFrame.contentDocument.document :</span>
+          myFrame.contentDocument;
+        myFrame.src = widgetUrl;
+&nbsp;
+        myFrameObj.onload = (function () {
+          gadgetsApi.rpc.setupReceiver(frameName);
+        })();
+      };
+&nbsp;
+      gadgetsApi.rpc.register('rsevent_ready', <span class="fstat-no" title="function not covered" >function () {</span>
+        //Register to avoid error messages. Doing nothing for now.
+      });
+&nbsp;
+      gadgetsApi.rpc.register('rsparam_get', <span class="fstat-no" title="function not covered" >function (id, param) {</span>
+<span class="cstat-no" title="statement not covered" >        var value;</span>
+<span class="cstat-no" title="statement not covered" >        if (typeof (param) === 'string') {</span>
+<span class="cstat-no" title="statement not covered" >          value = getParam(param, id);</span>
+        } else <span class="cstat-no" title="statement not covered" >if (param.length) {</span>
+<span class="cstat-no" title="statement not covered" >          value = [];</span>
+<span class="cstat-no" title="statement not covered" >          for (var i = 0; i &lt; param.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >            value[i] = getParam(param[i], id);</span>
+          }
+        }
+<span class="cstat-no" title="statement not covered" >        gadgetsApi.rpc.call(IFRAME_PREFIX + id, 'rsparam_set_' + id, null,</span>
+          param,
+          value);
+      });
+&nbsp;
+      var getParam = <span class="fstat-no" title="function not covered" >function (paramName, id) {</span>
+<span class="cstat-no" title="statement not covered" >        if (paramName === 'additionalParams') {</span>
+<span class="cstat-no" title="statement not covered" >          return factory._placeholders[id].items[0].additionalParams;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          return '';</span>
+        }
+      };
+&nbsp;
+      return factory;
+    }
+  ]);
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Tue Feb 23 2016 10:38:19 GMT-0700 (Mountain Standard Time)</div>
+</div>
+<script src="../../../../../../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../../../../../../sorter.js"></script>
+</body>
+</html>
